@@ -24,6 +24,9 @@ public class TestHello {
 		Hello hello2 = ctx.getBean("hello", Hello.class);
 		System.out.println(hello2.today());
 		
+		// 利用 Spring 來管理 new 物件的問題
+		// 使用 conf/beans-config1.xml (XML 配置) 來取得 bean 物件
+		
 	}
 	
 }
