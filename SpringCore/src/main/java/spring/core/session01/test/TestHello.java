@@ -9,6 +9,8 @@ public class TestHello {
 		Hello hello = new Hello();
 		System.out.println(hello.today());
 		
+		// 利用 Spring 來管理 new 物件的問題
+		
 		
 	}
 	
