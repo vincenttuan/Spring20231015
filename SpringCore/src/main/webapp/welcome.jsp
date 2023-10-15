@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	Welcome Spring !!
+	Welcome Spring !
 </body>
 </html>
