@@ -22,5 +22,7 @@
     <!-- scope="singleton" 只有一個實體(預設) -->
     <bean id="hello" scope="singleton" class="spring.core.session01.bean.Hello"  />
     
+    <bean id="lotto" scope="singleton" class="spring.core.session01.bean.Lotto"  />
+    
 	
 </beans>
