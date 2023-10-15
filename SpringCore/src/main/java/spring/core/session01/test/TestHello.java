@@ -6,6 +6,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spring.core.session01.bean.Hello;
 import spring.core.session01.conf.JavaSpringConfig;
 
+// 執行時請加入 VM 參數: --add-opens java.base/java.lang=ALL-UNNAMED
 public class TestHello {
 	
 	public static void main(String[] args) {
