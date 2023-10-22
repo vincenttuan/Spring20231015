@@ -1,5 +1,7 @@
 package spring.core.session02.test;
 
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -32,6 +34,13 @@ public class TestAuthor {
 		Author author5 = ctx.getBean("author5", Author.class);
 		System.out.println(author5); // 透過設定檔(c)方法注入自動注入資料
 		
+		// 進行資料分析
+		List<Author> authors = List.of(author1, author2, author3, author4, author5);
+		System.out.println(authors);
+		
+		// 計算平均年齡
+		double avgOfAge = authors.stream().mapToInt(author -> author.getAge()).average().orElse(0.0);
+		System.out.printf("平均年齡: %.1f\n", avgOfAge);
 	}
 
 }
