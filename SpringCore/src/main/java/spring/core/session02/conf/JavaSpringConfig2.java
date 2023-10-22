@@ -27,4 +27,18 @@ public class JavaSpringConfig2 {
 		return new Author("Mary", '女', 20);
 	}
 	
+	@Bean
+	public Author author4() {
+		Author author = new Author();
+		author.setName("Helen");
+		author.setSex('女');
+		author.setAge(23);
+		return author;
+	}
+	
+	@Bean
+	public Author author5() {
+		return new Author("Tom", '男', 31);
+	}
+	
 }
