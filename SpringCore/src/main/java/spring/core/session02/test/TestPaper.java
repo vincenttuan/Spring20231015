@@ -7,7 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import spring.core.session02.bean.Paper;
 import spring.core.session02.conf.JavaSpringConfig2;
 
-public class TestPage {
+public class TestPaper {
 
 	public static void main(String[] args) {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("beans-config2.xml");
