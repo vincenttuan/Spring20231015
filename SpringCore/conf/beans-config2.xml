@@ -46,5 +46,31 @@
     <!-- 利用 c 進行方法注入配置 -->
     <bean id="author5" class="spring.core.session02.bean.Author" c:name="Tom" c:sex="男" c:age="31" />
     
+    <!-- Book -->
+    <bean id="book1" class="spring.core.session02.bean.Book" />
+    
+    <!-- Book 方法注入 -->
+    <bean id="book2" class="spring.core.session02.bean.Book">
+    	<property name="name">
+    		<value>Java</value>
+    	</property>
+    	<property name="price">
+    		<value>500</value>
+    	</property>
+    	<property name="author" ref="author2" />
+    </bean>
+    
+    <!-- Book 建構子注入 -->
+    <bean id="book3" class="spring.core.session02.bean.Book">
+		<constructor-arg index="0" value="Spring" />
+		<constructor-arg index="1" value="600" />
+		<constructor-arg index="2" ref="author3" />
+    </bean>
+    
+    <!-- 利用 p 進行方法注入配置 -->
+    <bean id="book4" class="spring.core.session02.bean.Book" p:name="Python" p:price="450" p:author-ref="author4"  />
+    
+    <!-- 利用 c 進行方法注入配置 -->
+	<bean id="book5" class="spring.core.session02.bean.Book" c:name="VB" c:price="280" c:author-ref="author5"  />
 	
 </beans>
