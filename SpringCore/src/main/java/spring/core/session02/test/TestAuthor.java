@@ -1,6 +1,10 @@
 package spring.core.session02.test;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.averagingInt;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -39,8 +43,26 @@ public class TestAuthor {
 		System.out.println(authors);
 		
 		// 計算平均年齡
-		double avgOfAge = authors.stream().mapToInt(author -> author.getAge()).average().orElse(0.0);
-		System.out.printf("平均年齡: %.1f\n", avgOfAge);
+		double avgOfAge = authors.stream()
+								 .mapToInt(Author::getAge) //.mapToInt(author -> author.getAge())
+								 .average()
+								 .orElse(0.0);
+		System.out.printf("平均年齡: %.1f%n", avgOfAge);
+		
+		// 計算男女的平均年齡
+		// {男 = ?, 女 = ?} 分組/groupingBy/Map
+		Map<Character, Double> avgAgeBySex = authors.stream()
+												 .collect(groupingBy(
+														 	Author::getSex, // 分組依據性別
+														 	averagingInt(Author::getAge) // 計算每一組的平均年齡
+														 ));
+		
+		System.out.println(avgAgeBySex);
+		avgAgeBySex.forEach((sex, age) -> { // key = sex, value = age
+			System.out.printf("性別: %c, 平均年齡: %.1f%n", sex, age);
+		});		
+		
+		
 	}
 
 }
