@@ -40,6 +40,11 @@
 		<constructor-arg index="2" value="20" />
 	</bean>
 	
+    <!-- 利用 p 進行方法注入配置 -->
+    <bean id="author4" class="spring.core.session02.bean.Author" p:name="Helen" p:sex="女" p:age="23" />
+
+    <!-- 利用 c 進行方法注入配置 -->
+    <bean id="author5" class="spring.core.session02.bean.Author" c:name="Tom" c:sex="男" c:age="31" />
     
 	
 </beans>

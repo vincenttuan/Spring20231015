@@ -10,8 +10,8 @@ import spring.core.session02.conf.JavaSpringConfig2;
 public class TestAuthor {
 
 	public static void main(String[] args) {
-		//ApplicationContext ctx = new ClassPathXmlApplicationContext("beans-config2.xml");
-		ApplicationContext ctx = new AnnotationConfigApplicationContext(JavaSpringConfig2.class);
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("beans-config2.xml");
+		//ApplicationContext ctx = new AnnotationConfigApplicationContext(JavaSpringConfig2.class);
 		Author author1 = ctx.getBean("author1", Author.class);
 		System.out.println(author1);
 		// 手動注入
@@ -25,6 +25,13 @@ public class TestAuthor {
 
 		Author author3 = ctx.getBean("author3", Author.class);
 		System.out.println(author3); // 透過設定檔建構子注入自動注入資料
+
+		Author author4 = ctx.getBean("author4", Author.class);
+		System.out.println(author4); // 透過設定檔(p)方法注入自動注入資料
+		
+		Author author5 = ctx.getBean("author5", Author.class);
+		System.out.println(author5); // 透過設定檔(c)方法注入自動注入資料
+		
 	}
 
 }
