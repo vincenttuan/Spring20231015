@@ -85,6 +85,13 @@ public class JavaSpringConfig2 {
 		return white;
 	}
 	
+	@Bean(name = "color")
+	public Color yellow() {
+		Color yellow = new Color();
+		yellow.setName("黃");
+		return yellow;
+	}
+	
 	@Bean
 	public Size a4() {
 		Size a4 = new Size();
@@ -92,7 +99,7 @@ public class JavaSpringConfig2 {
 		return a4;
 	}
 	
-	@Bean
+	@Bean(name = "size")
 	public Size b5() {
 		Size b5 = new Size();
 		b5.setName("B5");
@@ -104,12 +111,29 @@ public class JavaSpringConfig2 {
 	// 根據查找順序: byName -> byType 進行裝配
 	public Paper paper1(Color white, Size a4) {
 		Paper paper = new Paper();
+		// 使用方法參數進行裝配
 		paper.setId(1);
 		paper.setColor(white);
 		paper.setSize(a4);
 		return paper;
 	}
 	
+	@Bean
+	public Paper paper2(Color color, Size size) {
+		Paper paper = new Paper();
+		// 使用方法參數進行裝配
+		paper.setId(2);
+		paper.setColor(color);
+		paper.setSize(size);
+		return paper;
+	}
 	
+	@Bean
+	public Paper paper3(Color color, Size size) {
+		// 使用建構子進行裝配
+		Paper paper = new Paper(color, size);
+		paper.setId(3);
+		return paper;
+	}
 	
 }
