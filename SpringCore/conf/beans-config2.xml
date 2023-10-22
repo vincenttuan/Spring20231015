@@ -73,4 +73,12 @@
     <!-- 利用 c 進行方法注入配置 -->
 	<bean id="book5" class="spring.core.session02.bean.Book" c:name="VB" c:price="280" c:author-ref="author5"  />
 	
+	<!-- Color 與 Size 配置 -->
+	<bean id="white" class="spring.core.session02.bean.Color" p:name="白" />
+	<bean id="a4" class="spring.core.session02.bean.Size" p:name="A4" />
+	
+	<!-- Page 自動綁定 Color 與 Size -->
+	<!-- byType 自動匹配, 若超過一個可匹配就不可以使用 -->
+	<bean id="page1" class="spring.core.session02.beanPage" p:id="1" autowire="byType" />
+	
 </beans>
