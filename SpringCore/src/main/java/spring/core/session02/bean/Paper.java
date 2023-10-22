@@ -9,8 +9,7 @@ public class Paper {
 		
 	}
 	
-	public Paper(Integer id, Color color, Size size) {
-		this.id = id;
+	public Paper(Color color, Size size) {
 		this.color = color;
 		this.size = size;
 	}

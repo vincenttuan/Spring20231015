@@ -84,6 +84,8 @@
 	<!-- 
 	<bean id="paper1" class="spring.core.session02.bean.Paper" p:id="1" autowire="byType" />
 	 -->
-	<bean id="paper2" class="spring.core.session02.bean.Paper" p:id="1" autowire="byName" />
+	<bean id="paper2" class="spring.core.session02.bean.Paper" p:id="2" autowire="byName" />
+	
+	<bean id="paper3" class="spring.core.session02.bean.Paper" p:id="3" autowire="constructor" />
 	
 </beans>
