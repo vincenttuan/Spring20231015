@@ -5,6 +5,9 @@ import org.springframework.context.annotation.Configuration;
 
 import spring.core.session02.bean.Author;
 import spring.core.session02.bean.Book;
+import spring.core.session02.bean.Color;
+import spring.core.session02.bean.Paper;
+import spring.core.session02.bean.Size;
 
 @Configuration
 public class JavaSpringConfig2 {
@@ -74,6 +77,30 @@ public class JavaSpringConfig2 {
 	public Book book5() {
 		return new Book("VB", 280, author5());
 	}
+	
+	@Bean
+	public Color white() {
+		Color white = new Color();
+		white.setName("白");
+		return white;
+	}
+	
+	@Bean
+	public Size a4() {
+		Size a4 = new Size();
+		a4.setName("A4");
+		return a4;
+	}
+	
+	@Bean
+	public Paper paper1(Color white, Size a4) { // Spring 會按照類型裝配
+		Paper paper = new Paper();
+		paper.setId(1);
+		paper.setColor(white);
+		paper.setSize(a4);
+		return paper;
+	}
+	
 	
 	
 }
