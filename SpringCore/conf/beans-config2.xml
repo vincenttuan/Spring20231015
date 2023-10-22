@@ -78,7 +78,7 @@
 	<bean id="a4" class="spring.core.session02.bean.Size" p:name="A4" />
 	<bean id="color" class="spring.core.session02.bean.Color" p:name="黃" />
 	<bean id="size" class="spring.core.session02.bean.Size" p:name="B5" />
-	
+
 	<!-- Paper 自動綁定 Color 與 Size -->
 	<!-- byType 自動匹配, 若超過一個可匹配就不可以使用 -->
 	<!-- 
@@ -86,6 +86,7 @@
 	 -->
 	<bean id="paper2" class="spring.core.session02.bean.Paper" p:id="2" autowire="byName" />
 	
+	<!-- 匹配順序 byName -> byType -->
 	<bean id="paper3" class="spring.core.session02.bean.Paper" p:id="3" autowire="constructor" />
 	
 </beans>
