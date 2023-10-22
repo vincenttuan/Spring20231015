@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import spring.core.session02.bean.Author;
+import spring.core.session02.bean.Book;
 
 @Configuration
 public class JavaSpringConfig2 {
@@ -40,5 +41,39 @@ public class JavaSpringConfig2 {
 	public Author author5() {
 		return new Author("Tom", '男', 31);
 	}
+	
+	@Bean
+	public Book book1() {
+		return new Book();
+	}
+	
+	@Bean
+	public Book book2() {
+		Book book = new Book();
+		book.setName("Java");
+		book.setPrice(500);
+		book.setAuthor(author2());
+		return book;
+	}
+	
+	@Bean
+	public Book book3() {
+		return new Book("Spring", 600, author3());
+	}
+	
+	@Bean
+	public Book book4() {
+		Book book = new Book();
+		book.setName("Python");
+		book.setPrice(450);
+		book.setAuthor(author4());
+		return book;
+	}
+	
+	@Bean
+	public Book book5() {
+		return new Book("VB", 280, author5());
+	}
+	
 	
 }
