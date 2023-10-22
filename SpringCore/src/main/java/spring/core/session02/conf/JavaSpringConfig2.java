@@ -93,7 +93,16 @@ public class JavaSpringConfig2 {
 	}
 	
 	@Bean
-	public Paper paper1(Color white, Size a4) { // Spring 會按照類型裝配
+	public Size b5() {
+		Size b5 = new Size();
+		b5.setName("B5");
+		return b5;
+	}
+	
+	
+	@Bean
+	// 根據查找順序: byName -> byType 進行裝配
+	public Paper paper1(Color white, Size a4) {
 		Paper paper = new Paper();
 		paper.setId(1);
 		paper.setColor(white);

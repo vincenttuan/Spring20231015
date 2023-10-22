@@ -10,8 +10,8 @@ import spring.core.session02.conf.JavaSpringConfig2;
 public class TestPaper {
 
 	public static void main(String[] args) {
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("beans-config2.xml");
-		//ApplicationContext ctx = new AnnotationConfigApplicationContext(JavaSpringConfig2.class);
+		//ApplicationContext ctx = new ClassPathXmlApplicationContext("beans-config2.xml");
+		ApplicationContext ctx = new AnnotationConfigApplicationContext(JavaSpringConfig2.class);
 		
 		Paper paper1 = ctx.getBean("paper1", Paper.class);
 		System.out.println("paper1: " + paper1);
