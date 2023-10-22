@@ -20,6 +20,25 @@
 	<!-- Author -->
 	<bean id="author1" class="spring.core.session02.bean.Author" />
 	
+	<!-- Author 方法注入 -->
+	<bean id="author2" class="spring.core.session02.bean.Author">
+		<property name="name">
+			<value>John</value>
+		</property>
+		<property name="sex">
+			<value>男</value>
+		</property>
+		<property name="age">
+			<value>29</value>
+		</property>
+	</bean>
+	
+	<!-- Author 建構子注入 -->
+	<bean id="author3" class="spring.core.session02.bean.Author">
+		<constructor-arg index="0" value="Mary" />
+		<constructor-arg index="1" value="女" />
+		<constructor-arg index="2" value="20" />
+	</bean>
 	
     
 	
