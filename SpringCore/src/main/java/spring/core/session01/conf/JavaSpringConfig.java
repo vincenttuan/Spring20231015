@@ -20,6 +20,7 @@ public class JavaSpringConfig {
 	}
 	
 	@Bean
+	@Scope("prototype")
     public Lotto lotto() {
         return new Lotto(); // 創建Lotto的實例
     }

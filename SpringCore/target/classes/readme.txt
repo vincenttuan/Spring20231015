@@ -1,0 +1,1 @@
+執行參數: --add-opens java.base/java.lang=ALL-UNNAMED

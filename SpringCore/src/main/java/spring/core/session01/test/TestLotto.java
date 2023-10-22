@@ -8,7 +8,7 @@ import spring.core.session01.bean.Lotto;
 import spring.core.session01.conf.JavaSpringConfig;
 
 public class TestLotto {
-
+	// 執行參數: --add-opens java.base/java.lang=ALL-UNNAMED
 	public static void main(String[] args) {
 		// XML 配置
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("beans-config1.xml");
