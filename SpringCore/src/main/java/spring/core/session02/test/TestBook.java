@@ -1,16 +1,18 @@
 package spring.core.session02.test;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import spring.core.session02.bean.Author;
 import spring.core.session02.bean.Book;
+import spring.core.session02.conf.JavaSpringConfig2;
 
 public class TestBook {
 
 	public static void main(String[] args) {
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("beans-config2.xml");
-		//ApplicationContext ctx = new AnnotationConfigApplicationContext(JavaSpringConfig2.class);
+		//ApplicationContext ctx = new ClassPathXmlApplicationContext("beans-config2.xml");
+		ApplicationContext ctx = new AnnotationConfigApplicationContext(JavaSpringConfig2.class);
 		
 		// 手動注入 Author 資料
 		Author author1 = ctx.getBean("author1", Author.class);
