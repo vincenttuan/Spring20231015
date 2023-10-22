@@ -76,9 +76,14 @@
 	<!-- Color 與 Size 配置 -->
 	<bean id="white" class="spring.core.session02.bean.Color" p:name="白" />
 	<bean id="a4" class="spring.core.session02.bean.Size" p:name="A4" />
+	<bean id="color" class="spring.core.session02.bean.Color" p:name="黃" />
+	<bean id="size" class="spring.core.session02.bean.Size" p:name="B5" />
 	
 	<!-- Paper 自動綁定 Color 與 Size -->
 	<!-- byType 自動匹配, 若超過一個可匹配就不可以使用 -->
+	<!-- 
 	<bean id="paper1" class="spring.core.session02.bean.Paper" p:id="1" autowire="byType" />
+	 -->
+	<bean id="paper2" class="spring.core.session02.bean.Paper" p:id="1" autowire="byName" />
 	
 </beans>
