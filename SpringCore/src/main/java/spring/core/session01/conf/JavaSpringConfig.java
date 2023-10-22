@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
 import spring.core.session01.bean.Hello;
+import spring.core.session01.bean.Lotto;
 
 // 利用 JavaSpringConfig 來配置需管理的 java 物件(bean)
 @Configuration
@@ -17,5 +18,10 @@ public class JavaSpringConfig {
 		Hello hello = new Hello();
 		return hello;
 	}
+	
+	@Bean
+    public Lotto lotto() {
+        return new Lotto(); // 創建Lotto的實例
+    }
 	
 }
