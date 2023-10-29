@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 import spring.core.session03.bean.Clazz;
+import spring.core.session03.bean.DBConn;
 import spring.core.session03.bean.Student;
 import spring.core.session03.bean.Teacher;
 
@@ -121,6 +122,11 @@ public class JavaSpringConfig3 {
 		teacher.setSubjects(subjects());
 		teacher.setSalary(salary());
 		return teacher;
+	}
+	
+	@Bean(initMethod = "begin", destroyMethod = "close")
+	public DBConn dbConn() {
+		return new DBConn();
 	}
 	
 }
