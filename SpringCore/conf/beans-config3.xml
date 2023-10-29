@@ -108,7 +108,7 @@
 	</util:map>
 	
 	<!-- 講師 2 配置 -->
-	<bean id="teacher" 
+	<bean id="teacher2" 
 		  class="spring.core.session03.bean.Teacher" 
 		  p:id="2" 
 		  p:name="Helen"
