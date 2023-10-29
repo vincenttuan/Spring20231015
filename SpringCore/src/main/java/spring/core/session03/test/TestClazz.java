@@ -1,5 +1,8 @@
 package spring.core.session03.test;
 
+import java.util.List;
+
+import org.apache.tomcat.util.net.openssl.OpenSSLUtil;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -34,6 +37,16 @@ public class TestClazz {
 		System.out.println(teacher2.getStudents());
 		System.out.println(teacher2.getSubjects());
 		System.out.println(teacher2.getSalary());
+		
+		List<Student> students = ctx.getBean("students", List.class);
+		System.out.println(students);
+		// 請問每一個學生個別共修了多少學分 ?
+		// 印出範例如下:
+		// John 修了 6 學分
+		// Mary 修了 4 學分
+		
+		
+		
 	}
 
 }

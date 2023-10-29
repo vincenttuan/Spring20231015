@@ -44,7 +44,7 @@ public class JavaSpringConfig3 {
 		Clazz clazz = new Clazz();
 		clazz.setId(2);
 		clazz.setName("English");
-		clazz.setCredit(3);
+		clazz.setCredit(2);
 		return clazz;
 	}
 	
