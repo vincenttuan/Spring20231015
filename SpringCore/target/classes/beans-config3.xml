@@ -115,5 +115,13 @@
 		  p:students-ref="students"
 		  p:subjects-ref="subjects"
 		  p:salary-ref="salary" />
+		  
+	<!-- init-method, destroy-method 配置 -->
+	<bean id="dbConn"
+		  class="spring.core.session03.bean.DBConn" 
+		  init-method="begin"
+		  destroy-method="close" 
+	/>
+	
 	
 </beans>
