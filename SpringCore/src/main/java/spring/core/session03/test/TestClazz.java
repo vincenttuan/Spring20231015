@@ -44,7 +44,11 @@ public class TestClazz {
 		// 印出範例如下:
 		// John 修了 6 學分
 		// Mary 修了 4 學分
-		
+		students.forEach(student -> {
+			String name = student.getName();
+			int total = student.getClazzs().stream().mapToInt(Clazz::getCredit).sum();
+			System.out.printf("%s 修了 %d 學分\n", name, total);
+		});
 		
 		
 	}
