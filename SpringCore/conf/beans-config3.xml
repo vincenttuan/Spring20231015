@@ -18,7 +18,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">    
   
 	<!-- 引用外部資源 -->
-	<context:property-placeholder location="data.properties" />
+	<context:property-placeholder location="data.properties" ></context:property-placeholder>
 	
 	<!-- 建立 Clazz 並使用外部注入資料 -->
 	<bean id="clazz1" class="spring.core.session03.bean.Clazz" p:id="${clazz.id}" p:name="${clazz.name}" p:credit="${clazz.credit}" />
