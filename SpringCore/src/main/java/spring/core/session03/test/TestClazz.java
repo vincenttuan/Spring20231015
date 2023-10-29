@@ -1,16 +1,19 @@
 package spring.core.session03.test;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import spring.core.session03.bean.Clazz;
 import spring.core.session03.bean.Student;
 import spring.core.session03.bean.Teacher;
+import spring.core.session03.conf.JavaSpringConfig3;
 
 public class TestClazz {
 
 	public static void main(String[] args) {
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("beans-config3.xml");
+		//ApplicationContext ctx = new ClassPathXmlApplicationContext("beans-config3.xml");
+		ApplicationContext ctx = new AnnotationConfigApplicationContext(JavaSpringConfig3.class);
 		// 課程
 		Clazz clazz1 = ctx.getBean("clazz1", Clazz.class);
 		System.out.println(clazz1);

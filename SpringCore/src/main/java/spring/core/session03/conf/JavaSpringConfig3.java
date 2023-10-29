@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -95,5 +96,31 @@ public class JavaSpringConfig3 {
 		return teacher;
 	}
 	
+	@Bean
+	public Set<Student> students() {
+		return new HashSet<>(Arrays.asList(student1(), student2()));
+	}
+	
+	@Bean List<String> subjects() {
+		return Arrays.asList("Program", "English", "Math", "Music");
+	}
+	
+	@Bean Map<String, Integer> salary() {
+		Map<String, Integer> salaryMap = new HashMap<>();
+		salaryMap.put("base", 65000);
+		salaryMap.put("addition", 22000);
+		return salaryMap;
+	}
+	
+	@Bean
+	public Teacher teacher2() {
+		Teacher teacher = new Teacher();
+		teacher.setId(2);
+		teacher.setName("Helen");
+		teacher.setStudents(students());
+		teacher.setSubjects(subjects());
+		teacher.setSalary(salary());
+		return teacher;
+	}
 	
 }
