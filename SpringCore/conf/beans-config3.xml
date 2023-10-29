@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:c="http://www.springframework.org/schema/c"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -19,5 +19,12 @@
   
 	<!-- 引用外部資源 -->
 	<context:property-placeholder location="data.properties" />
+	
+	<!-- 建立 Clazz 並使用外部注入資料 -->
+	<bean id="clazz1" p:id="${clazz.id}" p:name="${clazz.name}" p:credit="${clazz.credit}" />
+	
+	<!-- 建立 Clazz 並直接注入資料  -->
+	<bean id="clazz2" p:id="2" p:name="English" p:credit="2" />
+	<bean id="clazz3" p:id="3" p:name="Math" p:credit="1" />
 	
 </beans>
