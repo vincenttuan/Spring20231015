@@ -79,5 +79,41 @@
 		</property>
 	</bean>
 	
+	<!-- 利用 util:set、util:list、util:map 簡化配置 -->
+	<util:set id="students">
+		<ref bean="student1" />
+		<ref bean="student2" />
+	</util:set>
+	
+	<util:list id="subjects">
+		<value>Program</value>
+		<value>English</value>
+		<value>Math</value>
+		<value>Music</value>
+	</util:list>
+	
+	<util:map id="salary">
+		<entry>
+			<key>
+				<value>base</value>
+			</key>
+			<value>65000</value>
+		</entry>
+		<entry>
+			<key>
+				<value>addition</value>
+			</key>
+			<value>22000</value>
+		</entry>
+	</util:map>
+	
+	<!-- 講師 2 配置 -->
+	<bean id="teacher" 
+		  class="spring.core.session03.bean.Teacher" 
+		  p:id="2" 
+		  p:name="Helen"
+		  p:students-ref="students"
+		  p:subjects-ref="subjects"
+		  p:salary-ref="salary" />
 	
 </beans>
