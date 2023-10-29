@@ -8,7 +8,7 @@ public class Teacher {
 	private Integer id; // 講師編號
 	private String name; // 講師姓名
 	private Set<Student> students; // 學生列表
-	private List<String> sibjects; // 授課名稱列表
+	private List<String> subjects; // 授課名稱列表
 	private Map<String, Integer> salary; // 薪資組合
 	
 	public Teacher() {
@@ -44,12 +44,12 @@ public class Teacher {
 		this.students = students;
 	}
 
-	public List<String> getSibjects() {
-		return sibjects;
+	public List<String> getSubjects() {
+		return subjects;
 	}
 
-	public void setSibjects(List<String> sibjects) {
-		this.sibjects = sibjects;
+	public void setSubjects(List<String> subjects) {
+		this.subjects = subjects;
 	}
 
 	public Map<String, Integer> getSalary() {
@@ -62,8 +62,10 @@ public class Teacher {
 
 	@Override
 	public String toString() {
-		return "Teacher [id=" + id + ", name=" + name + ", students=" + students + ", sibjects=" + sibjects
+		return "Teacher [id=" + id + ", name=" + name + ", students=" + students + ", subjects=" + subjects
 				+ ", salary=" + salary + "]";
 	}
+
+	
 	
 }
