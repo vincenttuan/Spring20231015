@@ -1,6 +1,9 @@
 package spring.core.session03.test;
 
+import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.tomcat.util.net.openssl.OpenSSLUtil;
 import org.springframework.context.ApplicationContext;
@@ -50,7 +53,20 @@ public class TestClazz {
 			System.out.printf("%s 修了 %d 學分\n", name, total);
 		});
 		
+		// 將 每一個學生個別共修了多少學分 收集成為一個 Map 集合 
+		// 例如: {John=6, Mary=4 ... }
+		Map<String, Integer> studentCredits = students.stream()
+				.collect(Collectors.toMap(
+						Student::getName, // key: 學生的名字 
+						student -> student.getClazzs().stream().mapToInt(Clazz::getCredit).sum() // value: 學生總學分
+				));
+		System.out.println(studentCredits);
 		
+		IntSummaryStatistics stat = studentCredits.values().stream()
+				.mapToInt(Integer::intValue)  // Integer 轉 int
+				.summaryStatistics();
+		System.out.println(stat);
+		System.out.printf("平均每個學生的學分數: %.1f%n", stat.getAverage());
 	}
 
 }
