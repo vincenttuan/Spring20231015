@@ -3,8 +3,11 @@ package spring.core.session03.mvc.model.repository;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import org.springframework.stereotype.Repository;
+
 import spring.core.session03.mvc.model.bean.User;
 
+@Repository
 public class UserDaoImpl implements UserDao {
 	
 	// 定義一個 In-memory 集合來放 user 物件資料 
