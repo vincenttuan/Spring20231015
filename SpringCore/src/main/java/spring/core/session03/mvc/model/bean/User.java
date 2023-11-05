@@ -7,10 +7,12 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component // 等於 @Component(value = "user")
 @PropertySource("classpath:user.properties")
+@Scope(value = "prototype")
 public class User {
 	
 	//@Value(value = "John") // 給予屬性預設值
