@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.springframework.stereotype.Component;
+
+@Component // 等於 @Component(value = "user")
 public class User {
 	private String username; // 姓名
 	
