@@ -17,6 +17,8 @@ public class TestMVC {
 		user.setUsername("John");
 		user.setAge(18);
 		
+		System.out.println(user);
+		
 		UserController userController = ctx.getBean("userController", UserController.class);
 		userController.appendUser(user); // 加入 user
 		
