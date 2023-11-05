@@ -25,10 +25,13 @@ public class User {
 	@Value(value = "#{${nickname: {'Baby', 'Lucky'}}}")
 	private String[] nickname; // 暱稱
 	
+	@Value(value = "#{${subjects: {'Java', 'English'}}}")
 	private Set<String> subjects; // 所修的科目
 	
-	private List<Integer> scires; // 所修科目的成績
+	@Value(value = "#{${scores: {100, 90}}}")
+	private List<Integer> scores; // 所修科目的成績
 	
+	@Value(value = "#{${hobbies: {'1':'Programming', '2':'BaseBall'}}}")
 	private Map<String, String> hobbies; // 興趣
 	
 	public String getUsername() {
@@ -55,11 +58,11 @@ public class User {
 	public void setSubjects(Set<String> subjects) {
 		this.subjects = subjects;
 	}
-	public List<Integer> getScires() {
-		return scires;
+	public List<Integer> getScores() {
+		return scores;
 	}
-	public void setScires(List<Integer> scires) {
-		this.scires = scires;
+	public void setScores(List<Integer> sores) {
+		this.scores = sores;
 	}
 	public Map<String, String> getHobbies() {
 		return hobbies;
@@ -71,7 +74,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [username=" + username + ", age=" + age + ", nickname=" + Arrays.toString(nickname) + ", subjects="
-				+ subjects + ", scires=" + scires + ", hobbies=" + hobbies + "]";
+				+ subjects + ", scores=" + scores + ", hobbies=" + hobbies + "]";
 	}
 	
 	
