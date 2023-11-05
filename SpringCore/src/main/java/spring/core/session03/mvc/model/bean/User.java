@@ -6,15 +6,19 @@ import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component // 等於 @Component(value = "user")
+@PropertySource("classpath:user.properties")
 public class User {
 	
-	@Value(value = "John") // 給予屬性預設值
+	//@Value(value = "John") // 給予屬性預設值
+	@Value("${user.username}")
 	private String username; // 姓名
 	
-	@Value(value = "19")
+	//@Value(value = "19")
+	@Value("${user.age}")
 	private Integer age; // 年齡
 	
 	/*
@@ -22,16 +26,20 @@ public class User {
 	 * ${ .. } 表示取得屬性值. Ex: ${nickname} 表示要取得/配置 nickname 的資料
 	 * ${nickname: {'Baby', 'Lucky'}} 使用 "Baby", "Lucky" 作為 nickname 的預設陣列資料
 	 * */
-	@Value(value = "#{${nickname: {'Baby', 'Lucky'}}}")
+	//@Value(value = "#{${nickname: {'Baby', 'Lucky'}}}")
+	@Value("${user.nickname}")
 	private String[] nickname; // 暱稱
 	
-	@Value(value = "#{${subjects: {'Java', 'English'}}}")
+	//@Value(value = "#{${subjects: {'Java', 'English'}}}")
+	@Value("#{'${user.subjects}'.split(',')}")
 	private Set<String> subjects; // 所修的科目
 	
-	@Value(value = "#{${scores: {100, 90}}}")
+	//@Value(value = "#{${scores: {100, 90}}}")
+	@Value("#{'${user.scores}'.split(',')}")
 	private List<Integer> scores; // 所修科目的成績
 	
-	@Value(value = "#{${hobbies: {'1':'Programming', '2':'BaseBall'}}}")
+	//@Value(value = "#{${hobbies: {'1':'Programming', '2':'BaseBall'}}}")
+	@Value("#{${user.hobbies}}")
 	private Map<String, String> hobbies; // 興趣
 	
 	public String getUsername() {
