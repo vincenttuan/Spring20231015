@@ -132,7 +132,7 @@ public class JavaSpringConfig3 {
 	}
 	
 	@Bean
-	@Scope("singleton")
+	@Scope("singleton") // @Scope("prototype")
 	public CarFactory carFactory() {
 		return new CarFactory();
 	}
