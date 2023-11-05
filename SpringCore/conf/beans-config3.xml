@@ -123,5 +123,7 @@
 		  destroy-method="close" 
 	/>
 	
+	<!-- 配置 CarFactory 而非 Car -->
+	<bean id="carFactory" class="spring.core.session03.factory.CarFactory" />
 	
 </beans>
