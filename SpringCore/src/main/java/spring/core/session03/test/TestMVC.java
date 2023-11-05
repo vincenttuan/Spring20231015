@@ -22,10 +22,11 @@ public class TestMVC {
 		user.setNickname(new String[] {"Foo", "Bar"});
 		user.setSubjects(new HashSet<>(List.of("Programming", "Math")));
 		user.setScores(List.of(100, 90));
-		Map<String, String> hobbies = new HashMap<>();
-		hobbies.put("1", "Game");
-		hobbies.put("2", "RC model");
-		user.setHobbies(hobbies);
+		//Map<String, String> hobbies = new HashMap<>();
+		//hobbies.put("1", "Game");
+		//hobbies.put("2", "RC model");
+		//user.setHobbies(hobbies);
+		user.setHobbies(Map.of("1", "Game", "2", "RC Model"));
 		
 		System.out.println(user);
 		
