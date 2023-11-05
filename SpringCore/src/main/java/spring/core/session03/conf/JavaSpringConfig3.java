@@ -11,11 +11,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Scope;
 
 import spring.core.session03.bean.Clazz;
 import spring.core.session03.bean.DBConn;
 import spring.core.session03.bean.Student;
 import spring.core.session03.bean.Teacher;
+import spring.core.session03.factory.CarFactory;
 
 @Configuration
 @PropertySource("classpath:data.properties")
@@ -127,6 +129,12 @@ public class JavaSpringConfig3 {
 	@Bean(initMethod = "begin", destroyMethod = "close")
 	public DBConn dbConn() {
 		return new DBConn();
+	}
+	
+	@Bean
+	@Scope("singleton")
+	public CarFactory carFactory() {
+		return new CarFactory();
 	}
 	
 }
