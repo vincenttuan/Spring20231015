@@ -3,6 +3,7 @@ package spring.core.session05.aop;
 import java.util.Arrays;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -55,4 +56,13 @@ public class MyLoggerAspect {
 		Object[] args = joinPoint.getArgs(); // 得到 JoinPoint 連接點的方法參數
 		System.out.printf("呼叫前置通知 - JoinPoint 連接點的方法名稱: %s 方法參數: %s%n", methodName, Arrays.toString(args));
 	}
+	
+	// 後置通知 (不論是否會發生異常都會執行)
+	@After(value = "pt5()")
+	public void afterAdvice(JoinPoint joinPoint) {
+		String methodName = joinPoint.getSignature().getName(); // 得到 JoinPoint 連接點的方法名稱
+		System.out.printf("呼叫後置通知 - JoinPoint 連接點的方法名稱: %s%n", methodName);
+	}
+	
+	
 }
