@@ -3,6 +3,9 @@ package spring.core.session04.proxy.dyn.test;
 import spring.core.session04.proxy.dyn.Calc;
 import spring.core.session04.proxy.dyn.CalcImpl;
 import spring.core.session04.proxy.dyn.DynProxy;
+import spring.core.session04.proxy.sta.Man;
+import spring.core.session04.proxy.sta.Person;
+import spring.core.session04.proxy.sta.Woman;
 
 public class ProxyDynDemo {
 
@@ -12,7 +15,8 @@ public class ProxyDynDemo {
 		System.out.println(calc.add(10, 20));
 		System.out.println(calc.div(10, 5));
 				
-		
+		Person person = (Person)new DynProxy(new Woman()).getProxy();
+		person.work();
 
 	}
 
