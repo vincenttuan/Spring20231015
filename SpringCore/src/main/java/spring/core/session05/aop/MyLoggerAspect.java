@@ -27,6 +27,9 @@ public class MyLoggerAspect {
 	@Pointcut(value = "execution(public Integer spring.core.session05.aop.CalcImpl.*(..))")
 	public void pt3() {}
 	
+	@Pointcut("@annotation(spring.core.session05.aop.MyLoggerAnnoation)")
+	public void pt4() {}
+	
 	// 前置通知(Advice)
 	//@Before(value = "execution(public Integer spring.core.session05.aop.CalcImpl.add(Integer, Integer))") // 注入指定方法簽章
 	//@Before(value = "execution(public Integer spring.core.session05.aop.CalcImpl.add(..))") // 注入指定方法簽章, 不限制方法參數
@@ -37,7 +40,8 @@ public class MyLoggerAspect {
 	//@Before(value = "pt()")
 	//@Before(value = "pt2()")
 	//@Before(value = "pt3()")
-	@Before(value = "pt3() && !pt2()") // 切入點表達式支援邏輯運算子: &&, ||, !
+	//@Before(value = "pt3() && !pt2()") // 切入點表達式支援邏輯運算子: &&, ||, !
+	@Before(value = "pt4()")
 	public void beforeAdvice(JoinPoint joinPoint) { // JoinPoint 連接點
 		String methodName = joinPoint.getSignature().getName(); // 得到 JoinPoint 連接點的方法名稱
 		Object[] args = joinPoint.getArgs(); // 得到 JoinPoint 連接點的方法參數
