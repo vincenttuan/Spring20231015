@@ -67,7 +67,7 @@ public class MyLoggerAspect {
 	
 	// 返回通知(可以設定 returing 來得到方法的回傳值
 	// 不過若有異常發生, 則返回通知不會執行
-	@AfterReturning(value = "pt5", returning = "result")
+	@AfterReturning(value = "pt5()", returning = "result")
 	public void afterReturningAdvice(Object result) {
 		System.out.printf("呼叫返回通知 - 執行結果: %s%n", result);
 	}
