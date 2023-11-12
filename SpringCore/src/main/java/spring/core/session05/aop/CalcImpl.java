@@ -1,5 +1,9 @@
 package spring.core.session05.aop;
 
+import org.springframework.stereotype.Component;
+
+// 讓 Spring 來管理此物件
+@Component
 public class CalcImpl implements Calc {
 
 	@Override
