@@ -27,7 +27,7 @@ public class MyLoggerAspect {
 	@Pointcut(value = "execution(public Integer spring.core.session05.aop.CalcImpl.*(..))")
 	public void pt3() {}
 	
-	@Pointcut("@annotation(spring.core.session05.aop.MyLoggerAnnoation)")
+	@Pointcut("@annotation(spring.core.session05.aop.MyLoggerAnnoation)") // 根據有放 @MyLoggerAnnoation 的方法進行攔截
 	public void pt4() {}
 	
 	// 前置通知(Advice)
