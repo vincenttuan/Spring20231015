@@ -30,7 +30,8 @@ public class DynProxy {
 			
 			// before: 前置通知-公用邏輯/方法
 			//System.out.println("before: 前置通知-公用邏輯/方法 ...");
-			MyAspect.before();
+			MyAspect.before(); // 第一個切面程式
+			MyLoggerAspect.before(args); // 第二個切面程式
 			
 			// 調用被代理物件的業務方法
 			try {
