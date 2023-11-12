@@ -79,7 +79,7 @@ public class MyLoggerAspect {
 		String methodName = joinPoint.getSignature().getName(); // 得到 JoinPoint 連接點的方法名稱
 		Object[] args = joinPoint.getArgs(); // 得到 JoinPoint 連接點的方法參數
 		System.out.printf("呼叫異常通知 - 方法名稱: %s 方法參數: %s 錯誤類型: %s 錯誤原因: %s%n", 
-				methodName, args, ex.getClass().getSimpleName(), ex.getMessage());
+				methodName, Arrays.toString(args), ex.getClass().getSimpleName(), ex.getMessage());
 	}
 	
 }
