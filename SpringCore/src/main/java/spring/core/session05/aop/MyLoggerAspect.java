@@ -57,7 +57,7 @@ public class MyLoggerAspect {
 		System.out.printf("呼叫前置通知 - JoinPoint 連接點的方法名稱: %s 方法參數: %s%n", methodName, Arrays.toString(args));
 	}
 	
-	// 後置通知 (不論是否會發生異常都會執行)
+	// 後置通知 (不論是否會發生異常都會執行, 所以後製通知在 Spring-AOP 機制上會自動放在 finally 區段中)
 	@After(value = "pt5()")
 	public void afterAdvice(JoinPoint joinPoint) {
 		String methodName = joinPoint.getSignature().getName(); // 得到 JoinPoint 連接點的方法名稱
