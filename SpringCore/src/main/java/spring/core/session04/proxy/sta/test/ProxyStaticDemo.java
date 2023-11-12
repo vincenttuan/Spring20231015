@@ -1,4 +1,4 @@
-package spring.core.session04.proxy;
+package spring.core.session04.proxy.sta.test;
 
 import spring.core.session04.proxy.sta.Child;
 import spring.core.session04.proxy.sta.Man;
