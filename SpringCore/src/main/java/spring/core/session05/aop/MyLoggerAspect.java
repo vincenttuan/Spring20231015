@@ -1,5 +1,6 @@
 package spring.core.session05.aop;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -79,8 +80,9 @@ public class MyLoggerAspect {
 	public void afterThrowingAdvice(JoinPoint joinPoint, Exception ex) {
 		String methodName = joinPoint.getSignature().getName(); // 得到 JoinPoint 連接點的方法名稱
 		Object[] args = joinPoint.getArgs(); // 得到 JoinPoint 連接點的方法參數
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss E");
 		System.out.printf("%s 呼叫異常通知 - 方法名稱: %s 方法參數: %s 錯誤類型: %s 錯誤原因: %s%n", 
-				new Date(), methodName, Arrays.toString(args), ex.getClass().getSimpleName(), ex.getMessage());
+				sdf.format(new Date()), methodName, Arrays.toString(args), ex.getClass().getSimpleName(), ex.getMessage());
 	}
 	
 }
