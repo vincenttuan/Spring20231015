@@ -1,2 +1,5 @@
-在使用 Java 配置時
-執行參數: --add-opens java.base/java.lang=ALL-UNNAMED
+在使用 Java 配置時或執行 AOP 程式時
+執行時要加入: JVM 啟動參數
+--add-opens java.base/java.lang=ALL-UNNAMED
+
+允許 Java 9 以上版本使用反射(java.lang.reflect)內部 API
