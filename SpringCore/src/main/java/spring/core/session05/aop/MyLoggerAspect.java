@@ -33,6 +33,9 @@ public class MyLoggerAspect {
 	@Pointcut("bean(calcImpl)") // 在名為 calcImpl 的 Spring bean 中的任何方法進行攔截 
 	public void pt5() {}
 	
+	//@Pointcut("initialization(spring.core.session05.aop.CalcImpl.new(..))")
+	//public void pt6() {}
+	
 	// 前置通知(Advice)
 	//@Before(value = "execution(public Integer spring.core.session05.aop.CalcImpl.add(Integer, Integer))") // 注入指定方法簽章
 	//@Before(value = "execution(public Integer spring.core.session05.aop.CalcImpl.add(..))") // 注入指定方法簽章, 不限制方法參數
@@ -46,6 +49,7 @@ public class MyLoggerAspect {
 	//@Before(value = "pt3() && !pt2()") // 切入點表達式支援邏輯運算子: &&, ||, !
 	//@Before(value = "pt4()")
 	@Before(value = "pt5()")
+	//@Before(value = "pt6()")
 	public void beforeAdvice(JoinPoint joinPoint) { // JoinPoint 連接點
 		String methodName = joinPoint.getSignature().getName(); // 得到 JoinPoint 連接點的方法名稱
 		Object[] args = joinPoint.getArgs(); // 得到 JoinPoint 連接點的方法參數
