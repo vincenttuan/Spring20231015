@@ -3,7 +3,7 @@ package spring.core.session05.aop;
 import org.springframework.stereotype.Component;
 
 // 讓 Spring 來管理此物件
-@Component
+@Component // 預設 @Component("calcImpl") // calcImpl 就是 bean name
 public class CalcImpl implements Calc {
 	
 	@MyLoggerAnnoation

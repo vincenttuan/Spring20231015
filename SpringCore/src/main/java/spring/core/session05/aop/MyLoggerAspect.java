@@ -30,7 +30,7 @@ public class MyLoggerAspect {
 	@Pointcut("@annotation(spring.core.session05.aop.MyLoggerAnnoation)") // 根據有放 @MyLoggerAnnoation 的方法進行攔截
 	public void pt4() {}
 	
-	@Pointcut("bean(calcImpl)")
+	@Pointcut("bean(calcImpl)") // 在名為 calcImpl 的 Spring bean 中的任何方法進行攔截 
 	public void pt5() {}
 	
 	// 前置通知(Advice)
