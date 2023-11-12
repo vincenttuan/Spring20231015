@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -70,6 +71,12 @@ public class MyLoggerAspect {
 	@AfterReturning(value = "pt5()", returning = "result")
 	public void afterReturningAdvice(Object result) { // 得到返回的資料型態統一使用 Object
 		System.out.printf("呼叫返回通知 - 執行結果: %s%n", result);
+	}
+	
+	// 異常通知(可以設定 throwing 來得到異常的錯誤資訊)
+	@AfterThrowing(value = "pt5()", throwing = "ex")
+	public void afterThrowingAdvice(Exception ex) {
+		System.out.printf("呼叫異常通知 - 錯誤類型: %s 錯誤原因: %s%n", ex.getClass().getSimpleName(), ex.getMessage());
 	}
 	
 }
