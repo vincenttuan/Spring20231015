@@ -75,8 +75,11 @@ public class MyLoggerAspect {
 	
 	// 異常通知(可以設定 throwing 來得到異常的錯誤資訊)
 	@AfterThrowing(value = "pt5()", throwing = "ex")
-	public void afterThrowingAdvice(Exception ex) {
-		System.out.printf("呼叫異常通知 - 錯誤類型: %s 錯誤原因: %s%n", ex.getClass().getSimpleName(), ex.getMessage());
+	public void afterThrowingAdvice(JoinPoint joinPoint, Exception ex) {
+		String methodName = joinPoint.getSignature().getName(); // 得到 JoinPoint 連接點的方法名稱
+		Object[] args = joinPoint.getArgs(); // 得到 JoinPoint 連接點的方法參數
+		System.out.printf("呼叫異常通知 - 方法名稱: %s 方法參數: %s 錯誤類型: %s 錯誤原因: %s%n", 
+				methodName, args, ex.getClass().getSimpleName(), ex.getMessage());
 	}
 	
 }
