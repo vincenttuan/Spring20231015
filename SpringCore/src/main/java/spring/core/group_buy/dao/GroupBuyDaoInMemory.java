@@ -99,20 +99,28 @@ public class GroupBuyDaoInMemory implements GroupBuyDao {
 
 	@Override
 	public Optional<Cart> findNoneCheckoutCartByUserId(Integer userId) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		return carts.stream()
+					.filter(cart -> cart.getUserId().equals(userId))
+					.filter(cart -> cart.getIsCheckout() == null || !cart.getIsCheckout())
+					.findAny();
 	}
-
+	
 	@Override
 	public void addCart(Cart cart) {
-		// TODO Auto-generated method stub
-		
+		carts.add(cart);
 	}
 
 	@Override
 	public void checkoutCartsByUserId(Integer userId) {
-		// TODO Auto-generated method stub
-		
+		/*
+		// 先找到該使用者目前尚未結帳的購物車
+		Optional<Cart> optCart = findNoneCheckoutCartByUserId(userId);
+		if(optCart.isPresent()) {
+			// 若有就進行結帳
+			optCart.get().setIsCheckout(true); // 結帳
+		}
+		*/
+		findNoneCheckoutCartByUserId(userId).ifPresent(cart -> cart.setIsCheckout(true)); // 結帳
 	}
 
 	@Override
