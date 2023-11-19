@@ -24,8 +24,9 @@ public interface GroupBuyDao {
 	 * 3. 修改密碼
 	 * @param userId 使用者 Id
 	 * @param newPassword 新密碼
+	 * @return Boolean
 	 */
-	void updateUserPassword(Integer userId, String newPassword);
+	Boolean updateUserPassword(Integer userId, String newPassword);
 	
 	/** 
 	 * 4. 根據使用者名稱查找使用者(登入用)
@@ -63,8 +64,9 @@ public interface GroupBuyDao {
 	 * 4. 變更商品上架狀態
 	 * @param productId 商品 ID
 	 * @param isLaunch 上架狀態(true: 上架, false: 下架) 
+	 * @return Boolean
 	 */
-	void updateProductLaunch(Integer productId, Boolean isLaunch);
+	Boolean updateProductLaunch(Integer productId, Boolean isLaunch);
 	
 	/** 
 	 * 1. 查詢所有購物車資料
@@ -102,26 +104,30 @@ public interface GroupBuyDao {
 	/** 
 	 * 6. 根據使用者ID將該使用者的購物車設置為已結帳狀態(前台的事件)
 	 * @param userId 使用者 ID
+	 * @return Boolean
 	 */
-	void checkoutCartsByUserId(Integer userId);
+	Boolean checkoutCartsByUserId(Integer userId);
 	
 	/** 
 	 * 7. 根據購物車ID將購物車設置為已結帳狀態(後台的事件)
 	 * @param cartId 購物車 ID
+	 * @return Boolean
 	 */
-	void checkoutCartBuyId(Integer cartId);
+	Boolean checkoutCartBuyId(Integer cartId);
 	
 	/** 
 	 * 8. 根據購物車項目ID刪除指定的購物車項目
 	 * @param cartItemId 購物車項目 ID
+	 * @return Boolean
 	 */
-	void removeCartItemById(Integer cartItemId);
+	Boolean removeCartItemById(Integer cartItemId);
 	
 	/** 
 	 * 9. 更新購物車項目的數量
 	 * @param cartItemId 購物車項目 ID
 	 * @param quantity 新的數量
+	 * @return Boolean
 	 */
-	void updateCartItemQuantity(Integer cartItemId, Integer quantity);
+	Boolean updateCartItemQuantity(Integer cartItemId, Integer quantity);
 	
 }

@@ -31,10 +31,16 @@ public class GroupBuyDaoInMemory implements GroupBuyDao {
 	}
 
 	@Override
-	public void updateUserPassword(Integer userId, String newPassword) {
-		users.stream().filter(user -> user.getUserId().equals(userId)) // 根據 userId 查找 user
-					  .findAny() // 找尋任何一個符合的
-					  .ifPresent(user -> user.setPassword(newPassword)); // 若有找到就修改 password
+	public Boolean updateUserPassword(Integer userId, String newPassword) {
+		Optional<User> userOpt = users.stream().filter(user -> user.getUserId().equals(userId)) // 根據 userId 查找 user
+					  .findAny(); // 找尋任何一個符合的
+		
+		if(userOpt.isPresent()) {
+			userOpt.get().setPassword(newPassword); // 若有找到就修改 password
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
@@ -64,11 +70,17 @@ public class GroupBuyDaoInMemory implements GroupBuyDao {
 	}
 
 	@Override
-	public void updateProductLaunch(Integer productId, Boolean isLaunch) {
-		products.stream()
+	public Boolean updateProductLaunch(Integer productId, Boolean isLaunch) {
+		Optional<Product> productOpt = products.stream()
 				.filter(product -> product.getProductId().equals(productId))
-				.findAny()
-				.ifPresent(product -> product.setIsLaunch(isLaunch));
+				.findAny();
+		
+		if(productOpt.isPresent()) {
+			productOpt.get().setIsLaunch(isLaunch);
+			return true; // 成功找到並更新
+		} else {
+			return false;
+		}
 	}
 
 	@Override
@@ -111,40 +123,58 @@ public class GroupBuyDaoInMemory implements GroupBuyDao {
 	}
 
 	@Override
-	public void checkoutCartsByUserId(Integer userId) {
-		/*
+	public Boolean checkoutCartsByUserId(Integer userId) {
 		// 先找到該使用者目前尚未結帳的購物車
 		Optional<Cart> optCart = findNoneCheckoutCartByUserId(userId);
 		if(optCart.isPresent()) {
 			// 若有就進行結帳
 			optCart.get().setIsCheckout(true); // 結帳
+			return true;
+		} else {
+			return false;
 		}
-		*/
-		findNoneCheckoutCartByUserId(userId).ifPresent(cart -> cart.setIsCheckout(true)); // 結帳
+		
+		
 	}
 
 	@Override
-	public void checkoutCartBuyId(Integer cartId) {
-		carts.stream()
+	public Boolean checkoutCartBuyId(Integer cartId) {
+		Optional<Cart> cartOpt = carts.stream()
 			 .filter(cart -> cart.getCartId().equals(cartId))
-			 .findAny()
-			 .ifPresent(cart -> cart.setIsCheckout(true)); // 結帳
+			 .findAny();
+		if(cartOpt.isPresent()) {
+			cartOpt.get().setIsCheckout(true); // 結帳
+			return true;
+		} else {
+			return false;
+		}	 
 	}
 
 	@Override
-	public void removeCartItemById(Integer cartItemId) {
-		cartItems.stream()
+	public Boolean removeCartItemById(Integer cartItemId) {
+		Optional<CartItem> cartItemOpt = cartItems.stream()
 				 .filter(item -> item.getItemId().equals(cartItemId))
-				 .findAny()
-				 .ifPresent(item -> cartItems.remove(item));
+				 .findAny();
+		
+		if(cartItemOpt.isPresent()) {
+			cartItems.remove(cartItemOpt.get());
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
-	public void updateCartItemQuantity(Integer cartItemId, Integer quantity) {
-		cartItems.stream()
+	public Boolean updateCartItemQuantity(Integer cartItemId, Integer quantity) {
+		Optional<CartItem> cartItemOpt = cartItems.stream()
 				 .filter(item -> item.getItemId().equals(cartItemId))
-				 .findAny()
-				 .ifPresent(item -> item.setQuantity(quantity));
+				 .findAny();
+		if(cartItemOpt.isPresent()) {
+			cartItemOpt.get().setQuantity(quantity);
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 }
