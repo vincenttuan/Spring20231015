@@ -1,18 +1,19 @@
 package spring.core.group_buy.entity;
 
+import java.util.Date;
 import java.util.List;
 
 /*
 3. 購物車主檔(Master)
-+--------+----------+-----------+------------+
-| cartId |  userId  | cartItems | isCheckout |
-+--------+----------+-----------+------------+
-|  201   |   101    | [1, 2]    |    true    |
-|  202   |   102    | [3]       |    false   |
-|  203   |   103    | [4, 5]    |    true    |
-|  204   |   103    | []        |    false   |
-|  205   |   101    | [6]       |    true    |
-+--------+----------+-----------+------------+
++--------+----------+-----------+------------+-----------------+
+| cartId |  userId  | cartItems | isCheckout |   checkoutTime  | 
++--------+----------+-----------+------------+-----------------+
+|  201   |   101    | [1, 2]    |    true    |  11-19 14:52:03 |
+|  202   |   102    | [3]       |    false   |                 |
+|  203   |   103    | [4, 5]    |    true    |  11-19 14:54:13 |
+|  204   |   103    | []        |    false   |                 |
+|  205   |   101    | [6]       |    true    |  11-19 14:55:21 |
++--------+----------+-----------+------------+-----------------+
 */
 
 public class Cart {
@@ -20,6 +21,7 @@ public class Cart {
 	private Integer userId;
 	private List<CartItem> cartItems;
 	private Boolean isCheckout; // 是否已經結帳
+	private Date checkoutTime; // 結帳時間
 	
 	public Cart() {
 		
@@ -30,6 +32,7 @@ public class Cart {
 		this.userId = userId;
 		this.cartItems = cartItems;
 		this.isCheckout = isCheckout;
+		setIsCheckout(isCheckout);
 	}
 
 	public Integer getCartId() {
@@ -61,14 +64,27 @@ public class Cart {
 	}
 
 	public void setIsCheckout(Boolean isCheckout) {
+		if(isCheckout) {
+			this.setCheckoutTime(new Date());
+		}
 		this.isCheckout = isCheckout;
+	}
+
+	public Date getCheckoutTime() {
+		return checkoutTime;
+	}
+
+	public void setCheckoutTime(Date checkoutTime) {
+		this.checkoutTime = checkoutTime;
 	}
 
 	@Override
 	public String toString() {
 		return "Cart [cartId=" + cartId + ", userId=" + userId + ", cartItems=" + cartItems + ", isCheckout="
-				+ isCheckout + "]";
+				+ isCheckout + ", checkoutTime=" + checkoutTime + "]";
 	}
+	
+	
 	
 	
 	
