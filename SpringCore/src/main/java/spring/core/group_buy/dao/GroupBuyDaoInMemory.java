@@ -125,20 +125,26 @@ public class GroupBuyDaoInMemory implements GroupBuyDao {
 
 	@Override
 	public void checkoutCartBuyId(Integer cartId) {
-		// TODO Auto-generated method stub
-		
+		carts.stream()
+			 .filter(cart -> cart.getCartId().equals(cartId))
+			 .findAny()
+			 .ifPresent(cart -> cart.setIsCheckout(true)); // 結帳
 	}
 
 	@Override
 	public void removeCartItemById(Integer cartItemId) {
-		// TODO Auto-generated method stub
-		
+		cartItems.stream()
+				 .filter(item -> item.getItemId().equals(cartItemId))
+				 .findAny()
+				 .ifPresent(item -> cartItems.remove(item));
 	}
 
 	@Override
 	public void updateCartItemQuantity(Integer cartItemId, Integer quantity) {
-		// TODO Auto-generated method stub
-		
+		cartItems.stream()
+				 .filter(item -> item.getItemId().equals(cartItemId))
+				 .findAny()
+				 .ifPresent(item -> item.setQuantity(quantity));
 	}
 	
 }
