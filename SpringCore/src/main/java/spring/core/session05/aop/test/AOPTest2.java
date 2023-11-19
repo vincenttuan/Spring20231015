@@ -16,8 +16,8 @@ public class AOPTest2 {
 	public static void main(String[] args) {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("beans-config5-aop.xml");
 		Computer computer = ctx.getBean("computerImpl", ComputerImpl.class);
-		System.out.println(computer.add2(10, 20));
-		System.out.println(computer.div2(40, 20));
+		System.out.println(computer.add(10, 20));
+		System.out.println(computer.div(40, 20));
 		
 		
 	}

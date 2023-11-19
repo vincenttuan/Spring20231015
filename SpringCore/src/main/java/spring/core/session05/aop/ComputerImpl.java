@@ -6,14 +6,14 @@ import org.springframework.stereotype.Component;
 public class ComputerImpl implements Computer {
 
 	@Override
-	public Integer add2(Integer x, Integer y) {
+	public Integer add(Integer x, Integer y) {
 		// 業務邏輯
 		int result = x + y;
 		return result;
 	}
 
 	@Override
-	public Integer div2(Integer x, Integer y) {
+	public Integer div(Integer x, Integer y) {
 		// 業務邏輯
 		int result = x / y;
 		return result;
