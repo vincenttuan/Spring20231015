@@ -64,6 +64,9 @@ public class Cart {
 	}
 
 	public void setIsCheckout(Boolean isCheckout) {
+		if(this.isCheckout) { // 若此單已經結帳, 就不可以重新結帳
+			return;
+		}
 		if(isCheckout) {
 			this.setCheckoutTime(new Date());
 		}
