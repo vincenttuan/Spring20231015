@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import static java.util.stream.Collectors.toList;
+
 import spring.core.group_buy.entity.Cart;
 import spring.core.group_buy.entity.CartItem;
 import spring.core.group_buy.entity.Product;
@@ -71,14 +73,14 @@ public class GroupBuyDaoInMemory implements GroupBuyDao {
 
 	@Override
 	public List<Cart> findAllCarts() {
-		// TODO Auto-generated method stub
-		return null;
+		return carts;
 	}
 
 	@Override
 	public List<Cart> findCartsBuyUserId(Integer userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return carts.stream()
+					.filter(cart -> cart.getUserId().equals(userId))
+					.collect(toList());
 	}
 
 	@Override
