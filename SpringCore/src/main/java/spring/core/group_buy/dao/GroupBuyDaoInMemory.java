@@ -58,14 +58,15 @@ public class GroupBuyDaoInMemory implements GroupBuyDao {
 
 	@Override
 	public void addProduct(Product product) {
-		// TODO Auto-generated method stub
-		
+		products.add(product);
 	}
 
 	@Override
 	public void updateProductLaunch(Integer productId, Boolean isLaunch) {
-		// TODO Auto-generated method stub
-		
+		products.stream()
+				.filter(product -> product.getProductId().equals(productId))
+				.findAny()
+				.ifPresent(product -> product.setIsLaunch(isLaunch));
 	}
 
 	@Override
