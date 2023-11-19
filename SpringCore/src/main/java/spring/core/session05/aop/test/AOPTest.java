@@ -5,6 +5,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import spring.core.session05.aop.Calc;
 import spring.core.session05.aop.CalcImpl;
+import spring.core.session05.aop.Computer;
+import spring.core.session05.aop.ComputerImpl;
 
 // 執行時要加入: JVM 啟動參數
 // --add-opens java.base/java.lang=ALL-UNNAMED
@@ -16,7 +18,9 @@ public class AOPTest {
 		Calc calc = ctx.getBean("calcImpl", CalcImpl.class);
 		System.out.println(calc.add(10,  20));
 		System.out.println(calc.div(10,  2));
+		
 		System.out.println(calc.div(10,  0));
+		
 	}
 
 }
