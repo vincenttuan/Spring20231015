@@ -9,33 +9,33 @@ import spring.core.group_buy.entity.User;
 
 public interface GroupBuyDao {
 	/** 
-	 * 1. 查詢所有用戶
-	 * @return 返回用戶列表
+	 * 1. 查詢所有使用者
+	 * @return 返回使用者列表
 	 */
 	List<User> findAllUsers();
 	
 	/** 
-	 * 2. 新增用戶
-	 * @param user
+	 * 2. 新增使用者
+	 * @param user 使用者
 	 */
 	void addUser(User user);
 	
 	/** 
 	 * 3. 修改密碼
-	 * @param userId
-	 * @param newPassword
+	 * @param userId 使用者 Id
+	 * @param newPassword 新密碼
 	 */
 	void updateUserPassword(Integer userId, String newPassword);
 	
 	/** 
-	 * 4. 根據用戶名稱查找用戶(登入用)
+	 * 4. 根據使用者名稱查找使用者(登入用)
 	 * @param username 使用者名稱
 	 * @return Optional<User> 
 	 */
 	Optional<User> findUserByUsername(String username);
 	
 	/** 
-	 * 5. 根據用戶ID查找用戶
+	 * 5. 根據使用者ID查找使用者
 	 * @param userId 使用者 ID
 	 * @return Optional<User>
 	 */
@@ -73,22 +73,22 @@ public interface GroupBuyDao {
 	List<Cart> findAllCarts();
 	
 	/** 
-	 * 2. 根據用戶ID來查找其所有購物車資料
+	 * 2. 根據使用者ID來查找其所有購物車資料
 	 * @param userId 使用者 ID
-	 * @return 返回該用戶的所有購物車列表
+	 * @return 返回該使用者的所有購物車列表
 	 */
 	List<Cart> findCartsBuyUserId(Integer userId);
 	
 	/** 
-	 * 3. 根據用戶ID及結帳狀態來查找其所有購物車資料
+	 * 3. 根據使用者ID及結帳狀態來查找其所有購物車資料
 	 * @param userId 使用者 ID
 	 * @param isCheckout 結帳狀態
-	 * @return 返回該用戶符合條件的購物車列表
+	 * @return 返回該使用者符合條件的購物車列表
 	 */
 	List<Cart> findCartsByUserIdAndCheckoutStatus(Integer userId, Boolean isCheckout);
 	
 	/** 
-	 * 4. 根據用戶ID來查找其未結帳的購物車資料
+	 * 4. 根據使用者ID來查找其未結帳的購物車資料
 	 * @param userId 使用者 ID
 	 * @return Optional<Cart> 返回找到的購物車(包含未找到也會函在其中)
 	 */
@@ -100,7 +100,7 @@ public interface GroupBuyDao {
 	void addCart(Cart cart);
 	
 	/** 
-	 * 6. 根據用戶ID將該用戶的購物車設置為已結帳狀態(前台的事件)
+	 * 6. 根據使用者ID將該使用者的購物車設置為已結帳狀態(前台的事件)
 	 * @param userId 使用者 ID
 	 */
 	void checkoutCartsByUserId(Integer userId);
