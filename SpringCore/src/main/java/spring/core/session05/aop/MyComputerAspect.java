@@ -28,7 +28,10 @@ public class MyComputerAspect {
 			Object[] args = proceedingJoinPoint.getArgs();
 			System.out.printf("環繞通知(前置通知) - 方法名稱: %s 方法參數: %s%n", methodName, Arrays.toString(args));
 			
-		} catch (Exception e) {
+			// 代理執行業務方法 (重要)
+			result = proceedingJoinPoint.proceed();
+			
+		} catch (Throwable e) {
 			
 		} finally {
 			
