@@ -39,7 +39,7 @@ public interface GroupBuyDao {
 	 * @param userId 使用者 ID
 	 * @return Optional<User>
 	 */
-	Optional<User> findUserById(String userId);
+	Optional<User> findUserById(Integer userId);
 	
 	/** 
 	 * 1. 查詢所有商品
