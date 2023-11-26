@@ -20,7 +20,7 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 		// 手動方式實現 jdbcTemplate 物件初始
 		String mySQLDriverName = "com.mysql.cj.jdbc.Driver"; // MySQL 驅動
 		String dbURL = "jdbc:mysql://localhost:3306/group_buy?serverTimezone=Asia/Taipei";
-		String username = "root";
+		String username = "javaweb";
 		String password = "12345678";
 		
 		// 創建 DriverManagerDataSource
