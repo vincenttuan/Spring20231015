@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -64,14 +65,24 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 
 	@Override
 	public Optional<User> findUserByUsername(String username) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		String sql = "select userId, username, password, level from user where username = ?";
+		try {
+			User user = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), username);
+			return Optional.of(user);
+		} catch (EmptyResultDataAccessException e) {
+			return Optional.empty();
+		}
 	}
 
 	@Override
 	public Optional<User> findUserById(Integer userId) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		String sql = "select userId, username, password, level from user where userId = ?";
+		try {
+			User user = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), userId);
+			return Optional.of(user);
+		} catch (EmptyResultDataAccessException e) {
+			return Optional.empty();
+		}
 	}
 
 	@Override
