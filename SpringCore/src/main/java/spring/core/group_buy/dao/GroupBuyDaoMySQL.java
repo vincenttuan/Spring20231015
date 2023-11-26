@@ -37,6 +37,7 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 	@Override
 	public List<User> findAllUsers() {
 		String sql = "select userId, username, password, level from User";
+		// BeanPropertyRowMapper 就是將查詢的每一筆紀錄結果映射到 Java 物件 (在這裡指的是 User 物件)中
 		List<User> users = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class));
 		return users;
 	}
