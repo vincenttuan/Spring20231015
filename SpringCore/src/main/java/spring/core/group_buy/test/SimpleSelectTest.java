@@ -26,11 +26,17 @@ public class SimpleSelectTest {
 		GroupBuyDao dao = ctx.getBean("groupBuyDaoMySQL", GroupBuyDaoMySQL.class);
 		
 		// 測試新增
+		/*
 		User user = new User();
 		user.setUsername("John");
 		user.setPassword("1234");
 		user.setLevel(2);
 		dao.addUser(user);
+		*/
+		// 測試修改密碼
+		Integer userId = 104;
+		String newPassword = "5678";
+		System.out.println(dao.updateUserPassword(userId, newPassword));
 		
 		// 查詢使用者
 		List<User> users = dao.findAllUsers();

@@ -57,8 +57,9 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 
 	@Override
 	public Boolean updateUserPassword(Integer userId, String newPassword) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "update User set password = ? where userId = ?";
+		int rowcount = jdbcTemplate.update(sql, newPassword, userId);
+		return rowcount == 1;
 	}
 
 	@Override
