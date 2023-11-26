@@ -1,6 +1,7 @@
 package spring.core.group_buy.test;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -34,14 +35,27 @@ public class SimpleSelectTest {
 		dao.addUser(user);
 		*/
 		// 測試修改密碼
+		/*
 		Integer userId = 104;
 		String newPassword = "5678";
 		System.out.println(dao.updateUserPassword(userId, newPassword));
-		
+		*/
 		// 查詢使用者
+		/*
 		List<User> users = dao.findAllUsers();
 		System.out.println(users.size());
 		System.out.println(users);
+		*/
+		
+		//Optional<User> userOpt = dao.findUserByUsername("John");
+		Optional<User> userOpt = dao.findUserById(104);
+		if(userOpt.isPresent()) {
+			User user = userOpt.get();
+			System.out.println("找到: " + user);
+		} else {
+			System.out.println("查無此人");
+		}
+		
 	}
 
 }
