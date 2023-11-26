@@ -3,19 +3,25 @@ package spring.core.group_buy.dao;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.stereotype.Repository;
 
 import spring.core.group_buy.entity.Cart;
 import spring.core.group_buy.entity.Product;
 import spring.core.group_buy.entity.User;
 
 // 利用 JdbcTemplate 來實現對資料表的 CRUD
+// 宣告一個 Repository 的 Bean 讓 Spring 來管理
+@Repository
 public class GroupBuyDaoMySQL implements GroupBuyDao {
 	
+	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
+	/*
 	public GroupBuyDaoMySQL() {
 		// 手動方式實現 jdbcTemplate 物件初始
 		String mySQLDriverName = "com.mysql.cj.jdbc.Driver"; // MySQL 驅動
@@ -33,6 +39,7 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 		// 設定 JdbcTemplate 的數據來源
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
+	*/
 	
 	@Override
 	public List<User> findAllUsers() {
