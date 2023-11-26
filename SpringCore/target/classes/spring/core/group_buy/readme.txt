@@ -1,4 +1,6 @@
-團購系統
+-- 團購系統
+-- 建立團購系統資料庫
+create schema group_buy default character set utf8mb4;
 
 1. 商品 Product
 Pack(盒), Box(箱), Bottle(瓶), Bag(包), Dozen(打)
@@ -11,6 +13,29 @@ Pack(盒), Box(箱), Bottle(瓶), Bag(包), Dozen(打)
 |    504    |   Sugar     |  100  |  Bag   |   true   |
 |    505    |   Milk      |  450  |  Dozen |   true   |
 +-----------+-------------+-------+--------+----------+
+
+-- 建立 Product 資料表
+create table if not exists Product(
+	productId int auto_increment primary key,
+	productName varchar(50) not null,
+	price int not null,
+	unit varchar(10),
+	isLaumch boolean
+);
+
+-- 設置 auto_increment 初始值
+alter table Product auto_increment = 501;
+
+-- 新增預設資料
+insert into product(productId, productName, price, unit, isLaumch) values
+(501, 'Coffee', 300, 'Pack', true),
+(502, 'Green Tea', 150, 'Box', false),
+(503, 'Honey', 200, 'Bottle', false),
+(504, 'Suger', 100, 'Bag', true),
+(505, 'Milk', 450, 'Dozen', true);
+
+
+
 
 2. 使用者 User
 level: 1(一般會員-進行團購), 2(後臺維運人員-進行團購+上架商品)
