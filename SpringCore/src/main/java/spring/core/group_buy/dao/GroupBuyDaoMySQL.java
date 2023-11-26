@@ -51,8 +51,8 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 
 	@Override
 	public void addUser(User user) {
-		// TODO Auto-generated method stub
-		
+		String sql = "insert into User(username, password, level) values(?, ?, ?)";
+		jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getLevel());
 	}
 
 	@Override

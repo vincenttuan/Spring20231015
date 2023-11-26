@@ -24,6 +24,15 @@ public class SimpleSelectTest {
 		//ApplicationContext ctx = new ClassPathXmlApplicationContext("jdbc-config-group-buy.xml");
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(GroupBuyConfig.class);
 		GroupBuyDao dao = ctx.getBean("groupBuyDaoMySQL", GroupBuyDaoMySQL.class);
+		
+		// 測試新增
+		User user = new User();
+		user.setUsername("John");
+		user.setPassword("1234");
+		user.setLevel(2);
+		dao.addUser(user);
+		
+		// 查詢使用者
 		List<User> users = dao.findAllUsers();
 		System.out.println(users.size());
 		System.out.println(users);
