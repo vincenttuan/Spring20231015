@@ -19,14 +19,18 @@ public class SimpleProductTest {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("jdbc-config-group-buy.xml");
 		GroupBuyDao dao = ctx.getBean("groupBuyDaoMySQL", GroupBuyDaoMySQL.class);
 		// 新增 Product
-		Product product = new Product();
-		product.setProductName("Red Tea");
-		product.setPrice(1000);
-		product.setUnit("Box");
-		product.setIsLaunch(false);
-		
-		dao.addProduct(product);
-		
+		try {
+			Product product = new Product();
+			product.setProductName("Black Tea");
+			product.setPrice(1000);
+			product.setUnit("Box");
+			product.setIsLaunch(false);
+			
+			dao.addProduct(product);
+			System.out.println("add ok");
+		} catch (Exception e) {
+			System.out.println("add error: " + e.getMessage());
+		}
 		
 	}
 
