@@ -77,7 +77,7 @@ insert into User (userId, username, password, level) values
 -- 建立 Cart 資料表
 create table if not exists Cart (
 	cartId int auto_increment primary key,
-	userId int not null,
+	userId int not null, -- 對應到 User 使用者
 	isCheckout boolean default false,
 	checkoutTime datetime default current_timestamp,
 	foreign key (userId) references User(userId)
@@ -106,6 +106,28 @@ insert into Cart (cartId, userId, isCheckout, checkoutTime) values
 |   5    |   203    |    504    |     20     |
 |   6    |   205    |    505    |     15     |
 +--------+----------+-----------+------------+
+
+-- 建立 CartItem 資料表
+create table if not exists CartItem (
+	itemId int auto_increment primary key,
+	cartId int not null, -- 對應到 Cart 購物車
+	productId int not null, -- 對應到 Product 商品
+	quantity int default 0,
+	foreign key (carId) references Cart(cartId),
+	foreign key (productId) references Product(productId)
+);
+
+-- 設置 auto_increment 初始值 (初始值若從1開始, 可以不用額外設定)
+alter table CartItem auto_increment = 1;
+
+-- 預設資料
+insert into CartItem (itemId, cartId, productId, quantity) values
+(1, 201, 501, 10),
+(2, 201, 502, 8),
+(3, 201, 503, 5),
+(4, 203, 502, 8),
+(5, 203, 504, 20),
+(6, 205, 205, 15);
 
 功能:
 1. 查詢所有使用者
