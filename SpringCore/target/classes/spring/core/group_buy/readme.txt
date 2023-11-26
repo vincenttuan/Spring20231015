@@ -1,5 +1,5 @@
 -- 團購系統
--- 建立團購系統資料庫
+-- 建立團購系統資料庫並設定為預設資料庫
 create schema group_buy default character set utf8mb4;
 
 1. 商品 Product
