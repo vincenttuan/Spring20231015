@@ -20,14 +20,14 @@ create table if not exists Product(
 	productName varchar(50) not null,
 	price int not null,
 	unit varchar(10),
-	isLaumch boolean
+	isLaunch boolean
 );
 
 -- 設置 auto_increment 初始值
 alter table Product auto_increment = 501;
 
 -- 新增預設資料
-insert into product(productId, productName, price, unit, isLaumch) values
+insert into product(productId, productName, price, unit, isLaunch) values
 (501, 'Coffee', 300, 'Pack', true),
 (502, 'Green Tea', 150, 'Box', false),
 (503, 'Honey', 200, 'Bottle', false),
@@ -128,6 +128,18 @@ insert into CartItem (itemId, cartId, productId, quantity) values
 (4, 203, 502, 8),
 (5, 203, 504, 20),
 (6, 205, 505, 15);
+
+-- 購物車 id = 201 有買那些商品
+select 
+	ci.itemId, ci.cartId, ci.productId, ci.quantity,
+    p.productId, p.productName, p.price, p.unit
+from CartItem ci
+left join product p on ci.productId = p.productId
+where ci.cartId = 201;
+
+-- 修改欄位指令
+alert table Product change isLaumch isLaunch boolean;
+
 
 功能:
 1. 查詢所有使用者
