@@ -12,7 +12,7 @@ import spring.core.group_buy.dao.GroupBuyDao;
 import spring.core.group_buy.dao.GroupBuyDaoMySQL;
 import spring.core.group_buy.entity.User;
 
-public class SimpleSelectTest {
+public class SimpleUserTest {
 
 	public static void main(String[] args) {
 		/*
