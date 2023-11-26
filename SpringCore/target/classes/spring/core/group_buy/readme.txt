@@ -127,7 +127,7 @@ insert into CartItem (itemId, cartId, productId, quantity) values
 (3, 201, 503, 5),
 (4, 203, 502, 8),
 (5, 203, 504, 20),
-(6, 205, 205, 15);
+(6, 205, 505, 15);
 
 功能:
 1. 查詢所有使用者
