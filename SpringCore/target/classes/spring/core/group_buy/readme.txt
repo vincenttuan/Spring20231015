@@ -129,6 +129,7 @@ insert into CartItem (itemId, cartId, productId, quantity) values
 (5, 203, 504, 20),
 (6, 205, 505, 15);
 
+-- left join 的練習
 -- 購物車 id = 201 有買那些商品
 select 
 	ci.itemId, ci.cartId, ci.productId, ci.quantity,
