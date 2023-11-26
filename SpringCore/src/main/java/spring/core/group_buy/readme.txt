@@ -57,23 +57,46 @@ create table if not exists User(
 alter table User auto_increment = 101;
 
 -- 新增預設資料
-insert into user (userId, username, password, level) values
+insert into User (userId, username, password, level) values
 (101, 'user123', 'pass123', 1),
 (102, 'user456', 'pass456', 2),
 (103, 'user789', 'pass789', 1);
 
 
-
 3. 購物車主檔(Cart)
-+--------+----------+------------+-----------+
-| cartId |  userId  | isCheckout | cartItems |
-+--------+----------+------------+-----------+
-|  201   |   101    |    true    |  [1, 2]   |
-|  202   |   102    |    false   |  [3]      |
-|  203   |   103    |    true    |  [4, 5]   |
-|  204   |   103    |    false   |  []       |
-|  205   |   101    |    true    |  [6]      |
-+--------+----------+------------+-----------+
++--------+----------+------------+----------------+-----------+
+| cartId |  userId  | isCheckout |  checkoutTime  | cartItems |
++--------+----------+------------+----------------+-----------+
+|  201   |   101    |    true    | 11-19 14:52:03 |  [1, 2]   |
+|  202   |   102    |    false   |                |  [3]      |
+|  203   |   103    |    true    | 11-19 14:52:03 |  [4, 5]   |
+|  204   |   103    |    false   |                |  []       |
+|  205   |   101    |    true    | 11-19 14:52:03 |  [6]      |
++--------+----------+------------+----------------+-----------+
+
+-- 建立 Cart 資料表
+create table if not exists Cart (
+	cartId int auto_increment primary key,
+	userId int not null,
+	isCheckout boolean default false,
+	checkoutTime datetime default current_timestamp,
+	foreign key (userId) references User(userId)
+);
+
+-- 設置 auto_increment 初始值
+alter table Cart auto_increment = 201;
+
+-- 新增預設資料
+insert into Cart (cartId, userId, isCheckout, checkoutTime) values
+(201, 101, true, current_timestamp),
+(202, 102, false, null),
+(203, 103, true, current_timestamp),
+(204, 103, false, null),
+(205, 101, true, current_timestamp);
+
+
+
+
 
 4. 購物車明細檔(CartItem)
 +--------+----------+-----------+------------+
