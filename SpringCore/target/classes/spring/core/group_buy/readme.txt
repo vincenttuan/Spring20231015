@@ -35,8 +35,6 @@ insert into product(productId, productName, price, unit, isLaumch) values
 (505, 'Milk', 450, 'Dozen', true);
 
 
-
-
 2. 使用者 User
 level: 1(一般會員-進行團購), 2(後臺維運人員-進行團購+上架商品)
 +--------+----------+----------+-------+
@@ -46,6 +44,25 @@ level: 1(一般會員-進行團購), 2(後臺維運人員-進行團購+上架商
 |  102   | user456  | pass456  |   2   |
 |  103   | user789  | pass789  |   1   |
 +--------+----------+----------+-------+
+
+-- 建立 User 資料表
+create table if not exists User(
+	userId int auto_increment primary key,
+	username varchar(50) not null,
+	password varchar(50) not null,
+	level int default 1
+);
+
+-- 設置 auto_increment 初始值
+alter table User auto_increment = 101;
+
+-- 新增預設資料
+insert into user (userId, username, password, level) values
+(101, 'user123', 'pass123', 1),
+(102, 'user456', 'pass456', 2),
+(103, 'user789', 'pass789', 1);
+
+
 
 3. 購物車主檔(Cart)
 +--------+----------+------------+-----------+
