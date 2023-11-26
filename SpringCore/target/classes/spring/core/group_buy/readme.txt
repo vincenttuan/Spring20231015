@@ -95,9 +95,6 @@ insert into Cart (cartId, userId, isCheckout, checkoutTime) values
 (205, 101, true, current_timestamp);
 
 
-
-
-
 4. 購物車明細檔(CartItem)
 +--------+----------+-----------+------------+
 | itemId |  carId   | productId |  quantity  |
