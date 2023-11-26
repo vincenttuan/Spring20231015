@@ -138,7 +138,7 @@ left join product p on ci.productId = p.productId
 where ci.cartId = 201;
 
 -- 修改欄位指令
-alert table Product change isLaumch isLaunch boolean;
+alter table Product change isLaumch isLaunch boolean;
 
 
 功能:
