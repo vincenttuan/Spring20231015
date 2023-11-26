@@ -105,7 +105,7 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 	@Override
 	public void addProduct(Product product) {
 		String sql = "insert into Product (productName, price, unit, isLaunch) values (?, ?, ?, ?)";
-		jdbcTemplate.update(product.getProductName(), product.getPrice(), product.getUnit(), product.getIsLaunch());
+		jdbcTemplate.update(sql, product.getProductName(), product.getPrice(), product.getUnit(), product.getIsLaunch());
 	}
 
 	@Override
