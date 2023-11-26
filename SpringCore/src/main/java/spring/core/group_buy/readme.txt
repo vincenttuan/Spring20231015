@@ -113,7 +113,7 @@ create table if not exists CartItem (
 	cartId int not null, -- 對應到 Cart 購物車
 	productId int not null, -- 對應到 Product 商品
 	quantity int default 0,
-	foreign key (carId) references Cart(cartId),
+	foreign key (cartId) references Cart(cartId),
 	foreign key (productId) references Product(productId)
 );
 
