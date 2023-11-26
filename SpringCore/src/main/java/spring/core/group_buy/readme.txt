@@ -17,7 +17,7 @@ Pack(盒), Box(箱), Bottle(瓶), Bag(包), Dozen(打)
 -- 建立 Product 資料表
 create table if not exists Product(
 	productId int auto_increment primary key,
-	productName varchar(50) not null,
+	productName varchar(50) not null unique,
 	price int not null,
 	unit varchar(10),
 	isLaunch boolean
@@ -48,7 +48,7 @@ level: 1(一般會員-進行團購), 2(後臺維運人員-進行團購+上架商
 -- 建立 User 資料表
 create table if not exists User(
 	userId int auto_increment primary key,
-	username varchar(50) not null,
+	username varchar(50) not null unique,
 	password varchar(50) not null,
 	level int default 1
 );
