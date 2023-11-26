@@ -45,7 +45,7 @@ public class GroupBuyConfig {
 		dataSource.setAcquireIncrement(3);
 		dataSource.setIdleConnectionTestPeriod(60);
 		
-		return dataSource();
+		return dataSource;
 	}
 	
 	@Bean
