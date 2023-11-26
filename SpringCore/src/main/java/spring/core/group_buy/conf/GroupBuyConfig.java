@@ -31,7 +31,7 @@ public class GroupBuyConfig {
 	private String password;
 	
 	@Bean
-	public DataSource dataSource() throws PropertyVetoException {
+	public DataSource getDataSource() throws PropertyVetoException {
 		ComboPooledDataSource dataSource = new ComboPooledDataSource();
 		dataSource.setDriverClass(driverClass);
 		dataSource.setJdbcUrl(jdbcUrl);
@@ -50,7 +50,7 @@ public class GroupBuyConfig {
 	
 	@Bean
 	public JdbcTemplate jdbcTemplate() throws PropertyVetoException {
-		return new JdbcTemplate(dataSource());
+		return new JdbcTemplate(getDataSource());
 	} 
 	
 	
