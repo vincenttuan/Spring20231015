@@ -53,7 +53,7 @@ public class BookingController {
 	public String bookRoom(BookRoom bookRoom) {
 		// 是否該會議室已經被預訂
 		boolean isBooked = bookings.stream()
-								   .filter(room -> room.getBookingId().equals(bookRoom.getBookingId()))
+								   .filter(room -> room.getRoomId().equals(bookRoom.getRoomId()))
 								   .findAny()
 								   .isPresent();
 		if(isBooked) {
