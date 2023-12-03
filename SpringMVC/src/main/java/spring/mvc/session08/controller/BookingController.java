@@ -24,6 +24,10 @@ import spring.mvc.session08.bean.BookRoom;
 	範例：訪問路徑：/booking/bookRoom?roomId=101&userName=John&time=2023-05-15 14:00
 		將會返回預訂編號。
 
+查看所有預訂：
+	路徑：/booking/viewBookings
+	返回：當前所有預訂的列表（可以簡單地返回字符串格式的預訂詳情）
+
 取消預訂：
 	路徑：/booking/cancelBooking/{bookingId}
 	參數：預訂ID (bookingId)
@@ -31,10 +35,6 @@ import spring.mvc.session08.bean.BookRoom;
 	--------------------
 	範例：訪問路徑：/booking/cancelBooking/1
 		將會取消指定的預訂（以預訂編號為準）。
-
-查看所有預訂：
-	路徑：/booking/viewBookings
-	返回：當前所有預訂的列表（可以簡單地返回字符串格式的預訂詳情）
 	
 實現提示：
 	您可以使用一個 List<BookRoom> bookings 或其他數據結構來模擬數據庫，存儲預訂信息。
@@ -58,6 +58,7 @@ public class BookingController {
 	}
 	
 	@GetMapping(value = "/viewBookings", produces = {"text/plain;charset=utf-8"})
+	@ResponseBody
 	private String viewBookings() {
 		StringBuilder sb = new StringBuilder();
 		bookings.forEach(bookRoom -> sb.append(bookRoom).append("\n"));
