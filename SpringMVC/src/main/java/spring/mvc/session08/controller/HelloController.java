@@ -107,7 +107,7 @@ public class HelloController {
 	 * */
 	@GetMapping("/user")
 	@ResponseBody
-	public String getUserPerson(@RequestParam User user) {
+	public String getUser(User user) {
 		return "user = " + user;
 	}
 	
