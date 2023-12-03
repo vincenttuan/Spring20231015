@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -109,6 +110,17 @@ public class HelloController {
 	@ResponseBody
 	public String getUser(User user) {
 		return "user = " + user;
+	}
+	
+	/*
+	 * 8. 路徑參數 @PathVariable
+	 * 網址：.../java_score/75
+	 * 網址：.../java_score/45
+	 * */
+	@GetMapping(value = "/java_score/{score}")
+	@ResponseBody
+	public String getJavaScore(@PathVariable("score") Integer score) {
+		return String.format("Java score: %d, pass: %b", score, (score >= 60));
 	}
 	
 	
