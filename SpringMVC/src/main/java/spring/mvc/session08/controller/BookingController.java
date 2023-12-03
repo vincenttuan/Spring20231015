@@ -57,7 +57,7 @@ public class BookingController {
 								   .findAny()
 								   .isPresent();
 		if(isBooked) {
-			return String.format("預約失敗, 會議室: %d 已被預訂", bookRoom.getBookingId());
+			return String.format("預約失敗, 會議室: %d 已被預訂", bookRoom.getRoomId());
 		}
 		
 		// 進行預約程序
