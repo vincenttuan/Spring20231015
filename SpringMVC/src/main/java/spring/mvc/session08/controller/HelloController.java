@@ -25,6 +25,7 @@ public class HelloController {
 	/*
 	 * 2. ? 帶參數
 	 * 網址: http://localhost:8080/SpringMVC/mvc/hello/sayhi?name=John&age=20
+	 * 網址: http://localhost:8080/SpringMVC/mvc/hello/sayhi?name=Mary
 	 * 限制: name 參數是一定要有的(預設), 
 	 *      age 參數是不一定要有的, 初始值 = 0
 	 * */
