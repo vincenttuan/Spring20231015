@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import spring.mvc.session08.bean.User;
+
 // Base url      : http://localhost:8080/SpringMVC/mvc
 // Controller url: http://localhost:8080/SpringMVC/mvc/hello
 @Controller
@@ -97,6 +99,16 @@ public class HelloController {
 	@ResponseBody
 	public String getPerson(@RequestParam Map<String, String> personMap) {
 		return "personMap = " + personMap;
+	}
+	
+	/*
+	 * 7. 自動將多組參數資料注入到指定物件(例如: user)
+	 * 網址：http://localhost:8080/SpringMVC/mvc/hello/user?name=John&age=18&score=80&pass=true
+	 * */
+	@GetMapping("/user")
+	@ResponseBody
+	public String getUserPerson(@RequestParam User user) {
+		return "user = " + user;
 	}
 	
 	
