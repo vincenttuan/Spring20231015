@@ -38,4 +38,13 @@ public class HelloController {
 		return message;
 	}
 	
+	/*
+	 * 3. Lab 練習
+	 * 網址: http://localhost:8080/SpringMVC/mvc/hello/bmi?h=170.0&w=60.0
+	 * 限制: h, w 是一定要的
+	 * 執行結果: h = 170.0, w = 60.0, bmi = 20.76
+	 * 請設計~ 寫完 +7
+	 * */
+	
+	
 }
