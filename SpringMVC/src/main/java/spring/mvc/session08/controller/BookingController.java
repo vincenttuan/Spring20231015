@@ -76,7 +76,7 @@ public class BookingController {
 	private String viewBookings() {
 		StringBuilder sb = new StringBuilder();
 		bookings.forEach(bookRoom -> sb.append(bookRoom).append("\n"));
-		return sb.toString();
+		return sb.toString().trim().length() == 0 ? "無預約資料" : sb.toString();
 	}
 	
 	// 取消預約
