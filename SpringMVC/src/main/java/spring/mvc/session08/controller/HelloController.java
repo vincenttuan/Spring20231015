@@ -1,5 +1,7 @@
 package spring.mvc.session08.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,7 +45,7 @@ public class HelloController {
 	 * 網址: http://localhost:8080/SpringMVC/mvc/hello/bmi?h=170.0&w=60.0
 	 * 限制: h, w 是一定要的
 	 * 執行結果: h = 170.0, w = 60.0, bmi = 20.76
-	 * 請設計~ 寫完 +7
+	 * 請設計~
 	 * */
 	@GetMapping(value = "/bmi")
 	@ResponseBody
@@ -52,6 +54,22 @@ public class HelloController {
 		String message = String.format("h = %.1f, w = %.1f, bmi = %.2f", h, w, bmi);
 		return message;
 	}
+	
+	/*
+	 * 4. 同名多筆資料參數
+	 * 網址: http://localhost:8080/SpringMVC/mvc/hello/age?age=17&age=19&age=25
+	 * 計算平均年齡
+	 * */
+	@GetMapping(value = "/age")
+	@ResponseBody
+	public String getAvgOfAge(@RequestParam("age") List<Integer> ages) {
+		double avgAge = ages.stream()
+							.mapToInt(Integer::intValue) // 將 Integer 轉 int
+							.average() // 取得平均物件資料
+							.getAsDouble(); // 取得平均的 double 值
+		return String.format("avgAge = %.1f", avgAge);
+	}
+	
 	
 	
 }
