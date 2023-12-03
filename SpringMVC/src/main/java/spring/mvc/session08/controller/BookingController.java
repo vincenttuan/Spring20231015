@@ -70,7 +70,7 @@ public class BookingController {
 		return String.format("預約成功, 預約編號: %d", bookingId);
 	}
 	
-	// 查看已預約的會議室狀態
+	// 查看預約會議室紀錄
 	@GetMapping(value = "/viewBookings", produces = {"text/plain;charset=utf-8"})
 	@ResponseBody
 	private String viewBookings() {
