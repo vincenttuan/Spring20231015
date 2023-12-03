@@ -51,10 +51,20 @@ public class BookingController {
 	@GetMapping(value = "/bookRoom", produces = {"text/plain;charset=utf-8"})
 	@ResponseBody
 	public String bookRoom(BookRoom bookRoom) {
+		// 是否該會議室已經被預訂
+		boolean isBooked = bookings.stream()
+								   .filter(room -> room.getBookingId().equals(bookRoom.getBookingId()))
+								   .findAny()
+								   .isPresent();
+		if(isBooked) {
+			return String.format("預約失敗, 會議室: %d 已被預訂", bookRoom.getBookingId());
+		}
+		
+		// 進行預約程序
 		int bookingId = bookingIdCounter.incrementAndGet(); // 產生預定編號
 		bookRoom.setBookingId(bookingId);
 		bookings.add(bookRoom);
-		return "預定成功, 預約編號: " + bookingId;
+		return String.format("預約成功, 預約編號: %d", bookingId);
 	}
 	
 	@GetMapping(value = "/viewBookings", produces = {"text/plain;charset=utf-8"})
