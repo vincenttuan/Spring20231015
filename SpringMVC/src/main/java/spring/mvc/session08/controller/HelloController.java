@@ -45,6 +45,13 @@ public class HelloController {
 	 * 執行結果: h = 170.0, w = 60.0, bmi = 20.76
 	 * 請設計~ 寫完 +7
 	 * */
+	@GetMapping(value = "/bmi")
+	@ResponseBody
+	public String bmi(@RequestParam(value = "h") Double h, @RequestParam(value = "w") Double w) {
+		double bmi = w / Math.pow(h/100, 2);
+		String message = String.format("h = %.1f, w = %.1f, bmi = %.2f", h, w, bmi);
+		return message;
+	}
 	
 	
 }
