@@ -1,5 +1,6 @@
 package spring.mvc.session08.controller;
 
+import java.util.IntSummaryStatistics;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -70,6 +71,21 @@ public class HelloController {
 		return String.format("avgAge = %.1f", avgAge);
 	}
 	
+	/*
+	 * 5. Lab 練習: 得到多筆 score 資料
+	 * 網址：http://localhost:8080/SpringMVC/mvc/hello/exam?score=80&score=100&score=50
+	 * 請自行設計一個方法，此方法可以印出最高分、最低分、平均與總分 (支援中文字印出)
+	 * */
+	
+	@GetMapping(value = "/exam", produces = {"text/plain;charset=utf-8"})
+	@ResponseBody
+	public String getExamInfo(@RequestParam("score") List<Integer> scores) {
+		IntSummaryStatistics stat = scores.stream()
+										  .mapToInt(Integer::intValue)
+										  .summaryStatistics();
+		return String.format("最高分: %d 最低分: %d 平均: %.1f, 總分: %d", 
+				stat.getMax(), stat.getMin(), stat.getAverage(), stat.getSum());
+	}
 	
 	
 }
