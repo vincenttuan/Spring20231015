@@ -2,6 +2,7 @@ package spring.mvc.session08.controller;
 
 import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -85,6 +86,17 @@ public class HelloController {
 										  .summaryStatistics();
 		return String.format("最高分: %d 最低分: %d 平均: %.1f, 總分: %d", 
 				stat.getMax(), stat.getMin(), stat.getAverage(), stat.getSum());
+	}
+	
+	/*
+	 * 6. 得到多筆資料並轉 Map
+	 * 網址：http://localhost:8080/SpringMVC/mvc/hello/person?name=John&age=18&score=80&pass=true
+	 * 網址：http://localhost:8080/SpringMVC/mvc/hello/person?name=Mary&age=21&score=50&pass=false
+	 * */
+	@GetMapping("/person")
+	@ResponseBody
+	public String getPerson(@RequestParam Map<String, String> personMap) {
+		return "personMap = " + personMap;
 	}
 	
 	
