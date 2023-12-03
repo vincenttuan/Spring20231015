@@ -1,11 +1,13 @@
 package spring.mvc.session08.controller;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -48,6 +50,7 @@ public class BookingController {
 	private List<BookRoom> bookings = new CopyOnWriteArrayList();
 	private AtomicInteger bookingIdCounter = new AtomicInteger(0);
 	
+	// 預約會議室
 	@GetMapping(value = "/bookRoom", produces = {"text/plain;charset=utf-8"})
 	@ResponseBody
 	public String bookRoom(BookRoom bookRoom) {
@@ -67,12 +70,32 @@ public class BookingController {
 		return String.format("預約成功, 預約編號: %d", bookingId);
 	}
 	
+	// 查看已預約的會議室狀態
 	@GetMapping(value = "/viewBookings", produces = {"text/plain;charset=utf-8"})
 	@ResponseBody
 	private String viewBookings() {
 		StringBuilder sb = new StringBuilder();
 		bookings.forEach(bookRoom -> sb.append(bookRoom).append("\n"));
 		return sb.toString();
+	}
+	
+	// 取消預約
+	@GetMapping(value = "/cancelBooking/{bookingId}", produces = {"text/plain;charset=utf-8"})
+	@ResponseBody
+	public String cancelBooking(@PathVariable("bookingId") Integer bookingId) {
+		// 找到 BookRoom
+		Optional<BookRoom> bookRoomOpt = bookings.stream()
+												 .filter(room -> room.getBookingId().equals(bookingId))
+												 .findAny();
+		if(bookRoomOpt.isPresent()) {
+			// 移除 bookRoom
+			bookings.remove(bookRoomOpt.get());
+			
+			return String.format("取消預約成功, 預約編號: %d", bookingId);
+		}
+		
+		return String.format("取消預約失敗, 預約編號: %d 不存在", bookingId);
+		
 	}
 	
 }
