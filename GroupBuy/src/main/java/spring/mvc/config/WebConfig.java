@@ -51,7 +51,7 @@ public class WebConfig {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         try {
         	dataSource.setDriverClass("com.mysql.cj.jdbc.Driver");
-            dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/web?serverTimezone=Asia/Taipei&characterEncoding=utf-8&useUnicode=true");
+            dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/group_buy?serverTimezone=Asia/Taipei&characterEncoding=utf-8&useUnicode=true");
             dataSource.setUser("root");
             dataSource.setPassword("12345678");
 		} catch (Exception e) {

@@ -7,7 +7,7 @@
 </head>
 <body>
     <h2>Login</h2>
-    <form action="/SpringMVC/mvc/login" method="post">
+    <form action="/GroupBuy/mvc/login" method="post">
         <div>
             <label for="username">Username:</label>
             <input type="text" id="username" name="username">
