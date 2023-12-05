@@ -1,22 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="jakarta.tags.core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>團購網-購物車</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
-		<link rel="stylesheet" href="../../css/group_buy.css">
+		<link rel="stylesheet" href="/GroupBuy/css/group_buy.css">
 		
 		<script type="text/javascript">
 			function updateItem(itemId) {
 				var quantity = document.getElementById('item_' + itemId + '_quantity').value;
-				window.location.href='./cart.jsp?_method=Put&itemId=' + itemId + '&quantity=' + quantity;
+				window.location.href='./cart/update?itemId=' + itemId + '&quantity=' + quantity;
 			}
 			
 			function deleteItem(itemId) {
-				window.location.href='./cart.jsp?_method=Delete&itemId=' + itemId;
+				window.location.href='./cart/delete?itemId=' + itemId;
 			}
 			
 		</script>
@@ -52,11 +52,12 @@
 										<a href="javascript:void(0);" onClick="updateItem(${ item.itemId })" class="pure-button button-success">Update</a>
 									</td>	
 									<td>
-										<button onClick="event.preventDefault();window.location.href='./cart.jsp?_method=Delete&itemId=${ item.itemId }';"
+										<!--
+										<button onClick="event.preventDefault();deleteItem(${ item.itemId });"
                                                 class="button-error pure-button">刪除</button>
-                                        <!--         
+                                        -->         
 										<a href="javascript:void(0);" onClick="deleteItem(${ item.itemId })" class="pure-button button-error">Delete</a>
-										-->
+										
 									</td>
 								</tr>
 							</c:forEach>

@@ -9,7 +9,7 @@
 	</head>
 	<body style="padding: 15px">
 		<div style="display:flex; justify-content:center; align-items: center; height:100vh;">
-			<form method="post" action="./frontend/main.jsp" class="pure-form">
+			<form method="post" action="./login" class="pure-form">
 				<fieldset>
 					<legend>團購登入</legend>
 					😀 帳號: <input type="text" id="username" name="username" placeholder="請輸入帳號" value="user123" required /><p />

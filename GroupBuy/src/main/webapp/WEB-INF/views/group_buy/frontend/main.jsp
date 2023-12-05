@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="jakarta.tags.core" prefix="c" %>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 	<head>
@@ -12,7 +12,7 @@
 		<!-- menu -->
 		<%@include file="./menu.jspf" %>
 		<div style="padding: 15px">
-			<form method="post" action="./result.jsp" class="pure-form">
+			<form method="post" action="./result" class="pure-form">
 				<fieldset>
 					<legend>團購網首頁</legend>
 					商品: <select id="productId" name="productId">

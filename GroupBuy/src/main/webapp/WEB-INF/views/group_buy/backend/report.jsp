@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="jakarta.tags.core" prefix="c" %>
-<%@ taglib uri="jakarta.tags.fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>團購網-後台報表</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
-		<link rel="stylesheet" href="../../css/group_buy.css">
+		<link rel="stylesheet" href="/GroupBuy/css/group_buy.css">
 	</head>
 	<body>
 		<!-- menu -->
@@ -40,7 +40,7 @@
 									            <td>$${ report.total }</td>
 									            <td>
 									            	<a href="javascript:void(0);"
-									            		onClick="location.href='./report.jsp?userId=${ report.userId }';" 
+									            		onClick="location.href='./report?userId=${ report.userId }';" 
 									            		class="button-secondary pure-button">明細</button>
 									            </td>
 									        </tr>

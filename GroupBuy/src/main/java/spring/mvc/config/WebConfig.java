@@ -3,6 +3,7 @@ package spring.mvc.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -20,6 +21,7 @@ import javax.sql.DataSource;
 @EnableWebMvc
 @ComponentScan(basePackages = "spring.mvc") // 掃描 package
 @EnableTransactionManagement
+@EnableAspectJAutoProxy
 public class WebConfig {
 
     @Bean

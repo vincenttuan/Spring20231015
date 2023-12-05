@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="jakarta.tags.core" prefix="c" %>     
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>     
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>團購網-後臺商品維護</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
-		<link rel="stylesheet" href="../../css/group_buy.css">
+		<link rel="stylesheet" href="/GroupBuy/css/group_buy.css">
 		<script type="text/javascript">
 			function changeLaunch(productId, isLaunch) {
-				location.href = './main.jsp?_method=Put&productId=' + productId + '&isLaunch=' + isLaunch;
+				location.href = './main/update_product_launch?productId=' + productId + '&isLaunch=' + isLaunch;
 			}
 		</script>
 	</head>
@@ -22,7 +22,7 @@
 			<table>
 				<tr>
 					<td valign="top">
-						<form method="post" action="./result.jsp" class="pure-form">
+						<form method="post" action="./result" class="pure-form">
 							<fieldset>
 								<legend>團購網-商品新增</legend>
 								品名: <input type="text" id="productName" name="productName" value="水果茶" /><p />
