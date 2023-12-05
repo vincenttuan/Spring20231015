@@ -81,6 +81,19 @@
 			<artifactId>jsoup</artifactId>
 			<version>1.8.3</version>
 		</dependency>
+		
+		<!-- spring security -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-web</artifactId>
+		    <version>4.2.20.RELEASE</version> <!-- 使用与您的Spring版本兼容的版本 -->
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-config</artifactId>
+		    <version>4.2.20.RELEASE</version> <!-- 使用与您的Spring版本兼容的版本 -->
+		</dependency>
 
 		<!-- spring 核心包 -->
 		<dependency>
