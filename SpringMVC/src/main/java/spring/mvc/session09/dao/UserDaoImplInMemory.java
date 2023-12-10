@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import spring.mvc.session09.entity.User;
 
-@Repository
+@Repository("userDaoImplInMemory")
 public class UserDaoImplInMemory implements UserDao {
 	
 	private static List<User> users = new CopyOnWriteArrayList<>();

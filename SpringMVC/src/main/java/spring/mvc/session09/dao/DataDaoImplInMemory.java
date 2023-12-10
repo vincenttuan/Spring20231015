@@ -9,7 +9,7 @@ import spring.mvc.session09.entity.EducationData;
 import spring.mvc.session09.entity.SexData;
 import spring.mvc.session09.entity.InterestData;
 
-@Repository
+@Repository("dataDaoImplInMemory")
 public class DataDaoImplInMemory implements DataDao {
 
 	@Override

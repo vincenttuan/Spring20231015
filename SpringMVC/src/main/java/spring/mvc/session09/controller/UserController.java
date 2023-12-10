@@ -1,6 +1,7 @@
 package spring.mvc.session09.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +17,11 @@ import spring.mvc.session09.entity.User;
 public class UserController {
 	
 	@Autowired
+	@Qualifier("userDaoImplInMemory")
 	private UserDao userDao;
 	
 	@Autowired
+	@Qualifier("dataDaoImplInMemory")
 	private DataDao dataDao;
 	
 	// 首頁
