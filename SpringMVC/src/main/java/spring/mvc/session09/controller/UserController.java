@@ -44,7 +44,7 @@ public class UserController {
 		return "session09/user";
 	}
 	
-	@PostMapping("/")
+	@PostMapping(value = "/", produces = {"text/plain;charset=utf-8"})
 	@ResponseBody
 	public String add(@ModelAttribute User user) {
 		// 根據 id 找到符合的物件
