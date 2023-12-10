@@ -54,24 +54,30 @@
 							<legend>User List</legend>
 							<table class="pure-table pure-table-bordered">
 								<thead>
-									<th>id</th><th>姓名</th><th>年齡</th><th>生日</th><th>學歷</th>
-									<th>性別</th><th>興趣</th><th>履歷</th><th>編輯</th><th>刪除</th>
+									<th nowrap>id</th><th nowrap>姓名</th><th nowrap>年齡</th><th nowrap>生日</th><th nowrap>學歷</th>
+									<th nowrap>性別</th><th nowrap>興趣</th><th nowrap>履歷</th><th nowrap>編輯</th><th nowrap>刪除</th>
 								</thead>
 								<tbody>
 									<c:forEach items="${ users }" var="user">
 										<tr>
-											<td>${ user.id }</td>
-											<td>${ user.name }</td>
-											<td>${ user.age }</td>
-											<td>${ user.birth }</td>
-											<td>${ user.education.name }</td>
-											<td>${ user.sex.name }</td>
-											<td>${ user.interests }</td>
+											<td nowrap>${ user.id }</td>
+											<td nowrap>${ user.name }</td>
+											<td nowrap>${ user.age }</td>
+											<td nowrap>
+												<fmt:formatDate value="${ user.birth }" pattern="yyyy-MM-dd" />
+											</td>
+											<td nowrap>${ user.education.name }</td>
+											<td nowrap>${ user.sex.name }</td>
+											<td nowrap>
+												<c:forEach items="${ user.interests }" var="interest">
+													${ interest.name } &nbsp;
+												</c:forEach>
+											</td>
 											<td>${ user.resume }</td>
-											<td>
+											<td nowrap>
 												<a href="javascript:void(0);" onClick="" class="pure-button">編輯</a>
 											</td>
-											<td>
+											<td nowrap>
 												<a href="javascript:void(0);" onClick="" class="pure-button">刪除</a>
 											</td>
 										</tr>
