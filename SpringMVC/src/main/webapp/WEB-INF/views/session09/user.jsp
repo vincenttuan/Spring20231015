@@ -24,7 +24,7 @@
 				</td>
 				<!-- User List -->
 				<td valign="top" style="padding: 5px">
-					${ users }
+					${ (users == null) ? "users 尚無資料" : users }
 				</td>
 			</tr>
 		</table>
