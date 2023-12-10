@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import spring.mvc.session09.entity.User;
@@ -14,6 +15,9 @@ public class UserDaoImplInMemory implements UserDao {
 	
 	private static List<User> users = new CopyOnWriteArrayList<>();
 	private static AtomicInteger atomicId = new AtomicInteger(0);
+	
+	@Autowired
+	private DataDao dataDao;
 	
 	@Override
 	public int addUser(User user) {
@@ -30,10 +34,18 @@ public class UserDaoImplInMemory implements UserDao {
 			curUser.setName(user.getName());
 			curUser.setAge(user.getAge());
 			curUser.setBirth(user.getBirth());
-			curUser.setEducation(user.getEducation());
-			curUser.setSex(user.getSex());
-			curUser.setInterests(user.getInterests());
+			
+			curUser.setEducationId(user.getEducationId());
+			curUser.setEducation(dataDao.getEducationDataById(user.getEducationId()).get());
+			
+			curUser.setSexId(user.getSexId());
+			curUser.setSex(dataDao.getSexDataById(user.getSexId()).get());
+			
+			curUser.setInterestIds(user.getInterestIds());
+			curUser.setInterests(dataDao.findInterestDatasByIds(user.getInterestIds()));
+			
 			curUser.setResume(user.getResume());
+			
 			return 1;
 		}
 		return 0;

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isErrorPage="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -16,6 +16,28 @@
 				margin-left:5px;
 			}
 		</style>
+		<script type="text/javascript">
+			function deleteUser(userId) {
+			    const url = '${pageContext.request.contextPath}/mvc/session09/user/' + userId;
+			    
+			    fetch(url, {
+			        method: 'DELETE'
+			    })
+			    .then(response => {
+			        if(response.ok) {
+			            // 操作成功，更新前端或重定向
+			            window.location.href = '${pageContext.request.contextPath}/mvc/session09/user/';
+			        } else {
+			            // 处理错误情况
+			            console.error('Delete request failed');
+			        }
+			    })
+			    .catch(error => {
+			        console.error('Error:', error);
+			    });
+			}
+
+		</script>
 	</head>
 	<body style="padding: 15px">
 		<table>
@@ -25,7 +47,7 @@
 					<sp:form class="pure-form"
 						method="POST"
 						modelAttribute="user"
-						action="${ pageContext.request.contextPath }/mvc/session09/user/">
+						action="${ pageContext.request.contextPath }/mvc/session09/user/${ user.id }">
 					
 						<fieldset>
 							<legend>User Form</legend>
@@ -86,10 +108,11 @@
 											</td>
 											<td>${ user.resume }</td>
 											<td nowrap>
-												<a href="javascript:void(0);" onClick="" class="pure-button">編輯</a>
+												<a href="javascript:void(0);" onClick="location.href='${ pageContext.request.contextPath }/mvc/session09/user/${ user.id }?_method=PUT'" class="pure-button">編輯</a>
 											</td>
 											<td nowrap>
-												<a href="javascript:void(0);" onClick="" class="pure-button">刪除</a>
+												<a href="javascript:void(0);" onClick="location.href='${ pageContext.request.contextPath }/mvc/session09/user/${ user.id }?_method=DELETE'" class="pure-button">刪除1</a>
+												<a href="javascript:void(0);" onClick="deleteUser(${ user.id })" class="pure-button">刪除2</a>
 											</td>
 										</tr>
 									</c:forEach>
