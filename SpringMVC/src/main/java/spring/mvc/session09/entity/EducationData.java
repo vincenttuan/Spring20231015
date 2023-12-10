@@ -2,23 +2,23 @@ package spring.mvc.session09.entity;
 
 // 教育程度資料
 public class EducationData {
-	private String id;
+	private Integer id;
 	private String name;
 	
 	public EducationData() {
 		
 	}
 	
-	public EducationData(String id, String name) {
+	public EducationData(Integer id, String name) {
 		this.id = id;
 		this.name = name;
 	}
 
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

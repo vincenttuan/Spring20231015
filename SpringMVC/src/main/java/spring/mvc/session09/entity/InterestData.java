@@ -1,23 +1,23 @@
 package spring.mvc.session09.entity;
 
 public class InterestData {
-	private String id;
+	private Integer id;
 	private String name;
 	
 	public InterestData() {
 		
 	}
 	
-	public InterestData(String id, String name) {
+	public InterestData(Integer id, String name) {
 		this.id = id;
 		this.name = name;
 	}
 
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
