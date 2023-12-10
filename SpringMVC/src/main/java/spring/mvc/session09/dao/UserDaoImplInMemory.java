@@ -3,10 +3,12 @@ package spring.mvc.session09.dao;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.stream.IntStream;
+
+import org.springframework.stereotype.Repository;
 
 import spring.mvc.session09.entity.User;
 
+@Repository
 public class UserDaoImplInMemory implements UserDao {
 	
 	private static List<User> users = new CopyOnWriteArrayList<>();

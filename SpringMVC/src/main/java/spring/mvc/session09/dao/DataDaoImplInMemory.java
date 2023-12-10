@@ -3,10 +3,13 @@ package spring.mvc.session09.dao;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import spring.mvc.session09.entity.EducationData;
 import spring.mvc.session09.entity.SexData;
 import spring.mvc.session09.entity.InterestData;
 
+@Repository
 public class DataDaoImplInMemory implements DataDao {
 
 	@Override
