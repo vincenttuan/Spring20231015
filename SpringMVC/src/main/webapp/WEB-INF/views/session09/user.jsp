@@ -52,10 +52,15 @@
 					<form class="pure-form">
 						<fieldset>
 							<legend>User List</legend>
+							
+							${(fn:length(user.interests) == 0)? '無 users 資料' : ''}
+							
 							<table class="pure-table pure-table-bordered">
 								<thead>
-									<th nowrap>id</th><th nowrap>姓名</th><th nowrap>年齡</th><th nowrap>生日</th><th nowrap>學歷</th>
-									<th nowrap>性別</th><th nowrap>興趣</th><th nowrap>履歷</th><th nowrap>編輯</th><th nowrap>刪除</th>
+									<tr>
+										<th nowrap>id</th><th nowrap>姓名</th><th nowrap>年齡</th><th nowrap>生日</th><th nowrap>學歷</th>
+										<th nowrap>性別</th><th nowrap>興趣</th><th nowrap>履歷</th><th nowrap>編輯</th><th nowrap>刪除</th>
+									</tr>
 								</thead>
 								<tbody>
 									<c:forEach items="${ users }" var="user">
