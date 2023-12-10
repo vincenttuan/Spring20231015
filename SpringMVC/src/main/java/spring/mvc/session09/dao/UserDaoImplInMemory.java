@@ -55,8 +55,7 @@ public class UserDaoImplInMemory implements UserDao {
 
 	@Override
 	public List<User> findAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
+		return users;
 	}
 	
 }
