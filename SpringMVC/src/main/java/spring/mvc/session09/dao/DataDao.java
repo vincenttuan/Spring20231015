@@ -8,6 +8,6 @@ import spring.mvc.session09.entity.SexData;
 
 public interface DataDao {
 	List<EducationData> findAllEducationDatas();
-	List<InterestData> InterestData();
+	List<InterestData> findAllInterestDatas();
 	List<SexData> findAllSexDatas();
 }

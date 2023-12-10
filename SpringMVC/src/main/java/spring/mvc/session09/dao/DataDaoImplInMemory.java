@@ -25,7 +25,7 @@ public class DataDaoImplInMemory implements DataDao {
 	}
 
 	@Override
-	public List<InterestData> InterestData() {
+	public List<InterestData> findAllInterestDatas() {
 		// 興趣: 1:爬山, 2:看書, 3:打球, 4:飛控, 5:手遊
 		List<InterestData> interestDatas = Arrays.asList(
 				new InterestData(1, "爬山"),
