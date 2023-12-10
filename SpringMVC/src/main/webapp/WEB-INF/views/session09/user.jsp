@@ -27,9 +27,9 @@
 							姓名: <sp:input path="name" type="text" /><p />
 							年齡: <sp:input path="age" type="number" /><p />
 							生日: <sp:input path="birth" type="date" /><p />
-							學歷: <sp:select path="education" items="${ educations }" itemLabel="name" /><p />
-							性別: <sp:radiobuttons path="sex" items="${ sexs }" itemLabel="name" /><p />
-							興趣: <sp:checkboxes path="interests" items="${ interests }" itemLabel="name" /><p />
+							學歷: <sp:select path="education" items="${ educations }" itemValue="id" itemLabel="name" /><p />
+							性別: <sp:radiobuttons path="sex" items="${ sexs }"  itemValue="id" itemLabel="name" /><p />
+							興趣: <sp:checkboxes path="interests" items="${ interests }"  itemValue="id" itemLabel="name" /><p />
 							履歷: <sp:textarea path="resume" /><p />
 							<!-- 自訂隱藏表單元素 -->
 							<input type="hidden" name="_method" value="${ _method }"><p />
