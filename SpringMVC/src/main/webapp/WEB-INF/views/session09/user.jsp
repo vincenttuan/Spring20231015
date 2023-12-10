@@ -10,6 +10,12 @@
 		<meta charset="UTF-8">
 		<title>User</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
+		<style type="text/css">
+			.element-margin {
+				margin-right:2px;
+				margin-left:5px;
+			}
+		</style>
 	</head>
 	<body style="padding: 15px">
 		<table>
@@ -29,7 +35,7 @@
 							生日: <sp:input path="birth" type="date" /><p />
 							學歷: <sp:select path="educationId" items="${ educations }" itemValue="id" itemLabel="name" /><p />
 							性別: <sp:radiobuttons path="sexId" items="${ sexs }"  itemValue="id" itemLabel="name" /><p />
-							興趣: <sp:checkboxes path="interestIds" items="${ interests }"  itemValue="id" itemLabel="name" /><p />
+							興趣: <sp:checkboxes path="interestIds" items="${ interests }"  itemValue="id" itemLabel="name" cssClass="element-margin" /><p />
 							履歷: <sp:textarea path="resume" /><p />
 							<!-- 自訂隱藏表單元素 -->
 							<input type="hidden" name="_method" value="${ _method }"><p />
