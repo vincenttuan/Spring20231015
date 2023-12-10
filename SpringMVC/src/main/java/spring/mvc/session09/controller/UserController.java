@@ -45,7 +45,7 @@ public class UserController {
 	}
 	
 	@PostMapping(value = "/", produces = {"text/plain;charset=utf-8"})
-	@ResponseBody
+	//@ResponseBody
 	public String add(@ModelAttribute User user) {
 		// 根據 id 找到符合的物件
 		Optional<EducationData> eduOpt = dataDao.getEducationDataById(user.getEducationId());
@@ -62,7 +62,12 @@ public class UserController {
 		
 		user.setInterests(interestDatas);
 		
-		return user.toString();
+		//return user.toString();
+		
+		// 新增
+		userDao.addUser(user);
+		return "redirect:/mvc/session09/user/"; // 重導到首頁
+		
 	}
 	
 }
