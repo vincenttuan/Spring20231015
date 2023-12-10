@@ -8,17 +8,17 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class User {
-	private String name;
-	private Integer age;
+	private String name; // 姓名
+	private Integer age; // 年齡
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-	private Date birth;
+	private Date birth; // 生日
 	
-	private String education;
-	private String sex;
-	private String[] interests;
-	private String resume;
+	private String education; // 教育程度: 小學, 國中, 高中, 大學, 研究所 (單選)
+	private String sex;       // 性別: 男生, 女生 (單選)
+	private String[] interests; // 興趣: 爬山, 看書, 打球, 飛控, 手遊 (多選)
+	private String resume; // 履歷
 	
 	public User() {
 		
