@@ -51,10 +51,10 @@
 				<td valign="top" style="padding: 5px">
 					<form class="pure-form">
 						<fieldset>
-							<legend>User List</legend>
-							
-							${(fn:length(user.interests) == 0)? '無 users 資料' : ''}
-							
+							<legend>
+								User List
+								${(fn:length(users) == 0)? '無資料' : ''}
+							</legend>
 							<table class="pure-table pure-table-bordered">
 								<thead>
 									<tr>
