@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class User {
+	private Integer id; // 序號
 	private String name; // 姓名
 	private Integer age; // 年齡
 	
@@ -21,13 +22,14 @@ public class User {
 	private List<InterestData> interests; // 興趣: 1:爬山, 2:看書, 3:打球, 4:飛控, 5:手遊 (多選)
 	
 	private String resume; // 履歷
-
+	
 	public User() {
 		
 	}
 	
-	public User(String name, Integer age, Date birth, EducationData education, SexData sex,
+	public User(Integer id, String name, Integer age, Date birth, EducationData education, SexData sex,
 			List<InterestData> interests, String resume) {
+		this.id = id;
 		this.name = name;
 		this.age = age;
 		this.birth = birth;
@@ -35,6 +37,14 @@ public class User {
 		this.sex = sex;
 		this.interests = interests;
 		this.resume = resume;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -95,9 +105,10 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [name=" + name + ", age=" + age + ", birth=" + birth + ", education=" + education + ", sex=" + sex
-				+ ", interests=" + interests + ", resume=" + resume + "]";
+		return "User [id=" + id + ", name=" + name + ", age=" + age + ", birth=" + birth + ", education=" + education
+				+ ", sex=" + sex + ", interests=" + interests + ", resume=" + resume + "]";
 	}
+
 	
 	
 }
