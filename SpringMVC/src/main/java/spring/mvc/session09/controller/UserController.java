@@ -96,10 +96,15 @@ public class UserController {
 	}
 	
 	@DeleteMapping("/{id}")
-	@ResponseBody // 若前端使用 JS 則要加上此, 不然會發生 405
 	public String updateUser(@PathVariable("id") Integer id) {
 		userDao.deleteUserById(id);
 		return "redirect:/mvc/session09/user/"; // 重導到首頁
+	}
+	
+	@DeleteMapping("/js/{id}") // 給 js 使用的路徑
+	@ResponseBody // 若前端使用 JS 則要加上此, 不然會發生 405
+	public String updateDirectUser(@PathVariable("id") Integer id) {
+		return userDao.deleteUserById(id) + "";
 	}
 	
 }

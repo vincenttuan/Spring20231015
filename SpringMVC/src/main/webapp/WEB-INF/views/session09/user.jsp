@@ -18,7 +18,7 @@
 		</style>
 		<script type="text/javascript">
 			function deleteUser(userId) {
-			    const url = '${pageContext.request.contextPath}/mvc/session09/user/' + userId;
+			    const url = '${pageContext.request.contextPath}/mvc/session09/user/js/' + userId;
 			    
 			    fetch(url, {
 			        method: 'DELETE'
