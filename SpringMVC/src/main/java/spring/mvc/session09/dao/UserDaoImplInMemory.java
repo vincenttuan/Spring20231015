@@ -3,6 +3,7 @@ package spring.mvc.session09.dao;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.stereotype.Repository;
 
@@ -12,9 +13,11 @@ import spring.mvc.session09.entity.User;
 public class UserDaoImplInMemory implements UserDao {
 	
 	private static List<User> users = new CopyOnWriteArrayList<>();
+	private static AtomicInteger atomicId = new AtomicInteger(0);
 	
 	@Override
 	public int addUser(User user) {
+		user.setId(atomicId.incrementAndGet());
 		users.add(user);
 		return 1;
 	}
