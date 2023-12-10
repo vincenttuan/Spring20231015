@@ -28,9 +28,8 @@ public class UserController {
 		model.addAttribute("buttonName", "新增");
 		model.addAttribute("users", userDao.findAllUsers());
 		model.addAttribute("educations", dataDao.findAllEducationDatas());
-		model.addAttribute("users", userDao.findAllUsers());
-		model.addAttribute("users", userDao.findAllUsers());
-		
+		model.addAttribute("interests", dataDao.findAllInterestDatas());
+		model.addAttribute("sexs", dataDao.findAllSexDatas());
 		return "session09/user";
 	}
 	
