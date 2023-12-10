@@ -15,9 +15,9 @@ public class User {
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	private Date birth; // 生日
 	
-	private String education; // 教育程度: 小學, 國中, 高中, 大學, 研究所 (單選)
-	private String sex;       // 性別: 男生, 女生 (單選)
-	private String[] interests; // 興趣: 爬山, 看書, 打球, 飛控, 手遊 (多選)
+	private String education; // 教育程度: 1:小學, 2:國中, 3:高中, 4:大學, 5:研究所 (單選)
+	private String sex;       // 性別: 1:男生, 2:女生 (單選)
+	private String[] interests; // 興趣: 1:爬山, 2:看書, 3:打球, 4:飛控, 5:手遊 (多選)
 	private String resume; // 履歷
 	
 	public User() {
