@@ -2,6 +2,7 @@ package spring.mvc.session09.entity;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -15,16 +16,18 @@ public class User {
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	private Date birth; // 生日
 	
-	private String education; // 教育程度: 1:小學, 2:國中, 3:高中, 4:大學, 5:研究所 (單選)
-	private String sex;       // 性別: 1:男生, 2:女生 (單選)
-	private String[] interests; // 興趣: 1:爬山, 2:看書, 3:打球, 4:飛控, 5:手遊 (多選)
-	private String resume; // 履歷
+	private EducationData education; // 教育程度: 1:小學, 2:國中, 3:高中, 4:大學, 5:研究所 (單選)
+	private SexData sex;       // 性別: 1:男生, 2:女生 (單選)
+	private List<InterestData> interests; // 興趣: 1:爬山, 2:看書, 3:打球, 4:飛控, 5:手遊 (多選)
 	
+	private String resume; // 履歷
+
 	public User() {
 		
 	}
 	
-	public User(String name, Integer age, Date birth, String education, String sex, String[] interests, String resume) {
+	public User(String name, Integer age, Date birth, EducationData education, SexData sex,
+			List<InterestData> interests, String resume) {
 		this.name = name;
 		this.age = age;
 		this.birth = birth;
@@ -58,27 +61,27 @@ public class User {
 		this.birth = birth;
 	}
 
-	public String getEducation() {
+	public EducationData getEducation() {
 		return education;
 	}
 
-	public void setEducation(String education) {
+	public void setEducation(EducationData education) {
 		this.education = education;
 	}
 
-	public String getSex() {
+	public SexData getSex() {
 		return sex;
 	}
 
-	public void setSex(String sex) {
+	public void setSex(SexData sex) {
 		this.sex = sex;
 	}
 
-	public String[] getInterests() {
+	public List<InterestData> getInterests() {
 		return interests;
 	}
 
-	public void setInterests(String[] interests) {
+	public void setInterests(List<InterestData> interests) {
 		this.interests = interests;
 	}
 
@@ -93,9 +96,8 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [name=" + name + ", age=" + age + ", birth=" + birth + ", education=" + education + ", sex=" + sex
-				+ ", interests=" + Arrays.toString(interests) + ", resume=" + resume + "]";
+				+ ", interests=" + interests + ", resume=" + resume + "]";
 	}
-	
 	
 	
 }
