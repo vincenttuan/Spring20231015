@@ -3,12 +3,14 @@ package spring.mvc.session09.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
 import javax.ws.rs.PUT;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -52,7 +54,18 @@ public class UserController {
 	
 	@PostMapping(value = "/", produces = {"text/plain;charset=utf-8"})
 	//@ResponseBody
-	public String add(@ModelAttribute User user) {
+	public String add(@Valid User user, BindingResult result, Model model) {
+		if(result.hasErrors()) { // 若有錯誤發生
+			model.addAttribute("user", user);
+			//-------------------------------------------------------------
+			model.addAttribute("_method", "POST");
+			model.addAttribute("buttonName", "新增");
+			model.addAttribute("users", userDao.findAllUsers());
+			model.addAttribute("educations", dataDao.findAllEducationDatas());
+			model.addAttribute("interests", dataDao.findAllInterestDatas());
+			model.addAttribute("sexs", dataDao.findAllSexDatas());
+			return "session09/user";
+		}
 		// 根據 id 找到符合的物件
 		Optional<EducationData> eduOpt = dataDao.getEducationDataById(user.getEducationId());
 		Optional<SexData> sexOpt = dataDao.getSexDataById(user.getSexId());

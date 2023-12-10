@@ -4,27 +4,51 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class User {
 	private Integer id; // 序號
+	
+	@NotEmpty(message = "姓名不可以是空的")
+    @Size(min = 1, max = 10, message = "姓名字數必須介於 1~10 之間")
 	private String name; // 姓名
+	
+	@NotNull(message = "年齡不可以是空的")
+	@Range(min = 1, max = 150, message = "年齡必須介於 1 ~ 150 之間")
+    //@Min(1)
+    //@Max(100)
 	private Integer age; // 年齡
 	
+	@NotNull(message = "生日不可以是空的")
+    @Past(message = "生日必須是過去的日期")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	private Date birth; // 生日
+	
+	@Size(max = 1000)
 	private String resume; // 履歷
 	
+	@NotNull(message = "教育程度不可以是空的")
 	private Integer educationId;
-	private EducationData education; // 教育程度: 1:小學, 2:國中, 3:高中, 4:大學, 5:研究所 (單選)
 	
+	@NotNull(message = "性別不可以是空的")
 	private Integer sexId;
-	private SexData sex;       // 性別: 1:男生, 2:女生 (單選)
 	
+	@Size(min = 1, message = "興趣至少要選一個")
 	private Integer[] interestIds;
+	
+	private EducationData education; // 教育程度: 1:小學, 2:國中, 3:高中, 4:大學, 5:研究所 (單選)
+	private SexData sex;       // 性別: 1:男生, 2:女生 (單選)
 	private List<InterestData> interests; // 興趣: 1:爬山, 2:看書, 3:打球, 4:飛控, 5:手遊 (多選)
 	
 	// -----------------------------------------------------------------------------------

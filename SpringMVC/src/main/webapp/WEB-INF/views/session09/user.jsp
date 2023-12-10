@@ -56,9 +56,11 @@
 							年齡: <sp:input path="age" type="number" /><p />
 							生日: <sp:input path="birth" type="date" /><p />
 							學歷: <sp:select path="educationId" items="${ educations }" itemValue="id" itemLabel="name" /><p />
-							性別: <sp:radiobuttons path="sexId" items="${ sexs }"  itemValue="id" itemLabel="name" /><p />
+							性別: <sp:radiobuttons path="sexId" items="${ sexs }"  itemValue="id" itemLabel="name" cssClass="element-margin" /><p />
 							興趣: <sp:checkboxes path="interestIds" items="${ interests }"  itemValue="id" itemLabel="name" cssClass="element-margin" /><p />
 							履歷: <sp:textarea path="resume" /><p />
+							<!-- 所有錯誤資訊 -->
+							<sp:errors path="*" cssClass="error" /><p />
 							<!-- 自訂隱藏表單元素 -->
 							<input type="hidden" name="_method" value="${ _method }"><p />
 							<button type="submit" class="pure-button pure-button-primary">
