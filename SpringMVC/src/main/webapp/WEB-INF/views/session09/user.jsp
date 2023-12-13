@@ -79,49 +79,7 @@
 				</td>
 				<!-- User List -->
 				<td valign="top" style="padding: 5px">
-					<form class="pure-form">
-						<fieldset>
-							<legend>
-								User List
-								${(fn:length(users) == 0)? '無資料' : ''}
-							</legend>
-							<table class="pure-table pure-table-bordered">
-								<thead>
-									<tr>
-										<th nowrap>id</th><th nowrap>姓名</th><th nowrap>年齡</th><th nowrap>生日</th><th nowrap>學歷</th>
-										<th nowrap>性別</th><th nowrap>興趣</th><th nowrap>履歷</th><th nowrap>編輯</th><th nowrap>刪除</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${ users }" var="user">
-										<tr>
-											<td nowrap>${ user.id }</td>
-											<td nowrap>${ user.name }</td>
-											<td nowrap>${ user.age }</td>
-											<td nowrap>
-												<fmt:formatDate value="${ user.birth }" pattern="yyyy-MM-dd" />
-											</td>
-											<td nowrap>${ user.education.name }</td>
-											<td nowrap>${ user.sex.name }</td>
-											<td nowrap>
-												<c:forEach items="${ user.interests }" var="interest">
-													${ interest.name } &nbsp;
-												</c:forEach>
-											</td>
-											<td>${ user.resume }</td>
-											<td nowrap>
-												<a href="javascript:void(0);" onClick="location.href='${ pageContext.request.contextPath }/mvc/session09/user/${ user.id }?_method=PUT'" class="pure-button">編輯</a>
-											</td>
-											<td nowrap>
-												<a href="javascript:void(0);" onClick="location.href='${ pageContext.request.contextPath }/mvc/session09/user/${ user.id }?_method=DELETE'" class="pure-button">刪除1</a>
-												<a href="javascript:void(0);" onClick="deleteUser(${ user.id })" class="pure-button">刪除2</a>
-											</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</fieldset>
-					</form>
+					
 				</td>
 			</tr>
 		</table>

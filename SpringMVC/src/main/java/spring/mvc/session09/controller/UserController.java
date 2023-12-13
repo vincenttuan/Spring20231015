@@ -89,35 +89,5 @@ public class UserController {
 		
 	}
 	
-	//------------------------------------------------------------------------
-	@GetMapping("/{id}")
-	public String getUser(@PathVariable("id") Integer id, @RequestParam("_method") String _method, Model model) {
-		model.addAttribute("user", userDao.getUserById(id).get());
-		model.addAttribute("_method", _method);
-		model.addAttribute("buttonName", _method.equals("PUT")?"修改":"刪除");
-		model.addAttribute("users", userDao.findAllUsers());
-		model.addAttribute("educations", dataDao.findAllEducationDatas());
-		model.addAttribute("interests", dataDao.findAllInterestDatas());
-		model.addAttribute("sexs", dataDao.findAllSexDatas());
-		return "session09/user";
-	}
-	
-	@PutMapping("/{id}")
-	public String updateUser(@PathVariable("id") Integer id, @ModelAttribute User user) {
-		userDao.updateUserById(id, user);
-		return "redirect:/mvc/session09/user/"; // 重導到首頁
-	}
-	
-	@DeleteMapping("/{id}")
-	public String updateUser(@PathVariable("id") Integer id) {
-		userDao.deleteUserById(id);
-		return "redirect:/mvc/session09/user/"; // 重導到首頁
-	}
-	
-	@DeleteMapping("/js/{id}") // 給 js 使用的路徑
-	@ResponseBody // 若前端使用 JS 則要加上此, 不然會發生 405
-	public String updateDirectUser(@PathVariable("id") Integer id) {
-		return userDao.deleteUserById(id) + "";
-	}
 	
 }
