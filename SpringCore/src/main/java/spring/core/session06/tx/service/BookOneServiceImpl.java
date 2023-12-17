@@ -15,12 +15,14 @@ public class BookOneServiceImpl implements BookOneService {
 	
 	@Override
 	@Transactional(
-		//propagation = Propagation.REQUIRED // 預設: 若當前有 tx, 則繼續使用, 反之則建立一個 tx
-		propagation = Propagation.MANDATORY  // 一定要在 tx 環境下才運行	
+		propagation = Propagation.REQUIRED // 預設: 若當前有 tx, 則繼續使用, 反之則建立一個 tx
+		//propagation = Propagation.MANDATORY  // 一定要在 tx 環境下才運行	
 	)
 	public void buyOne(String username, Integer bookId) {
 		// 寫 log
 		writeToLog();
+		// 查 books
+		findAllBooks();
 		// 1. 查詢書本價格
 		Integer bookPrice = bookDao.getBookPrice(bookId);
 		// 2. 減去書本庫存
@@ -39,7 +41,7 @@ public class BookOneServiceImpl implements BookOneService {
 	}
 	
 	@Transactional(
-		propagation = Propagation.SUPPORTS	
+		propagation = Propagation.NOT_SUPPORTED	
 	)
 	public void findAllBooks() {
 		//...

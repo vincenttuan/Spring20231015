@@ -2,6 +2,7 @@ package spring.core.session06.tx.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class BookManyServiceImpl implements BookManyService {
@@ -10,6 +11,7 @@ public class BookManyServiceImpl implements BookManyService {
 	private BookOneService bookOneService;
 	
 	@Override
+	@Transactional
 	public void buyMany(String username, Integer... bookIds) {
 		// for-each
 		for(Integer bookId : bookIds) {
