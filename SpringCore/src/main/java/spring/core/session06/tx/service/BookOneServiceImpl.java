@@ -46,5 +46,16 @@ public class BookOneServiceImpl implements BookOneService {
 	public void findAllBooks() {
 		//...
 	}
+	
+	@Transactional(propagation = Propagation.NESTED)
+    public void updateBookStockNested(Integer bookId, Integer stockReduction) {
+        // 這個方法將在嵌套事務中執行
+        try {
+            bookDao.reduceBookStock(bookId, stockReduction);
+        } catch (Exception e) {
+            // 處理異常，這個嵌套事務可以單獨回滾
+            // ...
+        }
+    }
 
 }
