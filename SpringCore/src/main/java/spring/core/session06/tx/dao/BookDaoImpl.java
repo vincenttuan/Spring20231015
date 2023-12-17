@@ -24,7 +24,7 @@ public class BookDaoImpl implements BookDao {
 
 	@Override
 	public Integer getWalletBalance(String username) { // 取得客戶餘額
-		String sql = "select balance from wallet where useranem = ?";
+		String sql = "select balance from wallet where username = ?";
 		return jdbcTemplate.queryForObject(sql, Integer.class, username);
 	}
 
