@@ -72,5 +72,3 @@ insert into stock(book_id, book_amount) values(2, 10);
 insert into wallet(username, balance) values('John', 200);
 insert into wallet(username, balance) values('Mary', 200);
 
-
-
