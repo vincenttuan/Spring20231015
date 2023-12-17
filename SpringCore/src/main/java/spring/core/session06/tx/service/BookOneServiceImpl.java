@@ -15,7 +15,8 @@ public class BookOneServiceImpl implements BookOneService {
 	
 	@Override
 	@Transactional(
-		propagation = Propagation.REQUIRED // 預設: 若當前有 tx, 則繼續使用, 反之則建立一個 tx
+		//propagation = Propagation.REQUIRED // 預設: 若當前有 tx, 則繼續使用, 反之則建立一個 tx
+		propagation = Propagation.MANDATORY  // 一定要在 tx 環境下才運行	
 	)
 	public void buyOne(String username, Integer bookId) {
 		// 寫 log
@@ -35,6 +36,13 @@ public class BookOneServiceImpl implements BookOneService {
 		// 1. ...
 		// 2. ...
 		// 3. ...
+	}
+	
+	@Transactional(
+		propagation = Propagation.SUPPORTS	
+	)
+	public void findAllBooks() {
+		//...
 	}
 
 }
