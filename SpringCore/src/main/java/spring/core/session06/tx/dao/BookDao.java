@@ -6,10 +6,10 @@ public interface BookDao {
 	Integer getBookStock(Integer bookID); // 取得書本庫存
 	Integer getWalletBalance(String username); // 取得客戶目前餘額
 	
-	Integer reduceBookStock(Integer bookId, int reduce); // 更新書本庫存(reduce 減量)
-	//Integer incrementBookStock(Integer bookId, int increment); // 更新書本庫存(increment 增量)
+	Integer reduceBookStock(Integer bookId, Integer reduce); // 更新書本庫存(reduce 減量)
+	//Integer incrementBookStock(Integer bookId, Integer increment); // 更新書本庫存(increment 增量)
 	
-	Integer reduceWalletBalance(String username, int reduce); // 更新錢包餘額(reduce 減量)
-	//Integer incrementWalletBalance(String username, int increment); // 更新錢包餘額(increment 增量)
+	Integer reduceWalletBalance(String username, Integer bookPrice); // 更新錢包餘額(reduce 減量)
+	//Integer incrementWalletBalance(String username, Integer bookPrice); // 更新錢包餘額(increment 增量)
 	
 }
