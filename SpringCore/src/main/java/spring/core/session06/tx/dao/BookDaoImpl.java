@@ -29,15 +29,15 @@ public class BookDaoImpl implements BookDao {
 	}
 
 	@Override
-	public Integer reduceBookStock(Integer bookId, Integer reduce) { // 減少書本庫存
+	public Integer reduceBookStock(Integer bookId, Integer amountToReduce) { // 減少書本庫存
 		// 1. 檢查庫存
 		Integer bookStock = getBookStock(bookId);
-		if(bookStock < reduce) { // 庫存不足
-			throw new RuntimeException(String.format("book_id: %d 庫存不足 (%d < %d)%n", bookId, bookStock, reduce));
+		if(bookStock < amountToReduce) { // 庫存不足
+			throw new RuntimeException(String.format("book_id: %d 庫存不足 (%d < %d)%n", bookId, bookStock, amountToReduce));
 		}
 		// 2. 修改/更新書本庫存 (目前庫存量 - reduce)
 		String sql = "update stock set book_amount = book_amount - ? where book_id = ?";
-		return jdbcTemplate.update(sql, reduce, bookId);
+		return jdbcTemplate.update(sql, amountToReduce, bookId);
 	}
 
 	@Override
