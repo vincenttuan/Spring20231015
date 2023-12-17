@@ -23,6 +23,7 @@ public class BookOneServiceImpl implements BookOneService {
 		writeToLog();
 		// 查 books
 		findAllBooks();
+		updateBookStockNested(bookId, 1);
 		//--------------------------------------------------
 		// 1. 查詢書本價格
 		Integer bookPrice = bookDao.getBookPrice(bookId);
@@ -31,7 +32,6 @@ public class BookOneServiceImpl implements BookOneService {
 		// 3. 修改客戶餘額
 		bookDao.reduceWalletBalance(username, bookPrice);
 		//--------------------------------------------------
-		updateBookStockNested(bookId, 1);
 		
 	}
 	
@@ -54,6 +54,9 @@ public class BookOneServiceImpl implements BookOneService {
 	@Transactional(propagation = Propagation.NESTED)
 	// 這意味著當它被一個已經存在的事務調用時，它將在一個嵌套的事務中執行。
 	// 如果這個方法內部發生異常導致需要回滾，只有這個嵌套事務會被回滾，而不會影響到外部的主事務。
+	// 若當前沒有事務行為就像 REQUIRED 一樣
+	// 嵌套事務不會影響主事務
+	// 但主事務會影響嵌套事務
     public void updateBookStockNested(Integer bookId, Integer stockReduction) {
         // 這個方法將在嵌套事務中執行
         try {
