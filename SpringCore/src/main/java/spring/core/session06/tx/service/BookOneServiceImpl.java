@@ -51,20 +51,29 @@ public class BookOneServiceImpl implements BookOneService {
 		//...
 	}
 	
-	@Transactional(propagation = Propagation.NESTED)
 	// 這意味著當它被一個已經存在的事務調用時，它將在一個嵌套的事務中執行。
 	// 如果這個方法內部發生異常導致需要回滾，只有這個嵌套事務會被回滾，而不會影響到外部的主事務。
 	// 若當前沒有事務行為就像 REQUIRED 一樣
 	// 嵌套事務不會影響主事務
 	// 但主事務會影響嵌套事務
-    public void updateBookStockNested(Integer bookId, Integer stockReduction) {
+	@Transactional(propagation = Propagation.NESTED)
+	public void updateBookStockNested(Integer bookId, Integer stockReduction) {
         // 這個方法將在嵌套事務中執行
-        try {
-            bookDao.reduceBookStock(bookId, stockReduction);
-        } catch (Exception e) {
-            // 處理異常，這個嵌套事務可以單獨回滾
-            // ...
-        }
+        bookDao.reduceBookStock(bookId, stockReduction);
+        /*
+        這邊發生錯誤是否會影響主事務 ?
+        如果有一個外部事務正在運行:
+			在嵌套事務中發生的錯誤會導致該嵌套事務回滾。
+			但這種回滾僅限於嵌套事務本身，不會影響外部（主）事務的其餘部分。
+			外部事務可以繼續進行，並根據自身邏輯決定是否提交或回滾。
+			
+		如果沒有外部事務正在運行:
+			由於 NESTED 在沒有現有事務時的行為類似於 REQUIRED，一個新的事務將被創建。
+			在這種情況下，updateBookStockNested 方法中的錯誤會導致整個事務回滾。
+		
+		總結來說，當使用 NESTED 時，嵌套事務中的錯誤對主事務的影響取決於是否存在一個活躍的外部事務。
+		在嵌套事務中的錯誤不會直接導致外部事務回滾，除非在處理這個錯誤的過程中明確指示了外部事務也應該回滾。
+        */
     }
 
 }
