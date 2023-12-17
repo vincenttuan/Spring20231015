@@ -2,6 +2,8 @@ package spring.core.session06.tx.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import spring.core.session06.tx.service.BookManyService;
 import spring.core.session06.tx.service.BookOneService;
