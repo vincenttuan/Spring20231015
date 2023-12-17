@@ -16,7 +16,7 @@ public class BuyOneBookTest {
 		//bookController.buyOneBook("John", 1);
 		
 		// 買三本書
-		bookController.buyThreeBooks("John", 3);
+		bookController.buyThreeBooks("John", 1);
 		
 	}
 
