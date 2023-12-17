@@ -24,7 +24,7 @@ public class BookController {
 	// 買多本書
 	public void buyManyBooks(String username, Integer... bookIds) {
 		bookManyService.buyMany(username, bookIds);
-		System.out.println("buyManyBook OK");
+		System.out.println("buyManyBooks OK");
 	}
 	
 }
