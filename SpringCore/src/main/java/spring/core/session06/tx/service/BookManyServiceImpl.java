@@ -11,6 +11,7 @@ public class BookManyServiceImpl implements BookManyService {
 	
 	@Override
 	public void buyMany(String username, Integer... bookIds) {
+		// for-each
 		for(Integer bookId : bookIds) {
 			// 一次買一本(一本一本買)
 			bookOneService.buyOne(username, bookId);
