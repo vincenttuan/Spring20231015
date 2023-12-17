@@ -15,11 +15,13 @@ public class BookController {
 	@Autowired
 	private BookManyService bookManyService;
 	
+	// 買單本書
 	public void buyOneBook(String username, Integer bookId) {
 		bookOneService.buyOne(username, bookId);
 		System.out.println("buyOneBook OK");
 	}
 	
+	// 買多本書
 	public void buyManyBooks(String username, Integer... bookIds) {
 		bookManyService.buyMany(username, bookIds);
 		System.out.println("buyManyBook OK");
