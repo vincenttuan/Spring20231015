@@ -98,4 +98,16 @@
     <!-- 開啟註解驅動，對事務相關的註解進行掃描與解析 -->
     <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
     
+    <!-- 定義攔截器 Bean -->
+    <bean id="loginInterceptor" class="spring.mvc.group_buy.interceptor.LoginInterceptor"/>
+
+    <!-- 配置攔截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/group_buy/**"/>
+            <mvc:exclude-mapping path="/group_buy/login"/>
+            <mvc:exclude-mapping path="/group_buy/login/*"/>
+            <bean class="spring.mvc.group_buy.interceptor.LoginInterceptor "/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

@@ -2,16 +2,16 @@
 <div class="pure-menu pure-menu-horizontal" style="background-color:#EBD6D6">
     <ul class="pure-menu-list">
         <li class="pure-menu-item pure-menu-selected">
-            <a href="./main.jsp" class="pure-menu-link">團購首頁</a>
+            <a href="./main" class="pure-menu-link">團購首頁</a>
         </li>
         <li class="pure-menu-item">
-            <a href="./cart.jsp" class="pure-menu-link">🛒 購物車</a>
+            <a href="./cart" class="pure-menu-link">🛒 購物車</a>
         </li>
         <li class="pure-menu-item">
-            <a href="../backend/main.jsp" class="pure-menu-link">團購後台首頁</a>
+            <a href="../backend/main" class="pure-menu-link">團購後台首頁</a>
         </li>
         <li class="pure-menu-item">
-            <a href="../login.jsp" class="pure-menu-link">🔞 登出</a>
+            <a href="../logout" class="pure-menu-link">🔞 登出</a>
         </li>
         <li class="pure-menu-item">
             <a href="#" class="pure-menu-link">👼 ${ user.username }</a>

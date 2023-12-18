@@ -25,7 +25,7 @@ public class GroupBuyController {
     private GroupBuyDao dao;
 
     // 登入首頁
-    @GetMapping("/login")
+    @GetMapping(value = {"/login", "/"})
     public String loginPage() {
         return "group_buy/login";
     }
@@ -45,7 +45,14 @@ public class GroupBuyController {
             return "redirect:/mvc/group_buy/login";
         }
     }
-
+    
+    // 登出處理
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+    	session.invalidate();
+        return "redirect:/mvc/group_buy/login";
+    }
+    
     // 團購首頁
     @GetMapping("/frontend/main")
     public String main(Model model) {

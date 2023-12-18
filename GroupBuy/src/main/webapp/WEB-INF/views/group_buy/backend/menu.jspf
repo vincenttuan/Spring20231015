@@ -11,7 +11,7 @@
             <a href="../frontend/main" class="pure-menu-link">團購前台首頁</a>
         </li>
         <li class="pure-menu-item">
-            <a href="../login" class="pure-menu-link">🔞 登出</a>
+            <a href="../logout" class="pure-menu-link">🔞 登出</a>
         </li>
         <li class="pure-menu-item">
             <a href="#" class="pure-menu-link">👼 John</a>
