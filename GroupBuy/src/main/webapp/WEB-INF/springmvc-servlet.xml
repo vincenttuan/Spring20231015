@@ -107,7 +107,7 @@
             <mvc:mapping path="/group_buy/**"/>
             <mvc:exclude-mapping path="/group_buy/login"/>
             <mvc:exclude-mapping path="/group_buy/login/*"/>
-            <bean class="spring.mvc.group_buy.interceptor.LoginInterceptor "/>
+            <bean class="spring.mvc.group_buy.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 </beans>
