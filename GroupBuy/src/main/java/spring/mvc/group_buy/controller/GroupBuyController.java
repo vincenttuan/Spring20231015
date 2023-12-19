@@ -130,7 +130,7 @@ public class GroupBuyController {
 
     // 後台首頁
     @GetMapping("/backend/main")
-    public String backendMain(Model model) {
+    public String backendMain(@ModelAttribute Product product, Model model) {
         List<Product> products = dao.findAllProducts();
         model.addAttribute("products", products);
         return "group_buy/backend/main";
@@ -140,7 +140,7 @@ public class GroupBuyController {
     @PostMapping("/backend/result")
     public String addProduct(@ModelAttribute Product product, Model model) {
         dao.addProduct(product);
-        model.addAttribute("product", product);
+        //model.addAttribute("product", product);
         return "group_buy/backend/result";
     }
 

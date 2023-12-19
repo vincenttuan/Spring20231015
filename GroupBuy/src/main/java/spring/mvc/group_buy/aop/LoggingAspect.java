@@ -14,7 +14,7 @@ public class LoggingAspect {
     public void logMethodParams(JoinPoint joinPoint) {
         String methodName = joinPoint.getSignature().getName();
         Object[] args = joinPoint.getArgs();
-        System.out.println("调用方法: " + methodName + "  参数: ");
+        System.out.println("调用方法: " + methodName);
         for (int i = 0; i < args.length; i++) {
             System.out.println("  参数[" + i + "]: " + args[i]);
         }
