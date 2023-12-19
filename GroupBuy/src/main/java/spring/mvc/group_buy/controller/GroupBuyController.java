@@ -11,6 +11,7 @@ import spring.mvc.group_buy.model.entity.Product;
 import spring.mvc.group_buy.model.entity.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,10 @@ public class GroupBuyController {
 	
 	@Autowired
     private GroupBuyDao dao;
-
+	
+	@Value("${units}")
+    private String[] units;
+	
     // 登入首頁
     @GetMapping(value = {"/login", "/"})
     public String loginPage() {
@@ -133,6 +137,7 @@ public class GroupBuyController {
     public String backendMain(@ModelAttribute Product product, Model model) {
         List<Product> products = dao.findAllProducts();
         model.addAttribute("products", products);
+        model.addAttribute("units", units);
         return "group_buy/backend/main";
     }
 

@@ -28,13 +28,7 @@
 								<legend>團購網-商品新增</legend>
 								品名: <sp:input path="productName" name="productName" value="水果茶" /><p />
 								價格: <sp:input type="number" path="price" value="40" /><p />
-								單位: <sp:select path="unit">
-										<option value="捆">捆</option>
-										<option value="包" selected>包</option>
-										<option value="打">打</option>
-										<option value="箱">箱</option>
-										<option value="組">組</option>
-									 </sp:select>
+								單位: <sp:select path="unit" items="${ units }" />
 								&nbsp;&nbsp;&nbsp;&nbsp;	 
 								上架: <sp:checkbox path="isLaunch" /> 	 
 								<p />
