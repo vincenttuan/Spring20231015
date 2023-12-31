@@ -31,9 +31,8 @@ public class StudentScoreController {
 	
 	@GetMapping("/")
 	public String index(Model model) {
-		
-		List<StudentScore> scores = studentScoreRepository.findAll();
-		
+		List<StudentScore> scores = studentScoreRepository.findAllByOrderByTotalScoreDesc();
+		model.addAttribute("scores", scores);
 		return "student_score"; // 指向 templates/student_score.html
 	}
 	

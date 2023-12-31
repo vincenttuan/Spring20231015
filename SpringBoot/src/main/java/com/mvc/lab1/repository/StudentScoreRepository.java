@@ -27,5 +27,5 @@ public interface StudentScoreRepository extends JpaRepository<StudentScore, Inte
     //@Query("SELECT s FROM StudentScore s ORDER BY s.totalScore DESC")
     //List<StudentScore> findAllByOrder();
     
-    List<StudentScore> findAllByOrderByTotalScoreDesc();
+    List<StudentScore> findAllByOrderByTotalScoreDesc(); // JPA 會自行生成 SQL
 }
