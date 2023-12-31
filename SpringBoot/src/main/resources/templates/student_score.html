@@ -33,31 +33,33 @@
     	<!-- 
 		<div th:text="${ scores }"></div>
 		-->
-		<table class="pure-table pure-table-bordered">
-			<thead>
-				<tr>
-					<th>名次</th>
-					<th>學號</th>
-					<th>姓名</th>
-					<th>國文</th>
-					<th>英文</th>
-					<th>數學</th>
-					<th>總分</th>
-					<th>平均</th>
-				</tr>
-				<tbody>
-					<tr th:each="score, state : ${scores}">
-						<td th:text="${state.count}"></td>
-						<td th:text="${score.id}"></td>
-						<td th:text="${score.name}"></td>
-						<td th:text="${score.chineseScore}" th:classappend="${score.chineseScore < 60} ? 'fail'"></td>
-						<td th:text="${score.englishScore}" th:classappend="${score.englishScore < 60} ? 'fail'"></td>
-						<td th:text="${score.mathScore}" th:classappend="${score.mathScore < 60} ? 'fail'"></td>
-						<td th:text="${score.totalScore}"></td>
-						<td th:text="${#numbers.formatDecimal(score.averageScore, 1, 1)}"></td>
+		<div class="pure-form">
+			<table class="pure-table pure-table-bordered">
+				<thead>
+					<tr>
+						<th>名次</th>
+						<th>學號</th>
+						<th>姓名</th>
+						<th>國文</th>
+						<th>英文</th>
+						<th>數學</th>
+						<th>總分</th>
+						<th>平均</th>
 					</tr>
-				</tbody>
-			</thead>
-		</table>
+					<tbody>
+						<tr th:each="score, state : ${scores}">
+							<td th:text="${state.count}"></td>
+							<td th:text="${score.id}"></td>
+							<td th:text="${score.name}"></td>
+							<td th:text="${score.chineseScore}" th:classappend="${score.chineseScore < 60} ? 'fail'"></td>
+							<td th:text="${score.englishScore}" th:classappend="${score.englishScore < 60} ? 'fail'"></td>
+							<td th:text="${score.mathScore}" th:classappend="${score.mathScore < 60} ? 'fail'"></td>
+							<td th:text="${score.totalScore}"></td>
+							<td th:text="${#numbers.formatDecimal(score.averageScore, 1, 1)}"></td>
+						</tr>
+					</tbody>
+				</thead>
+			</table>
+		</div>
 	</body>
 </html>
