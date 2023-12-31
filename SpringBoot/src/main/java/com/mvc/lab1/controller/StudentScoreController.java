@@ -61,4 +61,34 @@ public class StudentScoreController {
 		studentScoreRepository.updateNameById(id, name);
 		return "Update OK";
 	}
+	
+	@PutMapping("/update/{subject}/{id}")
+	@ResponseBody
+	public String updateScore(@PathVariable("subject") String subject, 
+							  @PathVariable("id") Integer id, 
+							  @RequestParam("score") Integer score) {
+		
+		Optional<StudentScore> studentScoreOpt = studentScoreRepository.findById(id);
+		if(studentScoreOpt.isPresent()) {
+			StudentScore studentScore = studentScoreOpt.get();
+			switch (subject) {
+				case "chinese":
+					studentScore.setChineseScore(score);
+					break;
+				case "english":
+					studentScore.setEnglishScore(score);
+					break;
+				case "math":
+					studentScore.setMathScore(score);
+					break;
+				default:
+					return "No subject !";
+			}
+			studentScoreRepository.saveAndFlush(studentScore);
+			return "Update OK";
+		} else {
+			return "No data !";
+		}
+		
+	}
 }
