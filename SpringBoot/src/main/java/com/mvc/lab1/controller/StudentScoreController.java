@@ -56,6 +56,24 @@ public class StudentScoreController {
 		}
 	}
 	
+	@Transactional
+	@PutMapping("/update/{id}")
+	@ResponseBody
+	public String update(@PathVariable("id") Integer id, StudentScore uptStudentScore) {
+		Optional<StudentScore> studentScoreOpt = studentScoreRepository.findById(id);
+		if(studentScoreOpt.isPresent()) {
+			StudentScore studentScore = studentScoreOpt.get();
+			studentScore.setName(uptStudentScore.getName());
+			studentScore.setChineseScore(uptStudentScore.getChineseScore());
+			studentScore.setEnglishScore(uptStudentScore.getEnglishScore());
+			studentScore.setMathScore(uptStudentScore.getMathScore());
+			
+			return "Update OK";
+		} else {
+			return "No data !";
+		}
+	}
+	
 	@PutMapping("/update/name/{id}")
 	@ResponseBody
 	public String updateName(@PathVariable("id") Integer id, @RequestParam("name") String name) {
