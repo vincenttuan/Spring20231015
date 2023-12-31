@@ -4,6 +4,7 @@
 	    <title>學生成績列表</title>
 	    <!-- 引入 PureCSS -->
 	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
+	    <link rel="stylesheet" href="/css/button.css">
 	    <!-- 引入 DataTables CSS -->
 	    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
 	    <!-- 引入 jQuery -->
@@ -46,8 +47,28 @@
 					// 設置匯出列印功能
 					dom: 'lBfrtip',
 			        buttons: [
-			            'copy', 'csv', 'excel', 'pdf', 'print'
-			        ]
+			            {
+			                extend: 'copy',
+			                className: 'pure-button pure-button-primary'
+			            },
+			            {
+			                extend: 'csv',
+			                className: 'button-success pure-button'
+			            },
+			            {
+			                extend: 'excel',
+			                className: 'button-error pure-button'
+			            },
+			            {
+			                extend: 'pdf',
+			                text: '匯出 PDF',
+			                className: 'button-warning pure-button'
+			            },
+			            {
+			                extend: 'print',
+			                className: 'button-secondary pure-button'
+			            }
+			        ],
 				});
 			});
 		</script>
