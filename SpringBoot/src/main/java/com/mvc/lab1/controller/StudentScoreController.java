@@ -1,5 +1,6 @@
 package com.mvc.lab1.controller;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -26,6 +28,14 @@ import com.mvc.lab1.repository.StudentScoreRepository;
 public class StudentScoreController {
 	@Autowired
 	private StudentScoreRepository studentScoreRepository;
+	
+	@GetMapping("/")
+	public String index(Model model) {
+		
+		List<StudentScore> scores = studentScoreRepository.findAll();
+		
+		return "student_score"; // 指向 templates/student_score.html
+	}
 	
 	@GetMapping("/add")
 	@ResponseBody
