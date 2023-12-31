@@ -32,6 +32,11 @@ public class StudentScore {
 		this.chineseScore = chineseScore;
 		this.englishScore = englishScore;
 		this.mathScore = mathScore;
+		updateTotalAndAverage();
+	}
+	
+	// 更新總分與平均
+	public void updateTotalAndAverage() {
 		this.totalScore = chineseScore + englishScore + mathScore;
 		this.averageScore = totalScore / 3.0;
 	}
