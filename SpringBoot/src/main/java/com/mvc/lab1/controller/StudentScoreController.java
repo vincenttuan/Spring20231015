@@ -1,11 +1,15 @@
 package com.mvc.lab1.controller;
 
+import java.util.Optional;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.javafaker.Faker;
@@ -38,5 +42,23 @@ public class StudentScoreController {
 		output.append(studentScore);
 		
 		return output.toString();
+	}
+	
+	@GetMapping("/{id}")
+	@ResponseBody
+	public String get(@PathVariable("id") Integer id) {
+		Optional<StudentScore> studentScoreOpt = studentScoreRepository.findById(id);
+		if(studentScoreOpt.isPresent()) {
+			return studentScoreOpt.get().toString();
+		} else {
+			return "No data !";
+		}
+	}
+	
+	@PutMapping("/updateName/{id}")
+	@ResponseBody
+	public String updateName(@PathVariable("id") Integer id, @RequestParam("name") String name) {
+		studentScoreRepository.updateNameById(id, name);
+		return "Update OK";
 	}
 }
