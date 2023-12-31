@@ -29,7 +29,7 @@ public class StudentScoreController {
 	
 	@GetMapping("/add")
 	@ResponseBody
-	public String add() {
+	public ResponseEntity<String> add() {
 		Faker faker = new Faker();
 		Random random = new Random();
 		
@@ -46,24 +46,24 @@ public class StudentScoreController {
 		studentScoreRepository.save(studentScore);
 		output.append(studentScore);
 		
-		return output.toString();
+		return ResponseEntity.ok(output.toString());
 	}
 	
 	@GetMapping("/{id}")
 	@ResponseBody
-	public String get(@PathVariable("id") Integer id) {
+	public ResponseEntity<String> get(@PathVariable("id") Integer id) {
 		Optional<StudentScore> studentScoreOpt = studentScoreRepository.findById(id);
 		if(studentScoreOpt.isPresent()) {
-			return studentScoreOpt.get().toString();
+			return ResponseEntity.ok(studentScoreOpt.get().toString());
 		} else {
-			return "No data !";
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("無此學生資料");
 		}
 	}
 	
 	@Transactional
 	@PutMapping("/update/{id}")
 	@ResponseBody
-	public String update(@PathVariable("id") Integer id, StudentScore uptStudentScore) {
+	public ResponseEntity<String> update(@PathVariable("id") Integer id, StudentScore uptStudentScore) {
 		Optional<StudentScore> studentScoreOpt = studentScoreRepository.findById(id);
 		if(studentScoreOpt.isPresent()) {
 			StudentScore studentScore = studentScoreOpt.get();
@@ -77,17 +77,17 @@ public class StudentScoreController {
 			// uptStudentScore 的資料複製到 studentScore, 但是 "id", "totalScore", "averageScore" 不需要複製
 			BeanUtils.copyProperties(uptStudentScore, studentScore, "id", "totalScore", "averageScore");
 			studentScore.updateTotalAndAverage();
-			return "Update OK";
+			return ResponseEntity.ok("Update OK");
 		} else {
-			return "No data !";
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("無此學生資料");
 		}
 	}
 	
 	@PutMapping("/update/name/{id}")
 	@ResponseBody
-	public String updateName(@PathVariable("id") Integer id, @RequestParam("name") String name) {
+	public ResponseEntity<String> updateName(@PathVariable("id") Integer id, @RequestParam("name") String name) {
 		studentScoreRepository.updateNameById(id, name);
-		return "Update OK";
+		return ResponseEntity.ok("Update OK");
 	}
 	
 	@Transactional
