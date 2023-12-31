@@ -56,7 +56,7 @@ public class StudentScoreController {
 		}
 	}
 	
-	@PutMapping("/updateName/{id}")
+	@PutMapping("/update/name/{id}")
 	@ResponseBody
 	public String updateName(@PathVariable("id") Integer id, @RequestParam("name") String name) {
 		studentScoreRepository.updateNameById(id, name);
