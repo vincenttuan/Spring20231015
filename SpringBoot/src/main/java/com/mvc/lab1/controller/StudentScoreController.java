@@ -111,7 +111,7 @@ public class StudentScoreController {
 					studentScore.setMathScore(score);
 					break;
 				default:
-					return ResponseEntity.status(HttpStatus.NOT_FOUND).body("無此科目");;
+					return ResponseEntity.status(HttpStatus.NOT_FOUND).body("無此科目");
 			}
 			studentScore.updateTotalAndAverage();
 			//studentScoreRepository.saveAndFlush(studentScore); // 若該方法有加上 @Transactional 則此行可以不用寫
