@@ -69,8 +69,10 @@ public class StudentScoreController {
 //			studentScore.setChineseScore(uptStudentScore.getChineseScore());
 //			studentScore.setEnglishScore(uptStudentScore.getEnglishScore());
 //			studentScore.setMathScore(uptStudentScore.getMathScore());
+			
 			// 利用 Spring Framework 所提供的 BeanUtils 來進行屬性複製
-			BeanUtils.copyProperties(uptStudentScore, studentScore);
+			// uptStudentScore 的資料複製到 studentScore, 但是 "id", "totalScore", "averageScore" 不需要複製
+			BeanUtils.copyProperties(uptStudentScore, studentScore, "id", "totalScore", "averageScore");
 			studentScore.updateTotalAndAverage();
 			return "Update OK";
 		} else {
