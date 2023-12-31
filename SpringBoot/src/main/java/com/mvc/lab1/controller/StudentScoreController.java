@@ -84,6 +84,7 @@ public class StudentScoreController {
 				default:
 					return "No subject !";
 			}
+			studentScore.updateTotalAndAverage();
 			studentScoreRepository.saveAndFlush(studentScore);
 			return "Update OK";
 		} else {
