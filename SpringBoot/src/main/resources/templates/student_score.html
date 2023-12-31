@@ -20,6 +20,7 @@
 			<thead>
 				<tr>
 					<th>名次</th>
+					<th>學號</th>
 					<th>姓名</th>
 					<th>國文</th>
 					<th>英文</th>
@@ -30,6 +31,7 @@
 				<tbody>
 					<tr th:each="score, state : ${scores}">
 						<td th:text="${state.count}"></td>
+						<td th:text="${score.id}"></td>
 						<td th:text="${score.name}"></td>
 						<td th:text="${score.chineseScore}"></td>
 						<td th:text="${score.englishScore}"></td>
