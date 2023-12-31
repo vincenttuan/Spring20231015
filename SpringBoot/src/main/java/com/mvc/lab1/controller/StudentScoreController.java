@@ -5,6 +5,7 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -62,6 +63,7 @@ public class StudentScoreController {
 		return "Update OK";
 	}
 	
+	@Transactional
 	@PutMapping("/update/{subject}/{id}")
 	@ResponseBody
 	public String updateScore(@PathVariable("subject") String subject, 
@@ -85,7 +87,7 @@ public class StudentScoreController {
 					return "No subject !";
 			}
 			studentScore.updateTotalAndAverage();
-			studentScoreRepository.saveAndFlush(studentScore);
+			//studentScoreRepository.saveAndFlush(studentScore); // 若該方法有加上 @Transactional 則此行可以不用寫
 			return "Update OK";
 		} else {
 			return "No data !";
