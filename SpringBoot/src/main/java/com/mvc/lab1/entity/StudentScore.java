@@ -37,8 +37,8 @@ public class StudentScore {
 	
 	// 更新總分與平均
 	public void updateTotalAndAverage() {
-		this.totalScore = chineseScore + englishScore + mathScore;
-		this.averageScore = totalScore / 3.0;
+		setTotalScore(chineseScore + englishScore + mathScore);
+		setAverageScore(totalScore / 3.0);
 	}
 	
 }
