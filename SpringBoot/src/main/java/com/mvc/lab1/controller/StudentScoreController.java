@@ -5,6 +5,9 @@ import java.util.Random;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -90,7 +93,7 @@ public class StudentScoreController {
 	@Transactional
 	@PutMapping("/update/{subject}/{id}")
 	@ResponseBody
-	public String updateScore(@PathVariable("subject") String subject, 
+	public ResponseEntity<String> updateScore(@PathVariable("subject") String subject, 
 							  @PathVariable("id") Integer id, 
 							  @RequestParam("score") Integer score) {
 		
@@ -108,13 +111,14 @@ public class StudentScoreController {
 					studentScore.setMathScore(score);
 					break;
 				default:
-					return "No subject !";
+					return ResponseEntity.status(HttpStatus.NOT_FOUND).body("無此科目");;
 			}
 			studentScore.updateTotalAndAverage();
 			//studentScoreRepository.saveAndFlush(studentScore); // 若該方法有加上 @Transactional 則此行可以不用寫
-			return "Update OK";
+			return ResponseEntity.ok("Update OK");
 		} else {
-			return "No data !";
+			//return ResponseEntity.notFound().build();
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("無此學生資料");
 		}
 		
 	}
