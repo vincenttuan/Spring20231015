@@ -3,6 +3,7 @@ package com.mvc.lab1.controller;
 import java.util.Optional;
 import java.util.Random;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -63,11 +64,14 @@ public class StudentScoreController {
 		Optional<StudentScore> studentScoreOpt = studentScoreRepository.findById(id);
 		if(studentScoreOpt.isPresent()) {
 			StudentScore studentScore = studentScoreOpt.get();
-			studentScore.setName(uptStudentScore.getName());
-			studentScore.setChineseScore(uptStudentScore.getChineseScore());
-			studentScore.setEnglishScore(uptStudentScore.getEnglishScore());
-			studentScore.setMathScore(uptStudentScore.getMathScore());
-			
+			// JPA 僅提供一個一個屬性配置
+//			studentScore.setName(uptStudentScore.getName());
+//			studentScore.setChineseScore(uptStudentScore.getChineseScore());
+//			studentScore.setEnglishScore(uptStudentScore.getEnglishScore());
+//			studentScore.setMathScore(uptStudentScore.getMathScore());
+			// 利用 Spring Framework 所提供的 BeanUtils 來進行屬性複製
+			BeanUtils.copyProperties(uptStudentScore, studentScore);
+			studentScore.updateTotalAndAverage();
 			return "Update OK";
 		} else {
 			return "No data !";
