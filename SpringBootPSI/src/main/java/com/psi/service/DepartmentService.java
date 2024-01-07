@@ -42,4 +42,9 @@ public class DepartmentService {
 		return dto;
 	}
 	*/
+	
+	public void add(DepartmentDTO departmentDTO) {
+		Department department = modelMapper.map(departmentDTO, Department.class);
+		departmentRepository.save(department);
+	}
 }
