@@ -15,7 +15,7 @@ public class DepartmentService {
 	@Autowired
 	private DepartmentRepository departmentRepository;
 	
-	public DepartmentPageDTO finndAllDepartments(Pageable pageable) {
+	public DepartmentPageDTO findAllDepartments(Pageable pageable) {
 		Page<Department> deptPage = departmentRepository.findAll(pageable);
 		Page<DepartmentDTO> dtoPage = deptPage.map(this::convertToDTO);
 		return new DepartmentPageDTO(dtoPage);
