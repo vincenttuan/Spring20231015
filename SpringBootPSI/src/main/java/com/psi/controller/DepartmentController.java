@@ -30,7 +30,7 @@ public class DepartmentController {
 						@RequestParam(defaultValue = "10") int size,
 						Model model) {
 		Pageable pageable = PageRequest.of(page, size);
-		DepartmentPageDTO departmentPageDTO = departmentService.findAllDepartments(pageable);
+		DepartmentPageDTO departmentPageDTO = departmentService.findAllDepartments(pageable); // 得到該分頁的數據實體
 		model.addAttribute("departmentPageDTO", departmentPageDTO);
 		return "department";
 	}
