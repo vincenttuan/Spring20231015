@@ -22,17 +22,17 @@ public class DepartmentController {
 	private DepartmentService departmentService;
 	
 	@GetMapping("/")
-	@ResponseBody
 	// page=頁數&size=每頁筆數
 	// 例如: page=0&size=5 第 1 頁每頁 5 筆
 	// 例如: page=1&size=5 第 2 頁每頁 5 筆
 	// 例如: page=2&size=5 第 3 頁每頁 5 筆
 	public String index(@RequestParam(defaultValue = "0") int page, 
-						@RequestParam(defaultValue = "0") int size,
+						@RequestParam(defaultValue = "10") int size,
 						Model model) {
 		Pageable pageable = PageRequest.of(page, size);
 		DepartmentPageDTO departmentPageDTO = departmentService.findAllDepartments(pageable);
-		return departmentPageDTO.getDepartments().size() + "";
+		model.addAttribute("departmentPageDTO", departmentPageDTO);
+		return "department";
 	}
 	
 }
