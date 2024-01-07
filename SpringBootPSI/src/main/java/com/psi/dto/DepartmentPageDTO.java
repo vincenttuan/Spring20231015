@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 
+import com.psi.entity.Department;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,9 +16,9 @@ public class DepartmentPageDTO {
 	private int currentPage;
 	private int totalPage;
 	
-	public DepartmentPageDTO(Page<DepartmentDTO> page) {
-		this.departments = page.getContent();
-		this.currentPage = page.getNumber();
-		this.totalPage = page.getTotalPages();
+	public DepartmentPageDTO(Page<DepartmentDTO> deptPage) {
+		this.departments = deptPage.getContent();
+		this.currentPage = deptPage.getNumber();
+		this.totalPage = deptPage.getTotalPages();
 	}
 }
