@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,4 +23,7 @@ public class Employee {
 	@Column(name = "name", unique = true, nullable = false, length = 50)
 	private String name; // 員工姓名
 	
+	@JoinColumn(name = "department_id") // 外鍵
+	@ManyToOne(optional = false) // 一定要選(員工一定要配置一個部門)
+	private Department department;
 }
