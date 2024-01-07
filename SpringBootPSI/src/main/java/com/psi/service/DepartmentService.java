@@ -1,5 +1,6 @@
 package com.psi.service;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +15,9 @@ import com.psi.repository.DepartmentRepository;
 public class DepartmentService {
 	@Autowired
 	private DepartmentRepository departmentRepository;
+	
+	@Autowired
+	private ModelMapper modelMapper;
 	
 	/**
 	 * 它用於處理與部門相關的業務邏輯。主要功能是從 DepartmentRepository 獲取分頁的部門數據，然後將這些數據轉換為 DTO（數據傳輸對象）。
@@ -30,9 +34,14 @@ public class DepartmentService {
 	 * 將部門實體數據轉換為 DTO
 	 * */
 	private DepartmentDTO convertToDTO(Department department) {
+		return modelMapper.map(department, DepartmentDTO.class);
+	}
+	/*
+	private DepartmentDTO convertToDTO(Department department) {
 		DepartmentDTO dto = new DepartmentDTO(); // 創建一個新的 DepartmentDTO 物件
 		dto.setId(department.getId()); // 實體數據 department 的 id 配置給 dto 的 id
 		dto.setName(department.getName()); // 實體數據 department 的 name 配置給 dto 的 name
 		return dto;
 	}
+	*/
 }
