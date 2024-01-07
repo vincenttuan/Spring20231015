@@ -23,12 +23,16 @@ public class DepartmentController {
 	
 	@GetMapping("/")
 	@ResponseBody
+	// page=頁數&size=每頁筆數
+	// 例如: page=0&size=5 第 1 頁每頁 5 筆
+	// 例如: page=1&size=5 第 2 頁每頁 5 筆
+	// 例如: page=2&size=5 第 3 頁每頁 5 筆
 	public String index(@RequestParam(defaultValue = "0") int page, 
 						@RequestParam(defaultValue = "0") int size,
 						Model model) {
 		Pageable pageable = PageRequest.of(page, size);
 		DepartmentPageDTO departmentPageDTO = departmentService.findAllDepartments(pageable);
-		return departmentPageDTO + "";
+		return departmentPageDTO.getDepartments().size() + "";
 	}
 	
 }
