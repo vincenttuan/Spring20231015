@@ -15,13 +15,13 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
+@Entity // PO (Persistent Object): 持久對象是一種在資料庫中有對應記錄的對象。
 @Table(name = "department") // 預設(可以不寫)
 @Getter
 @Setter
 public class Department {
 	
-	// @Id: 主鍵
+	// @Id: 主鍵, POID (Persistent Object Identifier): 持久對象標識符是一個唯一標識 PO 的值，通常對應於資料庫表中的主鍵。
 	// @GeneratedValue: 自動產生值
 	// strategy = GenerationType.IDENTITY : 自動增長, 適用於 MySQL
 	// strategy = GenerationType.SEQUENCE : 自動增長, 適用於 Oracle
