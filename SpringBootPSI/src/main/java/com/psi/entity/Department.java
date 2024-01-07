@@ -42,7 +42,7 @@ public class Department {
 	// orphanRemoval = true 表示如果該部門下所有 Employee 被刪除, 則此部門也會被刪除(在此不適用)
 	// orphanRemoval = false (預設)表示如果該部門下所有 Employee 被刪除, 則此部門並不會被刪除
 	@OneToMany(mappedBy = "department", 
-			fetch = FetchType.LAZY,
+			fetch = FetchType.EAGER,
 			orphanRemoval = false)
 	@OrderBy("id ASC")
 	private Set<Employee> employees = new LinkedHashSet<>(); 
