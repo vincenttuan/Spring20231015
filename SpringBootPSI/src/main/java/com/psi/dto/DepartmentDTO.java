@@ -1,5 +1,10 @@
 package com.psi.dto;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+import com.psi.entity.Employee;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,4 +22,5 @@ public class DepartmentDTO {
 	private Long id;
 	private String name;
 	// 可以加其他業務資料
+	private Set<Employee> employees = new LinkedHashSet<>();
 }
