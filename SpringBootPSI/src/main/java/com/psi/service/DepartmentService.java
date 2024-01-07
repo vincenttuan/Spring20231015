@@ -16,7 +16,7 @@ public class DepartmentService {
 	@Autowired
 	private DepartmentRepository departmentRepository;
 	
-	@Autowired
+	@Autowired // 必須要在 com/psi/ModelMapperConfig.java 中配置
 	private ModelMapper modelMapper;
 	
 	/**
