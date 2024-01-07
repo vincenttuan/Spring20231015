@@ -48,7 +48,7 @@ public class CreateEmployee {
 		employeeRepository.save(emp1);
 		employeeRepository.save(emp2);
 		employeeRepository.save(emp3);
-		
+		employeeRepository.save(emp4);
 	}
 	
 }
