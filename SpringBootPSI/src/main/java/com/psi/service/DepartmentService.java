@@ -26,16 +26,14 @@ public class DepartmentService {
 	 * */
 	public DepartmentPageDTO findAllDepartments(Pageable pageable) {
 		Page<Department> deptPage = departmentRepository.findAll(pageable); // 從資料庫獲取分頁的部門數據
-		Page<DepartmentDTO> dtoPage = deptPage.map(this::convertToDTO); // 將部門實體數據轉換為 DTO
+		//Page<DepartmentDTO> dtoPage = deptPage.map(this::convertToDTO); // 將部門實體數據轉換為 DTO
+		Page<DepartmentDTO> dtoPage = deptPage.map(department -> modelMapper.map(department, DepartmentDTO.class));
 		return new DepartmentPageDTO(dtoPage); // 返回包含 DTO 的分頁對象
 	}
 	
 	/**
 	 * 將部門實體數據轉換為 DTO
 	 * */
-	private DepartmentDTO convertToDTO(Department department) {
-		return modelMapper.map(department, DepartmentDTO.class);
-	}
 	/*
 	private DepartmentDTO convertToDTO(Department department) {
 		DepartmentDTO dto = new DepartmentDTO(); // 創建一個新的 DepartmentDTO 物件
