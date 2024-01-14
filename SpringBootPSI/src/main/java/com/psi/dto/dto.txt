@@ -1,0 +1,20 @@
+ 
+ DTO (Data Transfer Object，數據傳輸對象）是一個用於封裝數據並在應用程序的不同層之間傳輸數據的模式。
+ PO (Persistent Object [也可稱為 entity]): 持久對象是一種在資料庫中有對應記錄的對象。
+ DDL 是「Data Definition Language」的縮寫，意為「數據定義語言」。它是用於定義和修改數據庫結構的一種語言。
+ validator 放在 Controller 層可以得到立即反饋(用於業務邏輯單純的環境)
+ validator 放在 Service 層可以確保業務邏輯安全(用於業務邏輯非常複雜的環境)
+ 
+ +------------+             +---------+                    +------------+             +-------+
+ | Controller | <-- DTO --> | Service | <-- PO(Entity) --> | Repository | <-- DDL --> | MySQL |
+ | (validator)|             +---------+                    +------------+             +-------+
+ +------------+
+       ^
+       |
+      DTO 
+       |
+       v
+ +------------+
+ | Thymeleaf  | 
+ +------------+      
+      HTML
