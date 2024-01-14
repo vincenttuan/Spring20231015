@@ -26,7 +26,7 @@ public class CreateEmployee2 {
 	@Test
 	public void test() {
 		// 劉一, 陳二, 張三, 李四, 王五, 趙六, 孫七, 周八, 吳九, 鄭十
-		
+		/*
 		DepartmentDto dep1 = departmentService.getDepartmentById(1L);
 		EmployeeDto emp1 = new EmployeeDto();
 		emp1.setName("劉一");
@@ -34,6 +34,13 @@ public class CreateEmployee2 {
 		
 		// 儲存
 		employeeService.add(emp1);
+		*/
+		
+		EmployeeDto emp2 = new EmployeeDto();
+		emp2.setName("陳二");
+		
+		// 儲存
+		employeeService.add(emp2, 2L);
 		
 		System.out.println("Add OK!");
 	}
