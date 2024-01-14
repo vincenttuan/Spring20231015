@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,6 +47,14 @@ public class DepartmentController {
 		model.addAttribute("departmentDtos", departmentDtos);
 		model.addAttribute("departmentDto", departmentDto);
 		return "department";
+	}
+	
+	// 取得單筆
+	@GetMapping("/edit/{id}")
+	public String edit(@PathVariable("id") Long id, Model model) {
+		DepartmentDto departmentDto = departmentService.getDepartmentById(id);
+		model.addAttribute("departmentDto", departmentDto);
+		return "department-edit";
 	}
 	
 	
