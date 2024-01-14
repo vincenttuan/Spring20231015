@@ -46,5 +46,30 @@ public class EmployeeService {
 		}
 	}
 	
+	// 修改
+	public void update(EmployeeDto employeeDto, Long id) {
+		// 根據 id 查找是否有此員工 ?
+		Optional<Employee> employeeOpt = employeeRepository.findById(id);
+		if(employeeOpt.isPresent()) {
+			Employee employee = employeeOpt.get(); // 內含有 id 的員工資料
+			employee.setName(employeeDto.getName()); // 更新員工姓名
+			
+			Long departmentId = employeeDto.getDepartment().getId();
+			Optional<Department> departmentOpt = departmentRepository.findById(departmentId);
+			if(departmentOpt.isPresent()) {
+				employee.setDepartment(departmentOpt.get()); // 更新員工部門
+				employeeRepository.save(employee); // 因為有員工 id 的存在, 所以 save 將會自動變成更新模式
+			}
+		}
+	}
+	
+	// 刪除
+	
+	// 查詢-單筆
+	
+	// 多筆-分頁
+	
+	// 多筆-全部
+	
 	
 }
