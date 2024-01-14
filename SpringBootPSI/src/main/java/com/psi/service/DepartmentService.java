@@ -6,8 +6,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.psi.dto.DepartmentDTO;
-import com.psi.dto.DepartmentPageDTO;
+import com.psi.dto.DepartmentDto;
+import com.psi.dto.DepartmentPageDto;
 import com.psi.entity.Department;
 import com.psi.repository.DepartmentRepository;
 
@@ -24,11 +24,11 @@ public class DepartmentService {
 	 * 這種轉換過程有助於將數據層和表示層分離，提高了代碼的可維護性和靈活性。轉換後的 DTO 數據被包裝在 DepartmentPageDTO 中，
 	 * 這個對象既包含了分頁資訊，也包含了部門數據的列表，方便前端展示和處理。
 	 * */
-	public DepartmentPageDTO findAllDepartments(Pageable pageable) {
+	public DepartmentPageDto findAllDepartments(Pageable pageable) {
 		Page<Department> deptPage = departmentRepository.findAll(pageable); // 從資料庫獲取分頁的部門數據
 		//Page<DepartmentDTO> dtoPage = deptPage.map(this::convertToDTO); // 將部門實體數據轉換為 DTO
-		Page<DepartmentDTO> dtoPage = deptPage.map(department -> modelMapper.map(department, DepartmentDTO.class));
-		return new DepartmentPageDTO(dtoPage); // 返回包含 DTO 的分頁對象
+		Page<DepartmentDto> dtoPage = deptPage.map(department -> modelMapper.map(department, DepartmentDto.class));
+		return new DepartmentPageDto(dtoPage); // 返回包含 DTO 的分頁對象
 	}
 	
 	/**
@@ -43,7 +43,7 @@ public class DepartmentService {
 	}
 	*/
 	
-	public void add(DepartmentDTO departmentDTO) {
+	public void add(DepartmentDto departmentDTO) {
 		Department department = modelMapper.map(departmentDTO, Department.class);
 		departmentRepository.save(department);
 	}

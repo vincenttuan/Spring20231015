@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.psi.dto.DepartmentDTO;
-import com.psi.dto.DepartmentPageDTO;
+import com.psi.dto.DepartmentDto;
+import com.psi.dto.DepartmentPageDto;
 import com.psi.service.DepartmentService;
 
 @Controller
@@ -29,9 +29,9 @@ public class DepartmentController {
 	// 例如: page=2&size=5 第 3 頁每頁 5 筆
 	public String index(@RequestParam(defaultValue = "0") int page, 
 						@RequestParam(defaultValue = "10") int size,
-						Model model, @ModelAttribute DepartmentDTO departmentDTO) {
+						Model model, @ModelAttribute DepartmentDto departmentDTO) {
 		Pageable pageable = PageRequest.of(page, size);
-		DepartmentPageDTO departmentPageDTO = departmentService.findAllDepartments(pageable); // 得到該分頁的數據實體
+		DepartmentPageDto departmentPageDTO = departmentService.findAllDepartments(pageable); // 得到該分頁的數據實體
 		model.addAttribute("departmentPageDTO", departmentPageDTO);
 		return "department";
 	}

@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
-import com.psi.dto.DepartmentPageDTO;
+import com.psi.dto.DepartmentPageDto;
 import com.psi.service.DepartmentService;
 
 @SpringBootTest
@@ -18,7 +18,7 @@ public class ReadDepartment {
 	@Test
 	public void test() {
 		Pageable pageable = PageRequest.of(0, 10);
-		DepartmentPageDTO dto = departmentService.findAllDepartments(pageable);
+		DepartmentPageDto dto = departmentService.findAllDepartments(pageable);
 		dto.getDepartments().forEach(dept -> System.out.println(dept.getName()));
 		System.out.println(dto.getCurrentPage());
 		System.out.println(dto.getTotalPage());

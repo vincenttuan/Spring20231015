@@ -18,7 +18,7 @@ import lombok.Setter;
 */
 @Getter
 @Setter
-public class DepartmentDTO {
+public class DepartmentDto {
 	private Long id;
 	private String name;
 	// 可以加其他業務資料
