@@ -1,5 +1,7 @@
 package com.psi.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,7 +24,8 @@ public class DepartmentController {
 	@Autowired
 	private DepartmentService departmentService;
 	
-	@GetMapping("/")
+	/*
+	@GetMapping("/") // 分頁版
 	// page=頁數&size=每頁筆數
 	// 例如: page=0&size=5 第 1 頁每頁 5 筆
 	// 例如: page=1&size=5 第 2 頁每頁 5 筆
@@ -35,7 +38,15 @@ public class DepartmentController {
 		model.addAttribute("departmentPageDto", departmentPageDto);
 		return "department";
 	}
+	*/
 	
+	@GetMapping("/") // 不分頁版
+	public String index(@ModelAttribute DepartmentDto departmentDto, Model model) {
+		List<DepartmentDto> departmentDtos = departmentService.findAll();
+		model.addAttribute("departmentDtos", departmentDtos);
+		model.addAttribute("departmentDto", departmentDto);
+		return "department";
+	}
 	
 	
 }
