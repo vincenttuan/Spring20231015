@@ -1,12 +1,16 @@
 package com.psi.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.psi.model.dto.EmployeeDto;
+import com.psi.model.dto.EmployeePageDto;
 import com.psi.model.po.Department;
 import com.psi.model.po.Employee;
 import com.psi.repository.DepartmentRepository;
@@ -73,10 +77,33 @@ public class EmployeeService {
 	}
 	
 	// 查詢-單筆
+	public EmployeeDto getEmployeeById(Long id) {
+		Optional<Employee> employeeOpt = employeeRepository.findById(id);
+		if(employeeOpt.isPresent()) {
+			Employee employee = employeeOpt.get();
+			// po 轉 dto
+			EmployeeDto employeeDto = modelMapper.map(employee, EmployeeDto.class);
+			return employeeDto;
+		}
+		return null;
+	}
 	
 	// 多筆-分頁
+	public EmployeePageDto findAll(Pageable pageable) {
+		Page<Employee> employeePage = employeeRepository.findAll(pageable);
+		// page 的 po 轉 page 的 dto
+		Page<EmployeeDto> employeePageDto = employeePage.map(employee -> modelMapper.map(employee, EmployeeDto.class));
+		return new EmployeePageDto(employeePageDto);
+	}
 	
 	// 多筆-全部
-	
+	public List<EmployeeDto> findAll() {
+		List<Employee> employees = employeeRepository.findAll();
+		// po -> dto
+		List<EmployeeDto> employeeDtos = employees.stream()
+				.map(employee -> modelMapper.map(employees, EmployeeDto.class))
+				.toList();
+		return employeeDtos;
+	}
 	
 }
