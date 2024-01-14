@@ -29,10 +29,10 @@ public class DepartmentController {
 	// 例如: page=2&size=5 第 3 頁每頁 5 筆
 	public String index(@RequestParam(defaultValue = "0") int page, 
 						@RequestParam(defaultValue = "10") int size,
-						Model model, @ModelAttribute DepartmentDto departmentDTO) {
+						Model model, @ModelAttribute DepartmentDto departmentDto) {
 		Pageable pageable = PageRequest.of(page, size);
-		DepartmentPageDto departmentPageDTO = departmentService.findAllDepartments(pageable); // 得到該分頁的數據實體
-		model.addAttribute("departmentPageDTO", departmentPageDTO);
+		DepartmentPageDto departmentPageDto = departmentService.findAllDepartments(pageable); // 得到該分頁的數據實體
+		model.addAttribute("departmentPageDto", departmentPageDto);
 		return "department";
 	}
 	
