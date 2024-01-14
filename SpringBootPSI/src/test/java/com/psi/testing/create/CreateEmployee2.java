@@ -32,10 +32,9 @@ public class CreateEmployee2 {
 		emp1.setDepartment(dep1);
 		
 		// 儲存
-		employeeRepository.save(emp1);
-		employeeRepository.save(emp2);
-		employeeRepository.save(emp3);
-		employeeRepository.save(emp4);
+		employeeService.add(emp1);
+		
+		System.out.println("Add OK!");
 	}
 	
 }
