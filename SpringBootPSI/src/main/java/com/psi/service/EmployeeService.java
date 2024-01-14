@@ -67,7 +67,8 @@ public class EmployeeService {
 	public void delete(Long id) {
 		Optional<Employee> employeeOpt = employeeRepository.findById(id);
 		if(employeeOpt.isPresent()) {
-			employeeRepository.deleteById(id);
+			employeeRepository.deleteById(id); // 根據 id 刪除
+			//employeeRepository.delete(employeeOpt.get()); // 根據實體紀錄刪除
 		}
 	}
 	
