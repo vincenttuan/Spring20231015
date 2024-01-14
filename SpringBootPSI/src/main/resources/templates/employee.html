@@ -41,10 +41,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each=": ${emp : employeePageDto.employeeDtos}">
+				<tr th:each="emp : ${employeePageDto.employeeDtos}">
 					<td th:text="${emp.id}"></td>
 					<td th:text="${emp.name}"></td>
-					<td th:text="${emp.delartment.name}"></td>
+					<td th:text="${emp.department.name}"></td>
 					<td>
 						<a th:href="@{/employee/edit/{id}(id=${emp.id})}" class="btn btn-primary">編輯</a>
 					</td>
