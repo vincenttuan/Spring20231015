@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
-import com.psi.dto.DepartmentPageDto;
+import com.psi.model.dto.DepartmentPageDto;
 import com.psi.service.DepartmentService;
 
 @SpringBootTest

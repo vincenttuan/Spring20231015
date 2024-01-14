@@ -1,4 +1,4 @@
-package com.psi.entity;
+package com.psi.model.po;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

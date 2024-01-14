@@ -6,9 +6,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.psi.dto.DepartmentDto;
-import com.psi.dto.DepartmentPageDto;
-import com.psi.entity.Department;
+import com.psi.model.dto.DepartmentDto;
+import com.psi.model.dto.DepartmentPageDto;
+import com.psi.model.po.Department;
 import com.psi.repository.DepartmentRepository;
 
 @Service

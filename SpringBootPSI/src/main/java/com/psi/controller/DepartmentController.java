@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.psi.dto.DepartmentDto;
-import com.psi.dto.DepartmentPageDto;
+import com.psi.model.dto.DepartmentDto;
+import com.psi.model.dto.DepartmentPageDto;
 import com.psi.service.DepartmentService;
 
 @Controller

@@ -1,10 +1,10 @@
-package com.psi.dto;
+package com.psi.model.dto;
 
 import java.util.List;
 
 import org.springframework.data.domain.Page;
 
-import com.psi.entity.Department;
+import com.psi.model.po.Department;
 
 import lombok.Getter;
 import lombok.Setter;

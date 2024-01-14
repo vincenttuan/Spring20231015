@@ -1,4 +1,4 @@
-package com.psi.entity;
+package com.psi.model.po;
 
 import java.util.LinkedHashSet;
 import java.util.Set;

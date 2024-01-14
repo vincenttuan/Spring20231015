@@ -1,9 +1,9 @@
-package com.psi.dto;
+package com.psi.model.dto;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import com.psi.entity.Employee;
+import com.psi.model.po.Employee;
 
 import lombok.Getter;
 import lombok.Setter;

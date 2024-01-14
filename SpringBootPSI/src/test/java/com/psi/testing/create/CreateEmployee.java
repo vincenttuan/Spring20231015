@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.psi.entity.Department;
-import com.psi.entity.Employee;
+import com.psi.model.po.Department;
+import com.psi.model.po.Employee;
 import com.psi.repository.DepartmentRepository;
 import com.psi.repository.EmployeeRepository;
 
