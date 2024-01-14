@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>PSI 員工料表</title>
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
 <body>
-
+	<div class="container my-2">
+		<!-- Header -->
+		<div th:include="header :: header"></div>
+		<!-- Content -->
+		<h2>員工-修改</h2>
+		<form action="#" th:action="@{/employee/{id}(id=${employeeDto.id})}" th:object="${employeeDto}" method="post">
+			<input type="hidden" name="_method" value="PUT" />
+			<div class="form-group">
+				<label>部門名稱:</label>
+				<select class="form-control select2" th:field="*{department.id}" id="department.id">
+					<option th:each="d:${departmentDtos}" th:value="${d.id}" th:text="${d.name}"></option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>員工姓名:</label>
+				<input type="text" th:field="*{name}" id="name" class="form-control" placeholder="請輸入員工姓名" required>
+			</div>
+			<input type="submit" value="修改員工" class="btn btn-primary" />
+		</form>
+		<!-- Footer -->
+		<div th:include="footer :: footer"></div>
+	</div>
 </body>
 </html>
