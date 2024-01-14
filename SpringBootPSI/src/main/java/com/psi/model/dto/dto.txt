@@ -5,10 +5,10 @@
  validator 放在 Controller 層可以得到立即反饋(用於業務邏輯單純的環境)
  validator 放在 Service 層可以確保業務邏輯安全(用於業務邏輯非常複雜的環境)
  
- +------------+             +---------+                    +------------+             +-------+
- | Controller | --- DTO --> | Service | --- PO(Entity) --> | Repository | <-- DDL --> | MySQL |
- | (validator)| <-- DTO --- |         | <-- PO(Entity) --- |            |             |       | 
- +------------+             +---------+                    +------------+             +-------+
+ +------------+             +---------+                    +------------+               +-------+
+ | Controller | --- DTO --> | Service | --- PO(Entity) --> | Repository | ---  DDL ---> | MySQL |
+ | (validator)| <-- DTO --- |         | <-- PO(Entity) --- |            | <-- Result -- |       | 
+ +------------+             +---------+                    +------------+               +-------+
        ^
        |
       DTO 
