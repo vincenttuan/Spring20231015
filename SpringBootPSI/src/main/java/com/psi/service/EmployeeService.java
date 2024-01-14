@@ -64,6 +64,12 @@ public class EmployeeService {
 	}
 	
 	// 刪除
+	public void delete(Long id) {
+		Optional<Employee> employeeOpt = employeeRepository.findById(id);
+		if(employeeOpt.isPresent()) {
+			employeeRepository.deleteById(id);
+		}
+	}
 	
 	// 查詢-單筆
 	
