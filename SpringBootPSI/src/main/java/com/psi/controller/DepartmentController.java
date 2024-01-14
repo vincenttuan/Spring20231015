@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -55,6 +56,30 @@ public class DepartmentController {
 		DepartmentDto departmentDto = departmentService.getDepartmentById(id);
 		model.addAttribute("departmentDto", departmentDto);
 		return "department-edit";
+	}
+	
+	// 新增
+	@PostMapping("/")
+	public String add(DepartmentDto departmentDto) {
+		departmentService.add(departmentDto);
+		// 新增完畢之後直接重導到首頁
+		return "redirect:/department/";
+	}
+	
+	// 修改
+	@PutMapping("/{id}")
+	public String update(@PathVariable("id") Long id, DepartmentDto departmentDto) {
+		departmentService.update(departmentDto, id);
+		// 修改完畢之後直接重導到首頁
+		return "redirect:/department/";
+	}
+	
+	// 刪除
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable("id") Long id) {
+		departmentService.delete(id);
+		// 刪除完畢之後直接重導到首頁
+		return "redirect:/department/";
 	}
 	
 	
