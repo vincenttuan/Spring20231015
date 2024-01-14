@@ -1,12 +1,14 @@
 package com.psi.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.psi.model.dto.DepartmentDto;
 import com.psi.model.dto.DepartmentPageDto;
@@ -44,6 +46,43 @@ public class DepartmentService {
 						  .map(department -> modelMapper.map(department, DepartmentDto.class))
 						  .toList();
 	}
+	
+	// 新增
+	@Transactional
+	public void add(DepartmentDto departmentDto) {
+		// 將 dto 轉 po
+		Department department = modelMapper.map(departmentDto, Department.class);
+		// 儲存
+		departmentRepository.save(department);
+	}
+	
+	// 修改
+	@Transactional
+	public void update(DepartmentDto departmentDto, Long id) {
+		// 根據 id 找到要修改的 po
+		Optional<Department> departmentOpt = departmentRepository.findById(id);
+		// 確認是否有找到紀錄
+		if(departmentOpt.isPresent()) {
+			Department department = departmentOpt.get();
+			// 將 dto 的資料注入到 po
+			department.setName(departmentDto.getName());
+			// 儲存
+			departmentRepository.save(department);
+		}
+	}
+	
+	// 刪除
+	@Transactional
+	public void delete(Long id) {
+		// 根據 id 找到要刪除的 po
+		Optional<Department> departmentOpt = departmentRepository.findById(id);
+		// 確認是否有找到紀錄
+		if(departmentOpt.isPresent()) {
+			// 刪除
+			departmentRepository.deleteById(id);
+		}
+	}
+	
 	
 	
 	/**

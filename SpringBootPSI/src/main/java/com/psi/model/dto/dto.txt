@@ -6,9 +6,9 @@
  validator 放在 Service 層可以確保業務邏輯安全(用於業務邏輯非常複雜的環境)
  
  +------------+             +---------+                    +------------+             +-------+
- | Controller | <-- DTO --> | Service | <-- PO(Entity) --> | Repository | <-- DDL --> | MySQL |
- | (validator)|             +---------+                    +------------+             +-------+
- +------------+
+ | Controller | --- DTO --> | Service | --- PO(Entity) --> | Repository | <-- DDL --> | MySQL |
+ | (validator)| <-- DTO --- |         | <-- PO(Entity) --- |            |             |       | 
+ +------------+             +---------+                    +------------+             +-------+
        ^
        |
       DTO 
