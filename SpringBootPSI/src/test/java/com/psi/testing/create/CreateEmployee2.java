@@ -22,6 +22,7 @@ public class CreateEmployee2 {
 	@Autowired
 	private DepartmentService departmentService;
 	
+	// 模擬 Controller 的操作
 	@Test
 	public void test() {
 		// 劉一, 陳二, 張三, 李四, 王五, 趙六, 孫七, 周八, 吳九, 鄭十
