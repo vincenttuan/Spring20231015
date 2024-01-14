@@ -36,10 +36,6 @@ public class DepartmentController {
 		return "department";
 	}
 	
-	@PostMapping("/")
-	public String add(DepartmentDTO departmentDTO) {
-		departmentService.add(departmentDTO);
-		return "redirect:/department/";
-	}
+	
 	
 }
