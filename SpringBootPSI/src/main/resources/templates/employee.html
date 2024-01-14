@@ -28,7 +28,9 @@
 		<p />
 		<h2>全部員工列表</h2>
 		<div class="pagination">
-	    	
+	    	<span th:each="pageNum : ${#numbers.sequence(1, employeePageDto.totalPage)}">
+				<a th:href="@{/employee/(page=${pageNum - 1})}" th:text="${pageNum}"></a>
+			</span>
 	    </div>
 		<table border="1" class="table table-striped table-reposive-md">
 			<thead>
