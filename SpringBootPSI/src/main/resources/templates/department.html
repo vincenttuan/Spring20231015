@@ -11,7 +11,7 @@
 			<div th:include="header :: header"></div>
 			<!-- Content Form -->
 			<h2>新增部門</h2>
-			<form action="#" th:action="@{/department/}" th:object="${departmentDTO}" method="post">
+			<form action="#" th:action="@{/department/}" th:object="${departmentDto}" method="post">
 				<div class="form-group">
 					<label>部門名稱:</label>
 					<input type="text" th:field="*{name}" id="name" class="form-control" placeholder="請輸入部門名稱">
@@ -32,7 +32,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="dept : ${departmentPageDTO.departments}">
+					<tr th:each="dept : ${departmentPageDto.departments}">
 						<td th:text="${dept.id}"></td>
 						<td th:text="${dept.name}"></td>
 						<td>
