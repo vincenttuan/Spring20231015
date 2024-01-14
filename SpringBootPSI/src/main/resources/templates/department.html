@@ -32,7 +32,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="dept : ${departmentPageDto.departments}">
+					<tr th:each="dept : ${departmentDtos}">
 						<td th:text="${dept.id}"></td>
 						<td th:text="${dept.name}"></td>
 						<td>
