@@ -18,6 +18,10 @@ public class EmployeePageDto {
 	private int curentPage; // 保存當前頁碼
 	private int totalPage; // 保存總頁數
 	
+	/**
+     * 通過從 Page 物件轉換來建構 EmployeePageDto 物件。
+     * @param deptPage Page<EmployeeDto> 物件，包含從數據庫查詢到的分頁結果。
+     */
 	public EmployeePageDto(Page<EmployeeDto> empPageDto) {
 		this.employeeDtos = empPageDto.getContent(); // 獲取當前頁的數據列表
 		this.curentPage = empPageDto.getNumber(); // 獲取當前頁碼
