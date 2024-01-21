@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>PSI OOO</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container my-2">
+		<!-- Header -->
+		<div th:include="header :: header"></div>
+		<!-- Content -->
+		<h2>OOO-新增</h2>
+		<form action="#" th:action="" th:object="" method="post">
+			<div class="form-group">
+				
+			</div>
+			<input type="submit" value="OOOOO" class="btn btn-primary" />
+		</form>
+		<p />
+		<h2>OOO-列表</h2>
+		<table border="1" class="table table-striped table-reposive-md">
+			<thead>
+				<tr>
+					<th>序號</th>
+					<th>OOO</th>
+					<th>編輯</th>
+					<th>刪除</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="">
+					<td th:text=""></td>
+					<td th:text=""></td>
+					<td><a th:href="" class="btn btn-primary">編輯</a></td>
+					<td><a th:href="" class="btn btn-danger">刪除</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<!-- Footer -->
+		<div th:include="footer :: footer"></div>
+	</div>
+</body>
+</html>
