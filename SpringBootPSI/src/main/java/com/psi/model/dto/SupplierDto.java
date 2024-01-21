@@ -9,4 +9,8 @@ public class SupplierDto {
 	private Long id; // 供應商序號 from po
 	private String name; // 供應商名稱 from po
 	
+	@Override
+	public String toString() {
+		return "SupplierDto [id=" + id + ", name=" + name + "]";
+	}
 }
