@@ -1,5 +1,6 @@
 package com.psi.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
@@ -66,4 +67,15 @@ public class SupplierService {
 	}
 	
 	// 全部查詢
+	public List<SupplierDto> findAll() {
+		List<Supplier> suppliers = supplierRepository.findAll();
+		// List<Supplier> 轉 List<SupplierDto>
+		List<SupplierDto> supplierDtos = suppliers.stream()
+				.map(supplier -> modelMapper.map(supplier, SupplierDto.class))
+				.toList();
+		return supplierDtos;
+	}
 }
+
+
+
