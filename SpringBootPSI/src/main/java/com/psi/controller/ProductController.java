@@ -59,13 +59,13 @@ public class ProductController {
 	@PostMapping("/")
 	public String add(ProductDto productDto) {
 		productService.add(productDto);
-		return "redirect:/product";
+		return "redirect:/product/";
 	}
 	
 	@PutMapping("/{id}")
 	public String update(@PathVariable("id") Long id, ProductDto productDto) {
 		productService.update(productDto, id);
-		return "redirect:/product";
+		return "redirect:/product/";
 	}
 	
 	
