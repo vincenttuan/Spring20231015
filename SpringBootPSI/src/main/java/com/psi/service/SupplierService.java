@@ -44,6 +44,15 @@ public class SupplierService {
 	}
 	
 	// 刪除
+	// 根據 id 找到該筆紀錄
+	// 若有該筆紀錄就進行刪除
+	public void delete(Long id) {
+		Optional<Supplier> supplierOpt = supplierRepository.findById(id);
+		if(supplierOpt.isPresent()) {
+			supplierRepository.deleteById(id); // 根據 id 來刪除紀錄
+			//supplierRepository.delete(supplierOpt.get()); // 直接刪除紀錄
+		}
+	}
 	
 	// 查詢單筆
 	
