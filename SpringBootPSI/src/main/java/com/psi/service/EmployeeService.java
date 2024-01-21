@@ -77,7 +77,7 @@ public class EmployeeService {
 	}
 	
 	// 查詢-單筆
-	public EmployeeDto getEmployeeById(Long id) {
+	public EmployeeDto getEmployeeDtoById(Long id) {
 		Optional<Employee> employeeOpt = employeeRepository.findById(id);
 		if(employeeOpt.isPresent()) {
 			Employee employee = employeeOpt.get();

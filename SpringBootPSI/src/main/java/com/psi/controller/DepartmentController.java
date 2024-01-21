@@ -53,7 +53,7 @@ public class DepartmentController {
 	// 取得單筆
 	@GetMapping("/edit/{id}")
 	public String edit(@PathVariable("id") Long id, Model model) {
-		DepartmentDto departmentDto = departmentService.getDepartmentById(id);
+		DepartmentDto departmentDto = departmentService.getDepartmentDtoById(id);
 		model.addAttribute("departmentDto", departmentDto);
 		return "department-edit";
 	}

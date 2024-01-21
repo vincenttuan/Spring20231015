@@ -61,7 +61,7 @@ public class EmployeeController {
 	
 	@GetMapping("/edit/{id}")
 	public String edit(@PathVariable("id") Long id, Model model) {
-		EmployeeDto employeeDto = employeeService.getEmployeeById(id);
+		EmployeeDto employeeDto = employeeService.getEmployeeDtoById(id);
 		model.addAttribute("employeeDto", employeeDto);
 		model.addAttribute("departmentDtos", departmentService.findAll());
 		return "employee-edit";

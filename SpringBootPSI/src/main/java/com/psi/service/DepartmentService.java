@@ -84,7 +84,7 @@ public class DepartmentService {
 	}
 	
 	// 單筆查詢
-	public DepartmentDto getDepartmentById(Long id) {
+	public DepartmentDto getDepartmentDtoById(Long id) {
 		// 根據 id 找到要查詢的 po
 		Optional<Department> departmentOpt = departmentRepository.findById(id);
 		if(departmentOpt.isPresent()) {
