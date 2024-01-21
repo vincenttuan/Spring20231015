@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.psi.model.dto.SupplierDto;
@@ -37,6 +38,13 @@ public class SupplierController {
 		model.addAttribute("supplierDtos", supplierDtos);
 		model.addAttribute("supplierDto", supplierDto); // 可以不用撰寫, 因為有設定 @ModelAttribute SupplierDto supplierDto
 		return "supplier";
+	}
+	
+	@GetMapping("/edit/{id}")
+	public String edit(@PathVariable("id") Long id, Model model) {
+		SupplierDto supplierDto = supplierService.getSupplierDtoById(id);
+		model.addAttribute("supplierDto", supplierDto);
+		return "supplier-edit";
 	}
 	
 }

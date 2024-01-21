@@ -56,7 +56,7 @@ public class SupplierService {
 	}
 	
 	// 查詢單筆
-	public SupplierDto getSupplierById(Long id) {
+	public SupplierDto getSupplierDtoById(Long id) {
 		Optional<Supplier> supplierOpt = supplierRepository.findById(id);
 		if(supplierOpt.isPresent()) {
 			Supplier supplier = supplierOpt.get(); // po
