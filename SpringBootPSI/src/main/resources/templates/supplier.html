@@ -24,17 +24,17 @@
 			<thead>
 				<tr>
 					<th>序號</th>
-					<th>OOO</th>
+					<th>供應商名稱</th>
 					<th>編輯</th>
 					<th>刪除</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="">
-					<td th:text=""></td>
-					<td th:text=""></td>
-					<td><a th:href="" class="btn btn-primary">編輯</a></td>
-					<td><a th:href="" class="btn btn-danger">刪除</a></td>
+				<tr th:each="supplier : ${supplierDtos}">
+					<td th:text="${supplier.id}"></td>
+					<td th:text="${supplier.name}"></td>
+					<td><a th:href="@{/supplier/edit/{id}(id=${supplier.id})}" class="btn btn-primary">編輯</a></td>
+					<td><a th:href="@{/supplier/delete/{id}(id=${supplier.id})}" class="btn btn-danger">刪除</a></td>
 				</tr>
 			</tbody>
 		</table>
