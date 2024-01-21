@@ -18,7 +18,7 @@ public class ReadSupplier {
 	@Test
 	public void findOne() {
 		long id = 1; // 1L
-		SupplierDto supplierDto = supplierService.getSupplierById(id);
+		SupplierDto supplierDto = supplierService.getSupplierDtoById(id);
 		System.out.println(supplierDto);
 	}
 	
