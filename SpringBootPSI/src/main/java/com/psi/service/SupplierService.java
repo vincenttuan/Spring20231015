@@ -55,6 +55,15 @@ public class SupplierService {
 	}
 	
 	// 查詢單筆
+	public SupplierDto getSupplierById(Long id) {
+		Optional<Supplier> supplierOpt = supplierRepository.findById(id);
+		if(supplierOpt.isPresent()) {
+			Supplier supplier = supplierOpt.get(); // po
+			SupplierDto supplierDto = modelMapper.map(supplier, SupplierDto.class); // po 轉 Dto
+			return supplierDto;
+		}
+		return null;
+	}
 	
 	// 全部查詢
 }
