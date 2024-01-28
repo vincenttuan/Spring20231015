@@ -11,4 +11,9 @@ public class EmployeeDto {
 	private String name; // 員工姓名
 	private DepartmentDto department; // 所屬部門
 	
+	@Override
+	public String toString() {
+		return "EmployeeDto [id=" + id + ", name=" + name + "]";
+	}
+	
 }

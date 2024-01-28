@@ -101,7 +101,7 @@ public class EmployeeService {
 		List<Employee> employees = employeeRepository.findAll();
 		// po -> dto
 		List<EmployeeDto> employeeDtos = employees.stream()
-				.map(employee -> modelMapper.map(employees, EmployeeDto.class))
+				.map(employee -> modelMapper.map(employee, EmployeeDto.class))
 				.toList();
 		return employeeDtos;
 	}
