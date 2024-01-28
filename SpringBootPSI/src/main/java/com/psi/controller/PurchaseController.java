@@ -145,9 +145,7 @@ public class PurchaseController {
 	
 	// 採購單明細-修改
 	@PutMapping("/{pid}/item/{iid}")
-	public String updatePurchaseItem(PurchaseItemDto purchaseItemDto, 
-		@PathVariable("pid") Long pid, 
-		@PathVariable("iid") Long iid) {
+	public String updatePurchaseItem(PurchaseItemDto purchaseItemDto, @PathVariable("pid") Long pid, @PathVariable("iid") Long iid) {
 		purchaseService.updatePurchaseItem(purchaseItemDto, iid);
 		return "redirect:/purchase/" + pid + "/item";
 	}
