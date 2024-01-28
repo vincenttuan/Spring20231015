@@ -32,7 +32,9 @@ public class PurchaseDto {
 		if(purchaseItems.size() == 0) {
 			return 0;
 		}
-		return 0;
+		return purchaseItems.stream()
+				.mapToInt(item -> item.getAmount() * item.getProduct().getCost())
+				.sum();
 	}
 	
 }
