@@ -60,7 +60,6 @@ public class PurchaseController {
 	public String index(Model model) {
 		PurchaseDto purchaseDto = new PurchaseDto();
 		List<PurchaseDto> purchaseDtos = purchaseService.findAll();
-		
 		List<SupplierDto> supplierDtos = supplierService.findAll();
 		List<EmployeeDto> employeeDtos = employeeService.findAll();
 		
@@ -82,7 +81,6 @@ public class PurchaseController {
 	@GetMapping("/edit/{pid}") 
 	public String edit(@PathVariable("pid") Long pid, Model model) {
 		PurchaseDto purchaseDto = purchaseService.getPurchaseDtoById(pid);
-		
 		List<SupplierDto> supplierDtos = supplierService.findAll();
 		List<EmployeeDto> employeeDtos = employeeService.findAll();
 		
