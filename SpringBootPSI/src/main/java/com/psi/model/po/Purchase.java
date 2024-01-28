@@ -1,13 +1,16 @@
 package com.psi.model.po;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -44,9 +47,10 @@ public class Purchase {
 	@ManyToOne
 	private Employee employee;
 	
-	@OneToMany(mappedBy = "purchase")
+	@OneToMany(mappedBy = "purchase", fetch = FetchType.EAGER)
 	@OrderBy("id ASC")
 	private Set<PurchaseItem> purchaseItems = new LinkedHashSet<>();
+	//private List<PurchaseItem> purchaseItems = new ArrayList<>();
 
 	@Override
 	public String toString() {

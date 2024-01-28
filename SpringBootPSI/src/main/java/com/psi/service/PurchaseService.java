@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import org.hibernate.Hibernate;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import com.psi.model.dto.ProductDto;
 import com.psi.model.dto.PurchaseDto;
 import com.psi.model.dto.PurchaseItemDto;
 import com.psi.model.dto.SupplierDto;
+import com.psi.model.mapper.PurchaseMapper;
 import com.psi.model.po.Employee;
 import com.psi.model.po.Purchase;
 import com.psi.model.po.PurchaseItem;
@@ -77,6 +79,7 @@ public class PurchaseService {
 		if(purchaseOpt.isPresent()) {
 			Purchase purchase = purchaseOpt.get();
 			//PurchaseDto purchaseDto = modelMapper.map(purchase, PurchaseDto.class);
+			
 			PurchaseDto purchaseDto = new PurchaseDto();
 			purchaseDto.setId(purchase.getId());
 			purchaseDto.setDate(purchase.getDate());

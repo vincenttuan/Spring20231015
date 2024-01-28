@@ -1,10 +1,14 @@
 package com.psi.model.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.psi.model.po.PurchaseItem;
 
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -25,7 +29,7 @@ public class PurchaseDto {
 	private EmployeeDto employee;
 	
 	private Set<PurchaseItemDto> purchaseItems = new LinkedHashSet<>();
-	
+	//private List<PurchaseItemDto> purchaseItems = new ArrayList<>();
 	// 計算採購單總價
 	public Integer getTotal() {
 		if(purchaseItems.size() == 0) {
