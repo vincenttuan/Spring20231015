@@ -132,5 +132,13 @@ public class PurchaseService {
 	}
 	
 	// 查詢-單筆
-	
+	public PurchaseItemDto getPurchaseItemDtoById(Long id) {
+		Optional<PurchaseItem> purchaseItemOpt = purchaseItemRepository.findById(id);
+		if(purchaseItemOpt.isPresent()) {
+			PurchaseItem purchaseItem = purchaseItemOpt.get();
+			PurchaseItemDto purchaseItemDto = modelMapper.map(purchaseItem, PurchaseItemDto.class);
+			return purchaseItemDto;
+		}
+		return null;
+	}
 }
