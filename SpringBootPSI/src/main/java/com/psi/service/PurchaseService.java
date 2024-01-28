@@ -90,7 +90,7 @@ public class PurchaseService {
 	// 採購單明細 -----------------------------------------------
 	// 新增
 	@Transactional
-	// pid: 採購單主檔的序號
+	// pid: 採購單主檔的 id 序號
 	public void addPurchaseItem(PurchaseItemDto purchaseItemDto, Long pid) {
 		// 採購單明細 po
 		PurchaseItem purchaseItem = modelMapper.map(purchaseItemDto, PurchaseItem.class);
@@ -103,10 +103,33 @@ public class PurchaseService {
 	}
 	
 	// 修改
-	
+	@Transactional
+	// iid: 採購單明細的 id 序號
+	public void updatePurchaseItem(PurchaseItemDto purchaseItemDto, Long iid) {
+		Optional<PurchaseItem> purchaseItemOpt = purchaseItemRepository.findById(iid);
+		if(purchaseItemOpt.isPresent()) {
+			// 取得 採購單主檔的 id 序號
+			Long pid = purchaseItemOpt.get().getPurchase().getId();
+			// 採購單明細 po
+			PurchaseItem purchaseItem = modelMapper.map(purchaseItemDto, PurchaseItem.class);
+			// 採購單(主檔) po
+			Purchase purchase = purchaseRepository.findById(pid).get();
+			// 採購單明細 po 與 採購單(主檔) po 建立關聯 (ps:由多的一方建立關聯)
+			purchaseItem.setPurchase(purchase);
+			// 修改
+			purchaseItemRepository.save(purchaseItem); // 若 purchaseItem 有 id 則 .save() 方法會進行模式修改, 如無則進行新增模式
+		}
+	}
 	
 	// 刪除
-	
+	@Transactional
+	// iid: 採購單明細的 id 序號
+	public void deletePurchaseItem(Long iid) {
+		Optional<PurchaseItem> purchaseItemOpt = purchaseItemRepository.findById(iid);
+		if(purchaseItemOpt.isPresent()) {
+			purchaseItemRepository.deleteById(iid);
+		}
+	}
 	
 	// 查詢-單筆
 	
