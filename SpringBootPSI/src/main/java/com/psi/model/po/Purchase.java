@@ -48,12 +48,3 @@ public class Purchase {
 	private Set<PurchaseItem> purchaseItems = new LinkedHashSet<>();
 	
 }
-
-
-
-
-
-
-
-
-
