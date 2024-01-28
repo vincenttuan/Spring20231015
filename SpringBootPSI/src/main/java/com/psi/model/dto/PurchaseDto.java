@@ -14,7 +14,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PurchaseDto {
-	
 	private Long id; // 採購單序號
 	
 	@Temporal(TemporalType.DATE)
@@ -36,5 +35,5 @@ public class PurchaseDto {
 				.mapToInt(item -> item.getAmount() * item.getProduct().getCost())
 				.sum();
 	}
-	
 }
+

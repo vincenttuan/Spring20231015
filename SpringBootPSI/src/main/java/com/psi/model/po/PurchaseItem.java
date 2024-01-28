@@ -19,7 +19,7 @@ public class PurchaseItem {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id; // 採購明細序號
+	private Long id; // 採購項目序號
 	
 	@Column
 	private Integer amount; // 採購數量
@@ -31,5 +31,11 @@ public class PurchaseItem {
 	@JoinColumn(name = "product_id")
 	@ManyToOne
 	private Product product;
+
+	@Override
+	public String toString() {
+		return "PurchaseItem [id=" + id + ", amount=" + amount + ", purchase=" + purchase + ", product=" + product
+				+ "]";
+	}
 	
 }

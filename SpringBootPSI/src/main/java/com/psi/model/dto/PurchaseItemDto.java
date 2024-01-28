@@ -7,8 +7,9 @@ import lombok.Setter;
 @Setter
 public class PurchaseItemDto {
 	
-	private Long id; // 採購單項目序號
+	private Long id; // 採購項目序號
 	private Integer amount; // 採購數量
-	private PurchaseDto purchase; // 採購單
-	private ProductDto product;  // 商品
+	private PurchaseDto purchase;
+	private ProductDto product;
+	
 }

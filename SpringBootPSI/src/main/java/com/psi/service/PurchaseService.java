@@ -7,8 +7,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.psi.model.dto.EmployeeDto;
 import com.psi.model.dto.PurchaseDto;
 import com.psi.model.dto.PurchaseItemDto;
+import com.psi.model.dto.SupplierDto;
 import com.psi.model.po.Employee;
 import com.psi.model.po.Purchase;
 import com.psi.model.po.PurchaseItem;
@@ -30,109 +32,76 @@ public class PurchaseService {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	// 採購單 -------------------------------------------------
 	// 新增
 	@Transactional
 	public Long add(PurchaseDto purchaseDto) {
-		Purchase purchase = modelMapper.map(purchaseDto, Purchase.class);
-		Purchase savePurchase = purchaseRepository.saveAndFlush(purchase);
-		return savePurchase.getId(); // 得到最新 ID
-	} 
+	    Purchase purchase = modelMapper.map(purchaseDto, Purchase.class);
+	    Purchase savedPurchase = purchaseRepository.saveAndFlush(purchase);
+	    return savedPurchase.getId(); // 返回保存後的 ID
+	}
+
 	
 	// 修改
-	@Transactional
 	public void update(PurchaseDto purchaseDto, Long id) {
 		Optional<Purchase> purchaseOpt = purchaseRepository.findById(id);
 		if(purchaseOpt.isPresent()) {
 			Purchase purchase = purchaseOpt.get();
-			// 修改日期
-			purchase.setDate(purchaseDto.getDate()); 
+			purchase.setDate(purchaseDto.getDate());
 			
-			// 修改員工
-			Employee employee = modelMapper.map(purchaseDto.getEmployee(), Employee.class);
+			EmployeeDto employeeDto = purchaseDto.getEmployee();
+			Employee employee = modelMapper.map(employeeDto, Employee.class);
 			purchase.setEmployee(employee);
 			
-			// 修改供應商
-			Supplier supplier = modelMapper.map(purchaseDto.getSupplier(), Supplier.class);
+			SupplierDto supplierDto = purchaseDto.getSupplier();
+			Supplier supplier = modelMapper.map(supplierDto, Supplier.class);
 			purchase.setSupplier(supplier);
 			
 			purchaseRepository.save(purchase);
-		}
+		} 
 	}
 	
 	// 刪除
-	@Transactional
 	public void delete(Long id) {
 		Optional<Purchase> purchaseOpt = purchaseRepository.findById(id);
 		if(purchaseOpt.isPresent()) {
-			//purchaseRepository.delete(purchaseOpt.get());
-			purchaseRepository.deleteById(id);
-		}
+			purchaseRepository.delete(purchaseOpt.get());
+		} 
 	}
-	
-	// 查詢-單筆
-	public PurchaseDto getPurchaseDtoById(Long id) {
+		
+	// 查詢單筆
+	public PurchaseDto getPurchaseById(Long id) {
 		Optional<Purchase> purchaseOpt = purchaseRepository.findById(id);
 		if(purchaseOpt.isPresent()) {
-			return modelMapper.map(purchaseOpt.get(), PurchaseDto.class);
+			Purchase purchase = purchaseOpt.get();
+			PurchaseDto purchaseDto = modelMapper.map(purchase, PurchaseDto.class);
+			return purchaseDto;
 		}
 		return null;
 	}
 	
-	// 查詢-多筆(全部)
+	// 全部查詢
 	public List<PurchaseDto> findAll() {
 		List<Purchase> purchases = purchaseRepository.findAll();
-		List<PurchaseDto> purchaseDtos = purchases.stream()
-				.map(purchase -> modelMapper.map(purchase, PurchaseDto.class)).toList();
-		return purchaseDtos;
+		return purchases.stream()
+						  .map(purchase -> modelMapper.map(purchase, PurchaseDto.class))
+						  .toList();
 	}
 	
-	// 採購單明細 -----------------------------------------------
-	// 新增
-	@Transactional
-	// pid: 採購單主檔的 id 序號
-	public void addPurchaseItem(PurchaseItemDto purchaseItemDto, Long pid) {
-		// 採購單明細 po
+	//-------------------------------------------------------------------------------------
+	
+	// 新增訂單項目
+	public void addItem(PurchaseItemDto purchaseItemDto, Long pid) {
+		// 訂單明細
 		PurchaseItem purchaseItem = modelMapper.map(purchaseItemDto, PurchaseItem.class);
-		// 採購單(主檔) po
+		// 訂單檔(主檔)
 		Purchase purchase = purchaseRepository.findById(pid).get();
-		// 採購單明細 po 與 採購單(主檔) po 建立關聯 (ps:由多的一方建立關聯)
+		// 訂單項目與訂單檔(主檔)建立關聯 (ps:由多的一方建立關聯)
 		purchaseItem.setPurchase(purchase);
-		// 儲存
 		purchaseItemRepository.save(purchaseItem);
 	}
 	
-	// 修改
-	@Transactional
-	// iid: 採購單明細的 id 序號
-	public void updatePurchaseItem(PurchaseItemDto purchaseItemDto, Long iid) {
-		Optional<PurchaseItem> purchaseItemOpt = purchaseItemRepository.findById(iid);
-		if(purchaseItemOpt.isPresent()) {
-			// 取得 採購單主檔的 id 序號
-			Long pid = purchaseItemOpt.get().getPurchase().getId();
-			// 採購單明細 po
-			PurchaseItem purchaseItem = modelMapper.map(purchaseItemDto, PurchaseItem.class);
-			// 採購單(主檔) po
-			Purchase purchase = purchaseRepository.findById(pid).get();
-			// 採購單明細 po 與 採購單(主檔) po 建立關聯 (ps:由多的一方建立關聯)
-			purchaseItem.setPurchase(purchase);
-			// 修改
-			purchaseItemRepository.save(purchaseItem); // 若 purchaseItem 有 id 則 .save() 方法會進行模式修改, 如無則進行新增模式
-		}
-	}
-	
-	// 刪除
-	@Transactional
-	// iid: 採購單明細的 id 序號
-	public void deletePurchaseItem(Long iid) {
-		Optional<PurchaseItem> purchaseItemOpt = purchaseItemRepository.findById(iid);
-		if(purchaseItemOpt.isPresent()) {
-			purchaseItemRepository.deleteById(iid);
-		}
-	}
-	
-	// 查詢-單筆
-	public PurchaseItemDto getPurchaseItemDtoById(Long id) {
+	// 查詢訂單項目單筆
+	public PurchaseItemDto getPurchaseItemById(Long id) {
 		Optional<PurchaseItem> purchaseItemOpt = purchaseItemRepository.findById(id);
 		if(purchaseItemOpt.isPresent()) {
 			PurchaseItem purchaseItem = purchaseItemOpt.get();
@@ -141,4 +110,23 @@ public class PurchaseService {
 		}
 		return null;
 	}
+	
+	// 修改訂單項目
+	public void updatePurchaseItem(PurchaseItemDto purchaseItemDto, Long pid) {
+		// 訂單明細
+		PurchaseItem purchaseItem = modelMapper.map(purchaseItemDto, PurchaseItem.class);
+		// 訂單檔(主檔)
+		Purchase purchase = purchaseRepository.findById(pid).get();
+		// 訂單項目與訂單檔(主檔)建立關聯 (ps:由多的一方建立關聯)
+		purchaseItem.setPurchase(purchase);
+		purchaseItemRepository.save(purchaseItem);		
+	}
+	
+	// 刪除訂單項目
+	public void deletePurchaseItem(Long iid) {
+		purchaseItemRepository.deleteById(iid);
+	}
+	
+	
+	
 }
