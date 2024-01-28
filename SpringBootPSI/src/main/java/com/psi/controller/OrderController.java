@@ -63,7 +63,7 @@ public class OrderController {
 	
 	@GetMapping("/edit/{id}") // 修改頁面的呈現
 	public String edit(@PathVariable("id") Long id, Model model) {
-		OrderDto orderDto = orderService.getOrderById(id);
+		OrderDto orderDto = orderService.getOrderDtoById(id);
 		List<CustomerDto> customerDtos = customerService.findAll();
 		List<EmployeeDto> employeeDtos = employeeService.findAll();
 		model.addAttribute("orderDto", orderDto);
@@ -89,7 +89,7 @@ public class OrderController {
 	// oid -> 訂單主檔 id
 	@GetMapping("/{oid}/item")
 	public String indexItem(Model model, @PathVariable("oid") Long oid) {
-		OrderDto orderDto = orderService.getOrderById(oid);
+		OrderDto orderDto = orderService.getOrderDtoById(oid);
 		OrderItemDto orderItemDto = new OrderItemDto();
 		List<ProductDto> productDtos = productService.findAll();
 		model.addAttribute("orderDto", orderDto);
@@ -104,7 +104,7 @@ public class OrderController {
 		// 驗證資料
 		inventoryValidator.validate(orderItemDto, result);
 		if(result.hasErrors()) {
-			OrderDto orderDto = orderService.getOrderById(oid);
+			OrderDto orderDto = orderService.getOrderDtoById(oid);
 			List<ProductDto> productDtos = productService.findAll();
 			model.addAttribute("orderDto", orderDto);
 			model.addAttribute("orderItemDto", orderItemDto);
@@ -117,7 +117,7 @@ public class OrderController {
 	
 	@GetMapping("/edit/{oid}/item/{iid}") // 項目修改頁面的呈現
 	public String editItem(@PathVariable("oid") Long oid, @PathVariable("iid") Long iid, Model model) {
-		OrderDto orderDto = orderService.getOrderById(oid);
+		OrderDto orderDto = orderService.getOrderDtoById(oid);
 		OrderItemDto orderItemDto = orderService.getOrderItemById(iid);
 		List<ProductDto> productDtos = productService.findAll();
 		model.addAttribute("orderDto", orderDto);

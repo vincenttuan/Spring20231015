@@ -1,8 +1,10 @@
 package com.psi.service;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import com.psi.model.dto.CustomerDto;
 import com.psi.model.dto.EmployeeDto;
 import com.psi.model.dto.OrderDto;
 import com.psi.model.dto.OrderItemDto;
+import com.psi.model.dto.ProductDto;
 import com.psi.model.po.Customer;
 import com.psi.model.po.Employee;
 import com.psi.model.po.Order;
@@ -70,11 +73,28 @@ public class OrderService {
 	}
 		
 	// 查詢單筆
-	public OrderDto getOrderById(Long id) {
+	public OrderDto getOrderDtoById(Long id) {
 		Optional<Order> orderOpt = orderRepository.findById(id);
 		if(orderOpt.isPresent()) {
 			Order order = orderOpt.get();
-			OrderDto orderDto = modelMapper.map(order, OrderDto.class);
+			//OrderDto orderDto = modelMapper.map(order, OrderDto.class);
+			OrderDto orderDto = new OrderDto();
+			orderDto.setId(order.getId());
+			orderDto.setDate(order.getDate());
+			orderDto.setCustomer(modelMapper.map(order.getCustomer(), CustomerDto.class));
+			orderDto.setEmployee(modelMapper.map(order.getEmployee(), EmployeeDto.class));
+			Set<OrderItemDto> orderItemDtos = new LinkedHashSet<>();
+			
+			for(OrderItem item : order.getOrderItems()) {
+				OrderItemDto orderItemDto = new OrderItemDto();
+				orderItemDto.setId(item.getId());
+				orderItemDto.setAmount(item.getAmount());
+				orderItemDto.setPrice(item.getPrice());
+				orderItemDto.setProduct(modelMapper.map(item.getProduct(), ProductDto.class));
+				orderItemDtos.add(orderItemDto);
+			}
+			
+			orderDto.setOrderItems(orderItemDtos);
 			return orderDto;
 		}
 		return null;
@@ -84,7 +104,7 @@ public class OrderService {
 	public List<OrderDto> findAll() {
 		List<Order> orders = orderRepository.findAll();
 		return orders.stream()
-						  .map(order -> modelMapper.map(order, OrderDto.class))
+						  .map(order -> getOrderDtoById(order.getId()))
 						  .toList();
 	}
 	
