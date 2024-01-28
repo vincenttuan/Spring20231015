@@ -1,13 +1,16 @@
 package com.psi.service;
 
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.psi.model.dto.EmployeeDto;
+import com.psi.model.dto.ProductDto;
 import com.psi.model.dto.PurchaseDto;
 import com.psi.model.dto.PurchaseItemDto;
 import com.psi.model.dto.SupplierDto;
@@ -73,7 +76,24 @@ public class PurchaseService {
 		Optional<Purchase> purchaseOpt = purchaseRepository.findById(id);
 		if(purchaseOpt.isPresent()) {
 			Purchase purchase = purchaseOpt.get();
-			PurchaseDto purchaseDto = modelMapper.map(purchase, PurchaseDto.class);
+			//PurchaseDto purchaseDto = modelMapper.map(purchase, PurchaseDto.class);
+			PurchaseDto purchaseDto = new PurchaseDto();
+			purchaseDto.setId(purchase.getId());
+			purchaseDto.setDate(purchase.getDate());
+			purchaseDto.setEmployee(modelMapper.map(purchase.getEmployee(), EmployeeDto.class));
+			purchaseDto.setSupplier(modelMapper.map(purchase.getSupplier(), SupplierDto.class));
+			Set<PurchaseItemDto> purchaseItems = new LinkedHashSet<>();
+			
+			for(PurchaseItem item : purchase.getPurchaseItems()) {
+				PurchaseItemDto purchaseItemDto = new PurchaseItemDto();
+				purchaseItemDto.setId(item.getId());
+				purchaseItemDto.setAmount(item.getAmount());
+				purchaseItemDto.setProduct(modelMapper.map(item.getProduct(), ProductDto.class));
+				purchaseItems.add(purchaseItemDto);
+			}
+			
+			purchaseDto.setPurchaseItems(purchaseItems);
+			
 			return purchaseDto;
 		}
 		return null;
