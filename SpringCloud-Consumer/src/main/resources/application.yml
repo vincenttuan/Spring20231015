@@ -1,3 +1,0 @@
-server:
-  port: 8081  # 對於Consumer微服務
-
