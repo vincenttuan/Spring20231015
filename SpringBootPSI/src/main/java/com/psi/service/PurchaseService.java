@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.psi.model.dto.PurchaseDto;
+import com.psi.model.dto.PurchaseItemDto;
 import com.psi.model.po.Employee;
 import com.psi.model.po.Purchase;
+import com.psi.model.po.PurchaseItem;
 import com.psi.model.po.Supplier;
 import com.psi.repository.PurchaseItemRepository;
 import com.psi.repository.PurchaseRepository;
@@ -87,8 +89,25 @@ public class PurchaseService {
 	
 	// 採購單明細 -----------------------------------------------
 	// 新增
+	@Transactional
+	// pid: 採購單主檔的序號
+	public void addPurchaseItem(PurchaseItemDto purchaseItemDto, Long pid) {
+		// 採購單明細 po
+		PurchaseItem purchaseItem = modelMapper.map(purchaseItemDto, PurchaseItem.class);
+		// 採購單(主檔) po
+		Purchase purchase = purchaseRepository.findById(pid).get();
+		// 採購單明細 po 與 採購單(主檔) po 建立關聯 (ps:由多的一方建立關聯)
+		purchaseItem.setPurchase(purchase);
+		// 儲存
+		purchaseItemRepository.save(purchaseItem);
+	}
+	
 	// 修改
+	
+	
 	// 刪除
+	
+	
 	// 查詢-單筆
 	
 }
