@@ -35,7 +35,7 @@ import com.psi.service.SupplierService;
  * GET      "/purchase/{pid}/item"              採購單明細-檢視指定的採購單主檔明細
  * POST     "/purchase/{pid}/item"              採購單明細-新增
  * GET      "/purchase/edit/{pid}/item/{iid}"   採購單明細-取得單筆(修改畫面用)
- * PUT      "/purchase/{pid}/item/{iid}"        採購單明細-修改
+ * PUT      "/purchase/{pid}/item"              採購單明細-修改
  * GET      "/purchase/delete/{pid}/item/{iid}" 採購單明細-刪除
  * ----------------------------------------------------------------------
  */
@@ -142,9 +142,9 @@ public class PurchaseController {
 	}
 	
 	// 採購單明細-修改
-	@PutMapping("/{pid}/item/{iid}")
-	public String updatePurchaseItem(PurchaseItemDto purchaseItemDto, @PathVariable("pid") Long pid, @PathVariable("iid") Long iid) {
-		purchaseService.updatePurchaseItem(purchaseItemDto, iid);
+	@PutMapping("/{pid}/item")
+	public String updatePurchaseItem(PurchaseItemDto purchaseItemDto, @PathVariable("pid") Long pid) {
+		purchaseService.updatePurchaseItem(purchaseItemDto, purchaseItemDto.getId());
 		return "redirect:/purchase/" + pid + "/item";
 	}
 	

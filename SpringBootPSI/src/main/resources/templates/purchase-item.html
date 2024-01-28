@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>PSI 採購單明細資料表</title>
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container my-2">
+		<!-- Header -->
+		<div th:include="header :: header"></div>
+		<!-- Content -->
+		<h1>採購主檔資料(Master)</h1>
+		<table border="1" class="table table-striped table-responsive-md">
+			<tr>
+				<th>採購單序號</th>
+				<th>採購單日期</th>
+				<th>供應商名稱</th>
+				<th>經手員工</th>
+				<th>項目筆數</th>
+				<th>採購總價</th>
+			</tr>
+			<tr>
+				<td th:text="${purchaseDto.id}"></td>
+				<td th:text="${purchaseDto.date}"></td>
+				<td th:text="${purchaseDto.supplier.name}"></td>
+				<td th:text="${purchaseDto.employee.name}"></td>
+				<td th:text="${#lists.size(purchaseDto.purchaseItems)}"></td>
+				<td th:text="${purchaseDto.total}"></td>
+			</tr>
+		</table>
+		
+		<h1>採購明細列表(Detail)</h1>
+		<table border="1" class="table table-striped table-responsive-md">
+			<tr>
+				<th>明細序號</th>
+				<th>商品名稱</th>
+				<th>商品成本</th>
+				<th>商品數量</th>
+				<th>小計</th>
+				<th>編輯</th>
+				<th>刪除</th>
+			</tr>
+			<tr th:each="item : ${purchaseDto.purchaseItems}">
+				<td th:text="${item.id}"></td>
+				<td th:text="${item.product.name}"></td>
+				<td th:text="${item.product.cost}"></td>
+				<td th:text="${item.amount}"></td>
+				<td th:text="${item.amount * item.product.cost}"></td>
+				<td><a th:href="@{/purchase/edit/{pid}/item/{iid}(pid=${purchaseDto.id}, iid=${item.id})}" class="btn btn-primary">編輯</a></td>
+				<td><a th:href="@{/purchase/delete/{pid}/item/{iid}(pid=${purchaseDto.id}, iid=${item.id})}" class="btn btn-danger">刪除</a></td>
+			</tr>
+			<tr>
+				<td colspan="3"> </td>
+				<td>總計</td>
+				<td th:text="${purchaseDto.total}"></td>
+				<td> </td>
+			</tr>
+		</table>
+		
+		<form action="#" th:action="@{/purchase/{pid}/item(pid=${purchaseDto.id})}" th:object="${purchaseItemDto}" method="post">
+			<!-- h1 標籤要放到 form 表單中, 才可以抓到 *{id} -->
+			<h1 th:text="(*{id} == null ? '新增採購單項目' : '修改採購單項目')" >新增採購明細單</h1>
+			<input type="hidden" name="_method" th:value="(*{id} == null ? 'POST' : 'PUT')" value="POST" />
+			<div class="form-group">
+				<label>項目序號:</label>
+				<input type="text" 
+					   th:field="*{id}"  
+					   id="id" class="form-control" readonly="readonly">
+			</div>
+			
+			<div class="form-group">
+				<label>商品名稱:</label>
+				<select class="form-control select2" th:field="*{product.id}" id="product.id">
+					<option th:each="prod:${productDtos}" th:value="${prod.id}" th:text="${prod.name}"></option>
+				</select>
+			</div>
+			
+			<div class="form-group">
+				<label>採購數量:</label>
+				<input th:field="*{amount}" id="amount" class="form-control" />
+			</div>
+			
+			<input type="submit" th:value="(*{id} == null ? '新增採購單項目' : '修改採購單項目')"  value="新增採購單項目" class="btn btn-primary" />
+		</form>
+		<p />
+		
+		<!-- Footer -->
+		<div th:include="footer :: footer"></div>
+	</div>
+</body>
+</html>
