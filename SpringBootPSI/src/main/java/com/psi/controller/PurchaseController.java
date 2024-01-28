@@ -61,7 +61,7 @@ public class PurchaseController {
 	
 	@GetMapping("/edit/{id}") // 修改頁面的呈現
 	public String edit(@PathVariable("id") Long id, Model model) {
-		PurchaseDto purchaseDto = purchaseService.getPurchaseById(id);
+		PurchaseDto purchaseDto = purchaseService.getPurchaseDtoById(id);
 		
 		List<SupplierDto> supplierDtos = supplierService.findAll();
 		List<EmployeeDto> employeeDtos = employeeService.findAll();
@@ -89,7 +89,7 @@ public class PurchaseController {
 	// pid -> 採購單主檔 id
 	@GetMapping("/{pid}/item")
 	public String getPurchaseItem(Model model, @PathVariable("pid") Long pid) {
-		PurchaseDto purchaseDto = purchaseService.getPurchaseById(pid);
+		PurchaseDto purchaseDto = purchaseService.getPurchaseDtoById(pid);
 		PurchaseItemDto purchaseItemDto = new PurchaseItemDto();
 		List<ProductDto> productDtos = productService.findAll();
 		model.addAttribute("purchaseDto", purchaseDto);
@@ -110,7 +110,7 @@ public class PurchaseController {
 	// pid: 訂單主檔 id
 	// iid: 訂單項目 id
 	public String editPurchaseItem(@PathVariable("pid") Long pid, @PathVariable("iid") Long iid, Model model) {
-		PurchaseDto purchaseDto = purchaseService.getPurchaseById(pid);
+		PurchaseDto purchaseDto = purchaseService.getPurchaseDtoById(pid);
 		PurchaseItemDto purchaseItemDto = purchaseService.getPurchaseItemById(iid);
 		List<ProductDto> productDtos = productService.findAll();
 		model.addAttribute("purchaseDto", purchaseDto);

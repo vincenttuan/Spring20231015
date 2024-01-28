@@ -72,7 +72,7 @@ public class PurchaseService {
 	}
 		
 	// 查詢單筆
-	public PurchaseDto getPurchaseById(Long id) {
+	public PurchaseDto getPurchaseDtoById(Long id) {
 		Optional<Purchase> purchaseOpt = purchaseRepository.findById(id);
 		if(purchaseOpt.isPresent()) {
 			Purchase purchase = purchaseOpt.get();
@@ -103,7 +103,7 @@ public class PurchaseService {
 	public List<PurchaseDto> findAll() {
 		List<Purchase> purchases = purchaseRepository.findAll();
 		return purchases.stream()
-						  .map(purchase -> modelMapper.map(purchase, PurchaseDto.class))
+						  .map(purchase -> getPurchaseDtoById(purchase.getId()))
 						  .toList();
 	}
 	
