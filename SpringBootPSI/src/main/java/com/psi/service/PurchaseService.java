@@ -121,11 +121,15 @@ public class PurchaseService {
 	}
 	
 	// 查詢訂單項目單筆
-	public PurchaseItemDto getPurchaseItemById(Long id) {
+	public PurchaseItemDto getPurchaseItemDtoById(Long id) {
 		Optional<PurchaseItem> purchaseItemOpt = purchaseItemRepository.findById(id);
 		if(purchaseItemOpt.isPresent()) {
 			PurchaseItem purchaseItem = purchaseItemOpt.get();
-			PurchaseItemDto purchaseItemDto = modelMapper.map(purchaseItem, PurchaseItemDto.class);
+			//PurchaseItemDto purchaseItemDto = modelMapper.map(purchaseItem, PurchaseItemDto.class);
+			PurchaseItemDto purchaseItemDto = new PurchaseItemDto();
+			purchaseItemDto.setId(purchaseItem.getId());
+			purchaseItemDto.setAmount(purchaseItem.getAmount());
+			purchaseItemDto.setProduct(modelMapper.map(purchaseItem.getProduct(), ProductDto.class));
 			return purchaseItemDto;
 		}
 		return null;

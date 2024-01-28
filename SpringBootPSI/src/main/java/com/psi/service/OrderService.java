@@ -122,11 +122,16 @@ public class OrderService {
 	}
 	
 	// 查詢訂單項目單筆
-	public OrderItemDto getOrderItemById(Long id) {
+	public OrderItemDto getOrderItemDtoById(Long id) {
 		Optional<OrderItem> orderItemOpt = orderItemRepository.findById(id);
 		if(orderItemOpt.isPresent()) {
 			OrderItem orderItem = orderItemOpt.get();
-			OrderItemDto orderItemDto = modelMapper.map(orderItem, OrderItemDto.class);
+			//OrderItemDto orderItemDto = modelMapper.map(orderItem, OrderItemDto.class);
+			OrderItemDto orderItemDto = new OrderItemDto();
+			orderItemDto.setId(orderItem.getId());
+			orderItemDto.setAmount(orderItem.getAmount());
+			orderItemDto.setPrice(orderItem.getPrice());
+			orderItemDto.setProduct(modelMapper.map(orderItem.getProduct(), ProductDto.class));
 			return orderItemDto;
 		}
 		return null;

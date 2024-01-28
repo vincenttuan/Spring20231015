@@ -118,7 +118,7 @@ public class OrderController {
 	@GetMapping("/edit/{oid}/item/{iid}") // 項目修改頁面的呈現
 	public String editItem(@PathVariable("oid") Long oid, @PathVariable("iid") Long iid, Model model) {
 		OrderDto orderDto = orderService.getOrderDtoById(oid);
-		OrderItemDto orderItemDto = orderService.getOrderItemById(iid);
+		OrderItemDto orderItemDto = orderService.getOrderItemDtoById(iid);
 		List<ProductDto> productDtos = productService.findAll();
 		model.addAttribute("orderDto", orderDto);
 		model.addAttribute("orderItemDto", orderItemDto);

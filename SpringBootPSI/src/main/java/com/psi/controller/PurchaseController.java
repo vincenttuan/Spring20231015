@@ -111,7 +111,7 @@ public class PurchaseController {
 	// iid: 訂單項目 id
 	public String editPurchaseItem(@PathVariable("pid") Long pid, @PathVariable("iid") Long iid, Model model) {
 		PurchaseDto purchaseDto = purchaseService.getPurchaseDtoById(pid);
-		PurchaseItemDto purchaseItemDto = purchaseService.getPurchaseItemById(iid);
+		PurchaseItemDto purchaseItemDto = purchaseService.getPurchaseItemDtoById(iid);
 		List<ProductDto> productDtos = productService.findAll();
 		model.addAttribute("purchaseDto", purchaseDto);
 		model.addAttribute("purchaseItemDto", purchaseItemDto);
